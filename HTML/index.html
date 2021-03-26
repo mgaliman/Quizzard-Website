@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+
     <link rel="stylesheet" href="../CSS/indexCss.css">
+
     <title>Quizzard</title>
 </head>
 <body>
@@ -23,37 +26,6 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <!-- <div class="form-group">
-                                        <label for="InputFirstName">First name:</label>
-                                        <input type="text" class="form-control" id="InputFirstName" placeholder="Enter first name...">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="InputLastName">Last name:</label>
-                                        <input type="text" class="form-control" id="InputLastName" placeholder="Enter last name...">
-                                      </div> -->
-                    <!-- <div class="form-group">
-                                          <div class="input-group">
-                                              <div class="input-group-prepend">
-                                                  <span class="input-group-text br-15"><i class="fas fa-at"></i></span>
-                                              </div>
-                                              <input type="text" placeholder="Enter email here..." class="form-control" required/>
-                                          </div>
-                                      </div>
-                                      <div class="form-group">
-                                          <div class="input-group">
-                                              <div class="input-group-prepend">
-                                                  <span class="input-group-text br-15"><i class="fas fa-key"></i></span>
-                                              </div>
-                                              <input type="password" placeholder="Enter password here..." class="form-control" required/>
-                                          </div>
-                                      </div>
-                                      <div class="form-group">
-                                          <small id="signUpHelp" class="form-text text-muted">Don't have an account? <a href="#">Sign up here!</a></small>  
-                                      </div>
-                                    <div class="modal-footer">
-                                    <button type="submit" class="btn" id="submitButton">Submit</button>
-                                      <button type="button" class="btn" data-dismiss="modal" id="closeButton">Close</button>
-                                    </div> -->
                     <div class="login-box">
                         <div class="login-snip"> 
                             <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
@@ -126,10 +98,10 @@
           <div class="collapse navbar-collapse" id="navbarMenu">
               <ul class="navbar-nav ml-auto">
                   <li class="nav-item">
-                      <a href="#" class="nav-link">Home</a>
+                      <a href="../HTML/index.html" class="nav-link">Home</a>
                   </li>
                   <li class="nav-item">
-                      <a href="#" class="nav-link">Log in</a>
+                      <a href="#" class="nav-link" data-toggle="modal" data-target="#myModal">Log in</a>
                   </li>
                   <li class="nav-item">
                       <a href="#" class="nav-link">Help</a>
@@ -137,6 +109,15 @@
                   <li class="nav-item">
                       <a href="#" class="nav-link">About</a>
                   </li>
+                  <li class="nav-item">
+                    <div class="dropdown">
+                        <a href="#" class="nav-link" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Language</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+                          <button class="dropdown-item" type="button">English</button>
+                          <button class="dropdown-item" type="button">Croatian</button>
+                        </div>
+                      </div>
+                </li>
               </ul>
           </div>
       </nav>
@@ -192,8 +173,6 @@
                 </a>
             </div>
           </div>
-
-    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
 	</script> 
