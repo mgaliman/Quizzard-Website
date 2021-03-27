@@ -1,5 +1,17 @@
 var questionNum = 0;
 
+
+function generateID(){
+    //ID generator
+    var randomstring = Math.random().toString(36).slice(-8);
+    // Generate random number, eg: 0.123456
+    // Convert  to base-36 : "0.4fzyo82mvyr"
+    // Cut off last 8 characters : "yo82mvyr"
+
+    var idInput=document.getElementById("quizInputID");
+    idInput.value=randomstring;
+}
+
 function addQuestion() {
     questionNum += 1;
 
@@ -12,7 +24,7 @@ function addQuestion() {
     var deleteButton = document.createElement('button');      //Delete button
     deleteButton.setAttribute('class', 'deleteButton');
     deleteButton.setAttribute('onclick', 'deleteQuestion()');
-    deleteButton.innerHTML = "DELETE QUESTION " + String(questionNum);
+    deleteButton.innerHTML = "Delete question " + String(questionNum);
 
     var newAnswersDiv = document.createElement("div");      //ANSWERS GRID
     newAnswersDiv.setAttribute('id', 'answer-field');
@@ -137,8 +149,6 @@ function addQuestion() {
         cardFooter.appendChild(correctField);
         newQuestionDiv.appendChild(cardFooter);
     });
-
-    questionsDiv.appendChild(document.createElement('br'));     //Creates a break between each question
     questionsDiv.appendChild(newQuestionDiv);                   //Adds the question div to the screen
 
     newQuestionDiv.style.backgroundColor = randomColor();

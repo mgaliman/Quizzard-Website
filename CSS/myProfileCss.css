@@ -32,6 +32,12 @@ body{
     transform: rotate(45deg);
 }
 
+.row h5 a{
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+    font-family: merienda;
+}
+
 #list{
     margin-right: 20%;
     margin-left: 20%;

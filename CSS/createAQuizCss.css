@@ -1,6 +1,4 @@
 body {
-  /* background-image: linear-gradient(white,gray);
-   background-repeat: no-repeat; */
   height: 100vh;
 }
 textarea:focus,
@@ -28,9 +26,6 @@ input:focus {
 #quizID {
   margin-left: 3%;
 }
-/* #radioBtns{
-    margin-top: 2%;
-} */
 
 /* -----------------------------QUESTION CARDS-------------------------------- */
 #allQuestions {
@@ -40,6 +35,7 @@ input:focus {
 #question-field {
   padding: 5%;
   height: fit-content;
+  margin-bottom: 5%;
 }
 #chooseDiv {
   width: 100%;
@@ -97,12 +93,14 @@ input:focus {
 }
 
 /* -----------------------------BUTTONS-------------------------------- */
-.deleteButton {
+.deleteButton,#generateBtn {
   margin-bottom: 2%;
   letter-spacing: 0.3rem;
   transition: all 0.6s ease;
+  text-transform: uppercase;
 }
-.deleteButton:hover {
+.deleteButton:hover,
+#generateBtn:hover {
   transform: scale(0.9);
 }
 .btns {
@@ -127,5 +125,17 @@ input:focus {
   .btns,
   #answer-field {
     grid-template-columns: 1fr;
+  }
+  #answer-field {
+    margin-top: 10%;
+  }
+  .deleteButton {
+    letter-spacing: 0.1rem;
+  }
+  #question-field{
+    min-height: 150vh;
+  }
+  .cardFooter {
+    margin-top: 85%;
   }
 }
