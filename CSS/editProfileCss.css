@@ -13,6 +13,8 @@ body{
     letter-spacing: 0.1rem;
     text-transform: uppercase;
     font-family: merienda;
+    text-decoration-color: white;
+    color: white;
   }
 
 @media only screen and (max-width: 768px) {
