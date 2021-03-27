@@ -1,0 +1,23 @@
+@import url("indexCss.css");
+
+body{
+    background-image: linear-gradient(to right,#7a84bd, #7abd92);
+}
+
+.userLogo{
+    color: white;
+}
+
+.myCol {
+    margin-top: 10%;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    font-family: merienda;
+  }
+
+@media only screen and (max-width: 768px) {
+
+    .userLogo{
+        font-size: 100px;
+    }
+  }
