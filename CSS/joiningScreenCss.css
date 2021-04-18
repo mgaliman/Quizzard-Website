@@ -1,0 +1,32 @@
+@import url("indexCss.css");
+
+body{
+    background-image: linear-gradient(to right,#7a84bd, #7abd92);
+}
+
+.tableFixHead {
+    overflow-y: auto;
+    height: 300px;
+    border: 2px solid black;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td {
+    padding: 8px 16px;
+  }
+
+  .tableFixHead::-webkit-scrollbar {
+    display: none;
+  }
+
+.myCol {
+    margin-top: 10%;
+    letter-spacing: 0.1rem;
+    font-family: merienda;
+    text-decoration-color: white;
+    color: white;
+  }
