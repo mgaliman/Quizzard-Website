@@ -17,11 +17,11 @@
     </div>  
     
     <div class="timer">   
-        <p class="time merienda-font hide">15</p>
+        <p class="time merienda-font ">15</p>
     </div>
 
     <div class="container"> 
-        <div class="container-loading">    <!-- set hide kad igra pocinje -->
+        <div class="container-loading hide">    <!-- set hide kad igra pocinje -->
             <div class="loading ">
               <div class="loading__letter">W</div>
               <div class="loading__letter">a</div>
@@ -47,17 +47,19 @@
             <div class="loader"></div>
           </div>
 
-        <div class="question-container hide" >   <!--makni hide kad igra pocinje-->
-            <div class="question">   
-                Ovo je neko pitanje ali je malo duze od onog prije da vidim wrapa li se tekst onako kako bi trebao i to?
-            </div>
-            <div id="answer-buttons" class="btn-grid">   
-                <button class="btn" id="btn1">answer 1</button>
-                <button class="btn" id="btn2">answer 2</button>
-                <button class="btn" id="btn3">answer 3</button>
-                <button class="btn" id="btn4">answer 3</button>
-            </div>
-        </div>  
+        <div class="question-container " >   <!--makni hide kad igra pocinje-->
+            
+            <form action="/PROJEKT/HTML/ScoreBoard.html">
+
+                <div id="answer-buttons" class="btn-grid">   
+                    <button class="btn" id="btn1" value="A"><img src="/PROJEKT/PICTURES/romb.png" alt="#"></button>
+                    <button class="btn" id="btn2" value="B"><img src="/PROJEKT/PICTURES/triangle.png" alt="#"></button>
+                    <button class="btn" id="btn3" value="C"><img src="/PROJEKT/PICTURES/cube.png" alt="#"></button>
+                    <button class="btn" id="btn4" value="D"><img src="/PROJEKT/PICTURES/circle.png" alt="#"></button>
+                </div>
+            </form>
+        </div> 
+                   
     </div>
 </body>
 </html>
