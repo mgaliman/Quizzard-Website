@@ -36,7 +36,8 @@ body {
     display: grid;
     grid-template-columns: repeat(2, auto);
     gap: 15px;
-    margin: 25px 10px;
+    margin: 35px 10px;
+    margin-top: 70px;
 }
 
 .btn{
@@ -45,7 +46,8 @@ body {
     padding: 5px 10px;
     color: black;
     outline: none;
-    height: 95px;
+    height: 100px;
+    width: 300px
 }
 
 #btn1{
@@ -206,6 +208,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .loading {
@@ -307,3 +310,9 @@ body {
     font-size: 40px;
   }
 }
+
+img{
+  margin-top: 8px;
+  width: 40px;
+}
+
