@@ -1,7 +1,24 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
   height: 100vh;
+  border-radius: 50px;
+  background-color: #45c070;
+  background-image: linear-gradient(90deg, #45c070 0%, #c04595 100%);
+  
+
 }
 textarea:focus,
+input {
+  background: rgba( 255, 255, 255, 0.30 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 10.0px );
+  -webkit-backdrop-filter: blur( 10.0px );
+  border: 1px solid rgba( 255, 255, 255, 0.18 );  
+}
 input:focus {
   outline: none;
 }
@@ -36,6 +53,9 @@ input:focus {
   padding: 5%;
   height: fit-content;
   margin-bottom: 5%;
+  background-color: white  !important;
+
+  mix-blend-mode: hard-light;
 }
 #chooseDiv {
   width: 100%;
@@ -54,8 +74,7 @@ input:focus {
   font-size: 20px;
   letter-spacing: 0.3rem;
 }
-#twoAnsr,
-#fourAnsr {
+#chooseDiv button {
   margin-left: 15%;
   padding: 0% 2%;
   border: none;
@@ -63,8 +82,7 @@ input:focus {
   background-color: rgba(255, 255, 255, 0.541);
   transition: all 0.7s ease;
 }
-#twoAnsr:hover,
-#fourAnsr:hover {
+#chooseDiv button {
   box-shadow: 5px 10px #888888;
   border-radius: 50%;
   transform: scale(1.2);
@@ -110,7 +128,6 @@ input:focus {
   gap: 5%;
   bottom: 0;
   position: sticky;
-  background-color: white;
 }
 .btns button {
   letter-spacing: 0.5rem;
@@ -119,7 +136,26 @@ input:focus {
   border: transparent;
   background-color: transparent;
   outline: none;
+  border-radius: 50px;
+  border-radius: 50px;
+  border-radius: 50px;
+
 }
+.btns button:nth-child(1):hover  {
+  border-radius: 50px;
+  background: #60A679;
+  background: linear-gradient(00deg, #60A679, #72937D);
+  box-shadow: inset 20px 20px 60px #60A679,
+              inset -20px -20px 60px #72937D;
+}
+.btns button:nth-child(2):hover {
+  border-radius: 50px;
+  background: #798D80;
+  background: linear-gradient(0deg, #798D80, #8D7785);
+  box-shadow: inset 20px 20px 60px #798D80,
+              inset -20px -20px 60px #8D7785;
+}
+
 
 @media only screen and (max-width: 768px) {
   .btns,

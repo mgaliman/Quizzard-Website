@@ -32,6 +32,16 @@ a,a:hover, a:visited{
   color: white;
 }
 
+.myList li{
+    background-color: rgba(255, 255, 255, 0.445);
+    transition: all 1s ease;
+    color: black !important;
+}
+
+.myList li:hover{
+    background-color:white;
+}
+
 /* ----------------------------MODAL----------------------------- */
 
 #myModal {

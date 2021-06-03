@@ -34,31 +34,32 @@ async function getUser(id) {
     }
 }
 
-async function createUser(username, email, password) {
+async function createUser(firstName, lastName, email, password) {
     try {
         let pool = await sql.connect(config);
         let users = await pool
             .request()
-            .input('UserName', sql.NVarChar(100), username)
+            .input('FirstName', sql.NVarChar(100), firstName)
+            .input('LastName', sql.NVarChar(100), lastName)
             .input('Email', sql.NVarChar(100), email)
             .input('UserPassword', sql.NVarChar(sql.MAX), password)
             .output('IDUserAccount', sql.Int)
             .execute('CreateUserAccount');
-        return users.output;
+        return users.output.IDUserAccount;
     } catch (err) {
         console.log(err.message);
     } finally {
         sql.close();
     }
 }
-async function UpdateUser(id, username, email, password) {
+async function UpdateUser(id, firstName, lastName, password) {
     try {
         let pool = await sql.connect(config);
         let users = await pool
             .request()
             .input('IDUserAccount', sql.Int, id)
-            .input('UserName', sql.NVarChar(100), username)
-            .input('Email', sql.NVarChar(100), email)
+            .input('FirstName', sql.NVarChar(100), firstName)
+            .input('LastName', sql.NVarChar(100), lastName)
             .input('UserPassword', sql.NVarChar(sql.MAX), password)
             .execute('UpdateUserAccount');
         return users.output;
@@ -110,11 +111,32 @@ async function loginUser(email, password) {
     }
 }
 
-module.exports  = {
-    getUsers : getUsers,
-    getUser : getUser,
-    createUser : createUser,
-    checkUserEmail : checkUserEmail,
-    loginUser : loginUser,
-    UpdateUser : UpdateUser,
+async function readQuizzesFromUser(id) {
+    try {
+        let pool = await sql.connect(config);
+        let users = await pool
+            .request()
+            .input('IDUserAccount', sql.Int, id)
+            .execute('ReadQuizzesFromUser');
+        if (users !== null) {
+            if (users.rowsAffected[0] > 0) {
+                return users.recordset;
+            }
+        }
+        return null;
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+        sql.close();
+    }
+}
+
+module.exports = {
+    getUsers: getUsers,
+    getUser: getUser,
+    createUser: createUser,
+    checkUserEmail: checkUserEmail,
+    loginUser: loginUser,
+    UpdateUser: UpdateUser,
+    readQuizzesFromUser: readQuizzesFromUser,
 }

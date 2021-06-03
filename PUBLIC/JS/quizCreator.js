@@ -1,15 +1,15 @@
 var questionNum = 0;
 
 
-function generateID(){
+function generateID() {
     //ID generator
     var randomstring = Math.random().toString(36).slice(-8);
     // Generate random number, eg: 0.123456
     // Convert  to base-36 : "0.4fzyo82mvyr"
     // Cut off last 8 characters : "yo82mvyr"
 
-    var idInput=document.getElementById("quizInputID");
-    idInput.value=randomstring;
+    var idInput = document.getElementById("quizInputID");
+    idInput.value = randomstring;
 }
 
 function addQuestion() {
@@ -38,11 +38,11 @@ function addQuestion() {
     answerNumberLabel.innerHTML = "Choose the number of answers:";
 
     var twoAnswers = document.createElement('button');
-    twoAnswers.setAttribute('id', 'twoAnsr');
+    twoAnswers.setAttribute('id', 'twoAnsr' + String(questionNum));
     twoAnswers.innerHTML = "2";
 
     var fourAnswers = document.createElement('button');
-    fourAnswers.setAttribute('id', 'fourAnsr');
+    fourAnswers.setAttribute('id', 'fourAnsr' + String(questionNum));
     fourAnswers.innerHTML = "4";
 
     var questionField = document.createElement('textarea');
@@ -70,55 +70,57 @@ function addQuestion() {
     questionsDiv.appendChild(newQuestionDiv);                   //Adds the question div to the screen
 
 
-    $('#twoAnsr, #fourAnsr').click(function () {
+    $(`#twoAnsr${String(questionNum)}, #fourAnsr${String(questionNum)}`).click(function () {
 
-        $('#twoAnsr, #fourAnsr').prop('disabled', true);
+        $(`#twoAnsr${String(questionNum)}, #fourAnsr${String(questionNum)}`).prop('disabled', true);
 
-        if (this.id == 'twoAnsr') {
+        if (this.id !== `#twoAnsr${String(questionNum)}`) {
 
             maxVal = 2;
             correctLabel.innerHTML = "Correct Answer (1/2): ";
 
-            var answer1Field = document.createElement('textarea');
+            var answer1Field = document.createElement('input');
             answer1Field.setAttribute('placeholder', 'Enter the first answer here...');
             answer1Field.setAttribute('class', 'answers');
-            answer1Field.setAttribute('style', 'background-color:#C04595');
+            answer1Field.setAttribute('style', '  -webkit-transition: 100ms');
 
-            var answer2Field = document.createElement('textarea');
+            var answer2Field = document.createElement('input');
             answer2Field.setAttribute('placeholder', 'Enter the second answer here...');
             answer2Field.setAttribute('class', 'answers');
-            answer2Field.setAttribute('style', 'background-color:#45C070');
+            answer2Field.setAttribute('style', 'background-color: gray');
 
+            answer1Field.setAttribute('name', String(questionNum) + "a1");
             answer1Field.setAttribute('id', String(questionNum) + "a1");
             answer1Field.setAttribute('type', 'text');
             answer2Field.setAttribute('id', String(questionNum) + "a2");
+            answer2Field.setAttribute('name', String(questionNum) + "a2");
             answer2Field.setAttribute('type', 'text');
 
             newAnswersDiv.appendChild(answer1Field);
             newAnswersDiv.appendChild(answer2Field);
             newQuestionDiv.appendChild(newAnswersDiv);
         }
-        else if (this.id == 'fourAnsr') {
+        else if (this.id !== `#fourAnsr${String(questionNum)}`) {
 
             maxVal = 4;
             correctLabel.innerHTML = "Correct Answer (1-4): ";
 
-            var answer1Field = document.createElement('textarea');
+            var answer1Field = document.createElement('input');
             answer1Field.setAttribute('placeholder', 'Enter the first answer here...');
             answer1Field.setAttribute('class', 'answers');
             answer1Field.setAttribute('style', 'background-color:#C04595');
 
-            var answer2Field = document.createElement('textarea');
+            var answer2Field = document.createElement('input');
             answer2Field.setAttribute('placeholder', 'Enter the second answer here...');
             answer2Field.setAttribute('class', 'answers');
             answer2Field.setAttribute('style', 'background-color:#45C070');
 
-            var answer3Field = document.createElement('textarea');
+            var answer3Field = document.createElement('input');
             answer3Field.setAttribute('placeholder', 'Enter the third answer here...');
             answer3Field.setAttribute('class', 'answers');
             answer3Field.setAttribute('style', 'background-color:#C0AD45');
 
-            var answer4Field = document.createElement('textarea');
+            var answer4Field = document.createElement('input');
             answer4Field.setAttribute('placeholder', 'Enter the fourth answer here...');
             answer4Field.setAttribute('class', 'answers');
             answer4Field.setAttribute('style', 'background-color:#4558C0');

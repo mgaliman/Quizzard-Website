@@ -21,7 +21,7 @@ function addQuestion() {
     newQuestionDiv.setAttribute('id', 'question-field');    //Sets class of div
     newQuestionDiv.setAttribute('class', 'animated bounceInLeft');
 
-    var deleteButton = document.createElement('button');      //Delete button
+    var deleteButton = document.createElement('div');      //Delete button
     deleteButton.setAttribute('class', 'deleteButton');
     deleteButton.setAttribute('onclick', 'deleteQuestion()');
     deleteButton.innerHTML = "Delete question " + String(questionNum);

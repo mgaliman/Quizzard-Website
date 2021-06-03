@@ -21,23 +21,25 @@
     <div class="title">
         <h1>Welcome to quiz creator</h1>
     </div>
-
-    <div class="form-field myField">
-        <label id="quizTitle">Quiz Title:</label>
-        <input id="name" type="text" name="name" autofocus />
-        <label id="quizID">Quiz id:</label>
-        <input id="quizInputID" type="text" name="quizInputID"/>
-        <button id="generateBtn" onclick="generateID()">Generate</button>
-        <!-- <form id="radioBtns">
-            <input type="radio" id="rndGen" name="optionGen" value="rndGen">
-            <label for="rndGen"> Generate random</label>
-            <input type="radio" id="myGen" name="optionGen" value="myGen">
-            <label for="myGen"> Enter my id</label>
-        </form> -->
-    </div>
-
-    <div id="allQuestions">
-    </div>
+    <form action="./myProfile.html" method="POST">
+        <div class="form-field myField">
+            <label id="quizTitle">Quiz Title:</label>
+            <input id="name" type="text" name="name" autofocus />
+            <label id="quizID">Quiz id:</label>
+            <input id="quizInputID" type="text" name="quizInputID"/>
+            <div id="generateBtn" onclick="generateID()">Generate</div>
+            <!-- <form id="radioBtns">
+                <input type="radio" id="rndGen" name="optionGen" value="rndGen">
+                <label for="rndGen"> Generate random</label>
+                <input type="radio" id="myGen" name="optionGen" value="myGen">
+                <label for="myGen"> Enter my id</label>
+            </form> -->
+        </div>
+    
+        <div id="allQuestions">
+        </div>
+    
+    </form>
 
     <div class="btns">
         <button onclick='cancelQuiz()'>Cancle and return to My Profile</button>
