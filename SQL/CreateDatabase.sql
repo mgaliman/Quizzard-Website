@@ -1,3 +1,9 @@
+use master
+go
+
+drop database DBQuizzes
+go
+
 create database DBQuizzes
 go
 
@@ -7,7 +13,8 @@ go
 
 create table UserAccount (
 	IDUserAccount int primary key identity,
-	UserName nvarchar(100) not null,
+	FirstName nvarchar(100) not null,
+	LastName nvarchar(100) not null,
 	Email nvarchar (100) not null,
 	UserPassword nvarchar (max) not null,
 
@@ -21,9 +28,8 @@ create table QuizType (
 create table Quiz (
 	IDQuiz int primary key identity,
 	Title nvarchar(50) not null,
-	QuizTypeID int foreign key references QuizType(IDQuizType),
 	UserAccountID int foreign key references UserAccount(IDUserAccount),
-	Active bit default 0
+	Active bit default 1
 )
 
 create table Question (
@@ -35,7 +41,7 @@ create table Question (
 )
 
 create table Answer (
-	IDanswer int primary key identity,
+	IDAnswer int primary key identity,
 	Answer nvarchar(50) not null,
 	RightAnswer bit not null,
 	QuestionID int foreign key references Question(IDQuestion)
@@ -47,12 +53,13 @@ go
 --Korisnik CRUD
 
 create proc CreateUserAccount
-	@UserName nvarchar(100),
+	@FirstName nvarchar(100),
+	@LastName nvarchar(100),
 	@Email nvarchar(100),
 	@UserPassword nvarchar(max),
 	@IDUserAccount int output
 as
-	insert into UserAccount values (@UserName, @Email, @UserPassword)
+	insert into UserAccount values (@FirstName, @LastName, @Email, @UserPassword)
 	set @IDUserAccount = SCOPE_IDENTITY()
 
 go
@@ -75,14 +82,14 @@ go
 
 create proc UpdateUserAccount 
 	@IDUserAccount int,
-	@UserName nvarchar(100),
-	@Email nvarchar(100),
+	@FirstName nvarchar(100),
+	@LastName nvarchar(100),
 	@UserPassword nvarchar(max)
 as
 	update UserAccount 
 	set	
-	UserName = @UserName,
-	Email = @Email,
+	FirstName = @FirstName,
+	LastName = @LastName,
 	UserPassword = @UserPassword
 	where IDUserAccount = @IDUserAccount
 
@@ -111,7 +118,7 @@ create proc ReadQuizzesFromUser
 as
 	 select *
 	 from Quiz
-	 where UserAccountID = @IDUserAccount
+	 where UserAccountID = @IDUserAccount and Active = 1
 
 go
 
@@ -167,11 +174,10 @@ go
 
 create proc CreateQuiz
 	@Title nvarchar(50),
-	@QuizTypeID int,
 	@UserAccountID int,
 	@IDQuiz int output
 as
-	insert into Quiz (Title, QuizTypeID, UserAccountID) values (@Title, @QuizTypeID, @UserAccountID)
+	insert into Quiz (Title, UserAccountID) values (@Title, @UserAccountID)
 	set @IDQuiz = SCOPE_IDENTITY()
 go
 
@@ -180,30 +186,36 @@ create proc ReadQuiz
 as
 	select *
 	from Quiz
-	where IDQuiz = @IDQuiz
+	where IDQuiz = @IDQuiz and Active = 1
 	
 go
 
 create proc ReadQuizzes
 as
 	select *
-	from Quiz
+	from Quiz where Active = 1
 go
 
 create proc UpdataQuiz
 	@IDQuiz int,
 	@Title nvarchar(50),
-	@QuizTypeId int,
 	@UserAccountID nvarchar(50),
 	@Active bit
 as
 	update Quiz
 	set	
 	Title = @Title,
-	QuizTypeID = @QuizTypeID,
 	UserAccountID = @UserAccountID,
 	Active = @Active
 	where IDQuiz = @IDQuiz
+
+go
+
+create proc SoftDeleteQuiz
+	@IDQuiz int
+as
+	 UPDATE Quiz
+		set Active = 0 where IDQuiz = @IDQuiz
 
 go
 
@@ -212,7 +224,6 @@ create proc DeleteQuiz
 as
 	 delete from Quiz
 	 where IDQuiz = @IDQuiz
-
 go
 
 create proc ReadQuestionsFromQuiz
@@ -346,5 +357,150 @@ as
 	where IDAnswer = @IDAnswer
 
 go
+
+
+-------GAME AND PLAYERS-----
+
+
+create table Game (
+	IDGame int primary key identity,
+	GameKey int not null,
+	QuizID int foreign key references Quiz(IDQuiz),
+	GameStatus int not null default 0,
+	Active bit not null default 1
+)
+go
+
+create table Player (
+	IDPlayer int primary key identity,
+	Nickname nvarchar(50) not null,
+	GameKey int not null, --vjv nije potrebno
+	Points float not null default 0,
+	GameID int foreign key references Game(IDGame)
+)
+go
+
+-------GAME AND PLAYERS CRUD-----
+
+-------GAME CRUD---------
+
+create proc CreateGame
+	@GameKey int,
+	@QuizID int,
+	@IDGame int output
+as
+	insert into Game(GameKey, QuizID) values (@GameKey, @QuizID)
+	set @IDGame = SCOPE_IDENTITY()
+go
+
+create proc ReadGame
+	@IDGame int
+as
+	select *
+	from Game
+	where IDGame = @IDGame
+	
+go
+
+create proc ReadGames
+as
+	select *
+	from Game
+go
+
+create proc UpdataGame
+	@IDGame int,
+	@GameKey int,
+	@QuizID int
+as
+	update Game
+	set	
+	GameKey = @GameKey,
+	QuizID = @QuizID
+	where IDGame = @IDGame
+
+go
+
+create proc DeleteGame
+	@IDGame int
+as
+	 delete from Game
+	 where IDGame = @IDGame
+
+go
+
+create proc ToggleGame
+	@IDGame int
+as
+	IF (select Active from Game where IDGame = @IDGame) = 0
+		UPDATE Game
+			set Active = 1 where IDGame = @IDGame
+	ELSE
+		UPDATE Game
+			set Active = 0 where IDGame = @IDGame
+go
+
+create proc ReadGamePlayers
+	@IDGame int
+as
+	select * from Player
+	where GameID = @IDGame
+go
+
+-------PLAYER CRUD---------
+
+create proc CreatePlayer
+	@Nickname nvarchar(50),
+	@GameKey int,
+	@Points int,
+	@GameID int,
+	@IDPlayer int output
+as
+	insert into Player values (@Nickname, @GameKey, @Points,@GameID)
+	set @IDPlayer = SCOPE_IDENTITY()
+go
+
+create proc ReadPlayer
+	@IDPlayer int
+as
+	select *
+	from Player
+	where IDPlayer = @IDPlayer
+	
+go
+
+create proc ReadPlayers
+as
+	select *
+	from Player
+go
+
+create proc UpdataPlayer
+	@IDPlayer int,
+	@Nickname nvarchar(50),
+	@GameKey int,
+	@Points int,
+	@GameID int
+as
+	update Player
+	set	
+	Nickname = @Nickname,
+	GameKey = @GameKey,
+	Points = @Points,
+	GameID = @GameID
+	where IDPlayer = @IDPlayer
+
+go
+
+create proc DeletePlayer
+	@IDPlayer int
+as
+	 delete from Player
+	 where IDPlayer = @IDPlayer
+
+go
+
+
+
 
 

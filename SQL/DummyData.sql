@@ -1,22 +1,22 @@
 ﻿use DBQuizzes
 go
 
-insert into UserAccount values	('Pero','PeroPeric@mail.hr','PeroPSW'),
-							('Maja','MajaMajic@mail.hr','MajaPSW'),
-							('Iva','IvaIvic@mail.hr','IvaPSW'),
-							('Luka','LukaLukic@mail.hr','LukaPSW')
+insert into UserAccount values	('Pero', 'Peric', 'PeroPeric@mail.hr','PeroPSW'),
+							('Maja', 'Peric', 'MajaMajic@mail.hr','MajaPSW'),
+							('Iva', 'Peric', 'IvaIvic@mail.hr','IvaPSW'),
+							('Luka', 'Peric', 'LukaLukic@mail.hr','LukaPSW')
 
 Insert into QuizType values ('Edukacija'),
 						('Zabava')
 
-Insert into Quiz (Title, QuizTypeID, UserAccountID) values ('Kviz 1', (select IDQuizType from QuizType where QuizType = 'Edukacija'), (select IDUserAccount from UserAccount where UserName = 'Pero')),
-						('Kviz 2', (select IDQuizType from QuizType where QuizType = 'Zabava'), (select IDUserAccount from UserAccount where UserName = 'Pero')),
-						('Kviz 3', (select IDQuizType from QuizType where QuizType = 'Zabava'), (select IDUserAccount from UserAccount where UserName = 'Maja')),
-						('Kviz 4', (select IDQuizType from QuizType where QuizType = 'Edukacija'), (select IDUserAccount from UserAccount where UserName = 'Pero')),
-						('Kviz 5', (select IDQuizType from QuizType where QuizType = 'Edukacija'), (select IDUserAccount from UserAccount where UserName = 'Iva')),
-						('Kviz 6', (select IDQuizType from QuizType where QuizType = 'Zabava'), (select IDUserAccount from UserAccount where UserName = 'Luka')),
-						('Kviz 7', (select IDQuizType from QuizType where QuizType = 'Edukacija'), (select IDUserAccount from UserAccount where UserName = 'Maja')),
-						('Kviz 8', (select IDQuizType from QuizType where QuizType = 'Zabava'), (select IDUserAccount from UserAccount where UserName = 'Pero'))
+Insert into Quiz (Title, UserAccountID) values ('Kviz 1', (select IDUserAccount from UserAccount where FirstName = 'Pero')),
+						('Kviz 2', (select IDUserAccount from UserAccount where FirstName = 'Pero')),
+						('Kviz 3', (select IDUserAccount from UserAccount where FirstName = 'Maja')),
+						('Kviz 4', (select IDUserAccount from UserAccount where FirstName = 'Pero')),
+						('Kviz 5', (select IDUserAccount from UserAccount where FirstName = 'Iva')),
+						('Kviz 6', (select IDUserAccount from UserAccount where FirstName = 'Luka')),
+						('Kviz 7', (select IDUserAccount from UserAccount where FirstName = 'Maja')),
+						('Kviz 8', (select IDUserAccount from UserAccount where FirstName = 'Pero'))
 
 Insert into Question values ('Kviz 1, pitanje 1?', 15,  5, (select IDQuiz from Quiz where Title = 'Kviz 1')),
 							('Kviz 1, pitanje 2?', 5 , 2, (select IDQuiz from Quiz where Title = 'Kviz 1')),
@@ -234,3 +234,8 @@ select * from QuizType
 select * from Quiz
 select * from Question
 select * from Answer
+
+
+select * from Quiz where UserAccountID = 6 and Title = '13'
+
+select * from Quiz where UserAccountID = 6 and Title = '13'
