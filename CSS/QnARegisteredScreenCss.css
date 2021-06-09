@@ -1,5 +1,5 @@
 .container{
-    margin:15%;
+    margin:10%;
 
 }
 
@@ -22,22 +22,49 @@
 }
 
 .answer-container{
-    background-color: brown;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
 .answer-container button{
-    height: 50px;
+    height: 100px;
     margin: 5%;
-    text-align: left;
-    display: flex;    
+    display: flex;
+    border-radius: 40px 20px;
+    align-items: center;
 }
 
 .answer-container button p{
-    margin-left: 5%;   
+    margin-left: 5%;
 }
 
 .answer-container button i{
     font-size: 40px;
+}
+
+.timer {
+    text-align: right;
+    font-size: 50px;
+}
+
+.answer01{
+    background-color: #C04595;
+}
+
+.answer02{
+    background-color: #45C070;
+}
+
+.answer03{
+    background-color: #C0AD45;
+}
+
+.answer04{
+    background-color: #4558C0;
+}
+
+@media only screen and (max-width:768px) {
+    .answer-container{
+        grid-template-columns: 1fr;
+    }
 }
