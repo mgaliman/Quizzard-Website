@@ -1,5 +1,5 @@
 var express = require('express');
-const verify = require('./vertifyToken');
+const verify = require('./verifyToken');
 var authController = require('../CONTROLLERS/auth');
 const quizOperations = require('../DATA/quizOperations');
 const userOperations = require('../DATA/userOperations');

@@ -74,19 +74,13 @@
                 <h5><a>My quizes</a></h5>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12 offset-4 animated bounceInRight myCol logout" style="animation-delay: 2.5s">
-                <i class="material-icons">add</i>
-                <h5><a href="/logout">Log out</a></h5>
-            </div>
-        </div>
         <div id="list" class="panel-collapse collapse">
             <ul class="list-group myList">
                 {{#each quizzes }}
                 <li class="list-group-item" style="display: block">
                     {{this.Title}}
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="float: right">
-                        <a href="/game/joiningScreen?name={{this.Title}}">
+                        <a href="/game/joiningScreen?ID={{this.IDQuiz}}">
                             <button type="button" class="btn btn-primary">Play</button>
                         </a>
                         <a href="/registeredUser/createAQuiz?name={{this.Title}}">
@@ -98,6 +92,12 @@
                 </li>
                 {{/each}}
             </ul>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 offset-4 animated bounceInRight myCol logout" style="animation-delay: 2.5s">
+                <i class="material-icons">add</i>
+                <h5><a href="/logout">Log out</a></h5>
+            </div>
         </div>
     </div>
 

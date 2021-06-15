@@ -364,7 +364,7 @@ go
 
 create table Game (
 	IDGame int primary key identity,
-	GameKey int not null,
+	GameKey nvarchar(50) not null,
 	QuizID int foreign key references Quiz(IDQuiz),
 	GameStatus int not null default 0,
 	Active bit not null default 1
@@ -374,7 +374,7 @@ go
 create table Player (
 	IDPlayer int primary key identity,
 	Nickname nvarchar(50) not null,
-	GameKey int not null, --vjv nije potrebno
+	GameKey nvarchar(50) not null, --vjv nije potrebno
 	Points float not null default 0,
 	GameID int foreign key references Game(IDGame)
 )
@@ -385,7 +385,7 @@ go
 -------GAME CRUD---------
 
 create proc CreateGame
-	@GameKey int,
+	@GameKey nvarchar(50),
 	@QuizID int,
 	@IDGame int output
 as
@@ -393,12 +393,21 @@ as
 	set @IDGame = SCOPE_IDENTITY()
 go
 
-create proc ReadGame
-	@IDGame int
+create proc ReadGameByQuiz
+	@QuizID int
 as
 	select *
 	from Game
-	where IDGame = @IDGame
+	where QuizID = @QuizID and Active = 1
+	
+go
+
+create proc ReadGameByKey
+	@GameKey nvarchar(50)
+as
+	select *
+	from Game
+	where GameKey = @GameKey and Active = 1
 	
 go
 
@@ -410,7 +419,7 @@ go
 
 create proc UpdataGame
 	@IDGame int,
-	@GameKey int,
+	@GameKey nvarchar(50),
 	@QuizID int
 as
 	update Game
@@ -447,16 +456,23 @@ as
 	where GameID = @IDGame
 go
 
+create proc CheckNickname
+	@Nickname nvarchar(50),
+	@GameKey nvarchar(50)
+as
+	select * from Player
+	where Nickname = @Nickname and GameKey = @GameKey
+go
+
 -------PLAYER CRUD---------
 
 create proc CreatePlayer
 	@Nickname nvarchar(50),
-	@GameKey int,
-	@Points int,
+	@GameKey nvarchar(50),
 	@GameID int,
 	@IDPlayer int output
 as
-	insert into Player values (@Nickname, @GameKey, @Points,@GameID)
+	insert into Player (Nickname, GameKey, GameID) values (@Nickname, @GameKey, @GameID)
 	set @IDPlayer = SCOPE_IDENTITY()
 go
 
@@ -478,7 +494,7 @@ go
 create proc UpdataPlayer
 	@IDPlayer int,
 	@Nickname nvarchar(50),
-	@GameKey int,
+	@GameKey nvarchar(50),
 	@Points int,
 	@GameID int
 as

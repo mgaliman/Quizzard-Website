@@ -1,6 +1,8 @@
 var express = require('express');
-const verify = require('./gameToken');
+const verify = require('./verifyToken');
+const verifyGame = require('./gameToken');
 var authController = require('../CONTROLLERS/auth');
+var gameController = require('../CONTROLLERS/game');
 const quizOperations = require('../DATA/quizOperations');
 const userOperations = require('../DATA/userOperations');
 const bcrypt = require('bcryptjs');
@@ -24,46 +26,42 @@ router.post('/question', verify, async (req, res) => {
 
     })
 })
-router.post('/results', verify, async (req, res) => {
 
-    await quizOperations.insertResults(req.body.name, req.body.point, req.user);
-    quizOperations.GetResultsFromQuiz(req.quiz).then(result => {
-        return res.render('results', {
-            result: result
-        });
-
-    })
-})
-router.get('/results', async (req, res) => {
-
-    return res.render('results', {
-        name: "Marko",
-        points: 13
-    });
-})
-
-router.get('/joiningScreen', (req, res) => {
-    return res.render('joiningScreen', {
-        name: req.query.name,
-        code: generateID()
-    });
-})
 
 router.get(('/QnARegisteredScreen'), (request, response) => {
     response.render("QnARegisteredScreen");
 })
 
-router.post(('/quiz'), (request, response) => {
-    response.render("quiz");
-})
+router.post(('/quiz'), gameController.joinGame);
+router.get(('/quiz'), verifyGame, (req, res) => {
+    res.render("quiz")
+});
+router.get(('/qs'), verifyGame, (req, res) => {
+    res.render("qs")
+});
+router.get(('/as'), verifyGame, (req, res) => {
+    res.render("as")
+});
+router.get(('/ScoreBoard'), verifyGame, (req, res) => {
+    res.render("ScoreBoard")
+});
+router.get(('/results'), verify, (req, res) => {
+    res.render("results")
+});
+
+router.get(('/GameWasCanceled'), verifyGame, gameController.quitGame);
 
 
-router.get('/joiningScreen', verify, (req, res) => {
-    return res.render('joiningScreen', {
-        name: req.query.name,
-        code: generateID()
-    });
-})
+
+router.get('/joiningScreen', verify, gameController.createGame);
+
+//     (req, res) => {
+//     return res.render('joiningScreen', {
+//         name: req.query.ID,
+//         code: generateID()
+//     });
+// }
+
 router.get('/ScoreBoard', (req, res) => {
     return res.render('ScoreBoard');
 })
