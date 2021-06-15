@@ -431,10 +431,12 @@ as
 go
 
 create proc DeleteGame
-	@IDGame int
+	@GameKey nvarchar(50)
 as
+	 delete from Player
+	 where GameID = (select IDGame from game where GameKey = @GameKey)
 	 delete from Game
-	 where IDGame = @IDGame
+	 where GameKey = @GameKey
 
 go
 
