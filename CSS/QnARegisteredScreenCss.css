@@ -1,6 +1,13 @@
+body {
+    /* overflow: hidden; */
+    animation-name: backgroundColorPalette;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+
 .container{
     margin:10%;
-
 }
 
 .question:hover{
@@ -63,8 +70,29 @@
     background-color: #4558C0;
 }
 
+@keyframes backgroundColorPalette {
+    0% {
+      background: #ebceed;
+    }
+    25% {
+      background: #d3f1d2;
+    }
+    50% {
+      background: #feecd6;
+    }
+    75% {
+      background: #c1e1e2;
+    }
+    100% {
+      background: #e2b4b5;
+    }
+  }
+
 @media only screen and (max-width:768px) {
     .answer-container{
         grid-template-columns: 1fr;
     }
 }
+  
+
+  
