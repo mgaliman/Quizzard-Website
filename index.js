@@ -39,29 +39,21 @@ app.use('/registeredUser', require('./ROUTES/privatePages'));
 app.use('/game', require('./ROUTES/gamePages'));
 
 
-var status = 0;
 io.on('connection', socket => {
-    socket.on('joinGame', ({ nickname, key }) => {
+    socket.on('joinGame', (key) => {
         socket.join(key);
         console.log(key);
         socket.broadcast.to(key).emit('reload');
-        socket.on('showQuestion', (key) => {
+        socket.on('showQuestion', (status) => {
             status++;
             socket.broadcast.to(key).emit('showQuestion', status);
-            stateChange(status);
-            function stateChange(status) {
-                setTimeout(function () {
-                    socket.emit('showAnswer', status);
-                    socket.broadcast.to(key).emit('showAnswer', status);
-                    status++;
-                    console.log("dedhefnsnfj")
-                }, 5000);
-            }
+            stateChange(status, key);
         });
         socket.on('cancleGame', () => {
             gameController.cancleGame(key);
             io.to(key).emit('cancleGame');
         });
+        // checkConnection(socket, key, 0);
     });
 });
 
@@ -71,3 +63,22 @@ server.listen(port);
 console.log('User API is running at ' + port);
 
 
+
+function stateChange(status, key) {
+    setTimeout(function () {
+        io.to(key).emit('showAnswer', status);
+    }, 5000);
+}
+
+// function checkConnection(socket, key, it) {
+//     it++;
+//     socket.emit('checkConnection', it);
+//     socket.on('connected', (i) => {
+//         it = i;
+//     });
+//     if (it === 2) {
+//         gameController.cancleGame(key);
+//         io.to(key).emit('cancleGame');
+//     }
+//     setTimeout(checkConnection(socket, key, it), 5000);
+// }

@@ -6,10 +6,14 @@ const nickname = "Admin";
 const socket = io();
 
 // Join game
-socket.emit('joinGame', { nickname, key });
+socket.emit('joinGame', key);
 
 socket.on('showAnswer', (status) => {
     window.location.href = `/game/results?key=${key}&qnum=${status}`;
 });
 
 
+// socket.on('checkConnection', (it) => {
+//     it = 0;
+//     socket.emit('connected', it);
+// });

@@ -10,9 +10,13 @@ const nickname = "User";
 const socket = io();
 
 // Join game
-socket.emit('joinGame', { nickname, key });
+socket.emit('joinGame', key);
 
 socket.on('showAnswer', (status) => {
     window.location.href = `/game/ScoreBoard?key=${key}&qnum=${status}`;
+});
+
+socket.on('cancleGame', () => {
+    window.location.href = "/game/GameWasCanceled";
 });
 
