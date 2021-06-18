@@ -10,11 +10,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body>
+<body onload="countdown();">
     <div class="container">
-        <div class="timer">
-            <p>00:00</p>
-        </div>
+        <div class="timer" id="countdown">00</div>
         <div class="question-container">
             <Button type="button" class="question">Question</Button>
         </div>
@@ -25,6 +23,7 @@
             <button class="answer04"><i class="material-icons">favorite_border</i><p>answer04</p></button>
         </div>
     </div>
-</body>
 
+<script src="../JS/timer.js"></script>
+</body>
 </html>

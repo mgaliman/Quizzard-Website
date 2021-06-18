@@ -9,6 +9,14 @@ body {
     margin:10%;
 }
 
+/* Timer */
+.timer{
+    text-align: right;
+    margin-right: 3%;
+    font-size: 80px;
+}
+
+/* Questions */
 .question:hover{
     background-color: transparent;
     outline: none;
@@ -27,6 +35,7 @@ body {
     height: 200px;
 }
 
+/* Answers */
 .answer-container{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -41,16 +50,11 @@ body {
 }
 
 .answer-container button p{
-    margin-left: 5%;
+    margin-left: 2%;
 }
 
 .answer-container button i{
     font-size: 40px;
-}
-
-.timer {
-    text-align: right;
-    font-size: 50px;
 }
 
 .answer01{
@@ -69,6 +73,9 @@ body {
     background-color: #4558C0;
 }
 
+.material-icons{
+    margin-left: 5%;
+}
 
 .answer-container button{
     transition: all 150ms ease-in-out;
