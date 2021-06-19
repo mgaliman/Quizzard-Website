@@ -55,8 +55,14 @@ router.get(('/ScoreBoard'), verify, async (req, res) => {
     var first = ({ nickname: '', points: '' });
     var second = ({ nickname: '', points: '' });
     var third = ({ nickname: '', points: '' });
-    first = ({ nickname: players[0].Nickname, points: players[0].Points });
-    second = ({ nickname: players[1].Nickname, points: players[1].Points });
+    if (players[0]) {
+
+        first = ({ nickname: players[0].Nickname, points: players[0].Points });
+    }
+    if (players[1]) {
+
+        second = ({ nickname: players[1].Nickname, points: players[1].Points });
+    }
     if (players[2]) {
 
         third = ({ nickname: players[2].Nickname, points: players[2].Points });

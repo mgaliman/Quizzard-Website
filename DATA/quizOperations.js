@@ -13,7 +13,7 @@ async function GetQuizzesFromUser(id) {
             .request()
             .input('IDUserAccount', sql.Int, id)
             .execute('ReadQuizzesFromUser');
-        return users.recordsets;
+        return users.recordsets[0];
     } catch (err) {
         console.log(err.message);
     } finally {

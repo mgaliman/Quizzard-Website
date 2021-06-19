@@ -77,8 +77,9 @@
         <div id="list" class="panel-collapse collapse">
             <ul class="list-group myList">
                 {{#each quizzes }}
-                <li class="list-group-item" style="display: block">
-                    {{this.Title}}
+                <li class="list-group-item" onmouseover="showPreview({{this}})" onmouseout="hidePreview()"
+                    style="display: block">
+                    {{this.name}}
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="float: right">
                         <a href="/game/joiningScreen?ID={{this.IDQuiz}}">
                             <button type="button" class="btn btn-primary">Play</button>

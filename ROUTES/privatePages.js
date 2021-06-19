@@ -44,10 +44,27 @@ router.get('/createAQuiz', verify, async (req, res) => {
 })
 
 router.get('/myProfile', verify, (req, res) => {
-
-    quizOperations.GetQuizzesFromUser(req.user).then(result => {
+    var quizzes = [];
+    quizOperations.GetQuizzesFromUser(req.user).then(async result => {
+        var quiz = "";
+        for (const dbquiz of result.entries()) {
+            var questions = [];
+            var dbQuestions = await quizOperations.getQuestionsFromQuiz(dbquiz[1].IDQuiz);
+            for (const [index, question] of dbQuestions.entries()) {
+                var dbAnswers = await quizOperations.getAnswersFromQuestion(question.IDQuestion);
+                var answers = [];
+                var correctAnswer = 0;
+                for (const [indexa, answer] of dbAnswers.entries()) {
+                    if (answer.RightAnswer === true) { correctAnswer = indexa + 1 };
+                    answers.push({ index: index, text: answer.Answer });
+                }
+                questions.push({ text: question.Question, correctAnswer: correctAnswer, duration: question.Duration, points: question.Points, answers: answers, anum: answers.length });
+            }
+            quiz = { name: dbquiz[1].Title, IDQuiz: dbquiz[1].IDQuiz, questions: questions };
+            quizzes.push(quiz);
+        }
         return res.render('myProfile', {
-            quizzes: result[0]
+            quizzes: quizzes
         });
     })
 
@@ -56,7 +73,6 @@ router.get('/myProfile', verify, (req, res) => {
 router.post('/myProfile', verify, async (req, res) => {
     var quizID = await quizOperations.createQuiz(req.body.name, req.user);
     for (const question of req.body.questions.entries()) {
-        console.log(question)
         var questionID = await quizOperations.createQuestion(question[1].text, 10, 5, quizID);
         for (const [index, answer] of question[1].answers.entries()) {
             if (index + 1 === parseInt(question[1].correctAnswer)) {
@@ -99,7 +115,6 @@ router.get('/editProfile', verify, (req, res) => {
 
 router.post('/editProfile', verify, async (req, res) => {
 
-    console.log(req.user);
     let hashedPassword = await bcrypt.hash(req.body.Password, 8);
     userOperations.UpdateUser(req.user, req.body.firstName, req.body.lastName, hashedPassword).then(result => {
         userOperations.getUser(req.user).then(result => {
