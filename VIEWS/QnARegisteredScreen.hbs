@@ -11,28 +11,30 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" onload="countdown();" translate="no">
+        <div class="timer" id="countdown">00</div>
         <div class="question-container">
-            <Button type="button" class="question">{{question}}</Button>
+            <Button type="button" class="question">Question</Button>
         </div>
         <div class="answer-container">
-            {{#each answers }}
-            <button class="answer{{@index}}"><i class="material-icons"></i>
-                <p>{{this.text}}</p>
+            <button class="answer01"><i class="material-icons">check_box_outline_blank</i>
+                <p>answer01</p>
             </button>
-            {{/each}}
+            <button class="answer02"><i class="material-icons">star_outline</i>
+                <p>answer02</p>
+            </button>
+            <button  class="answer03"><i class="material-icons">change_history</i>
+                <p>answer03</p>
+            </button>
+            <button class="answer04"><i class="material-icons">favorite_border</i>
+                <p>answer04</p>
+            </button>
         </div>
     </div>
 </body>
 
-<script src="/JS/languageChange.js"></script>
-<script type="text/javascript"
-    src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js"
-    integrity="sha512-aTKlYRb1QfU1jlF3k+aS4AqTpnTXci4R79mkdie/bp6Xm51O5O3ESAYhvg6zoicj/PD6VYY0XrYwsWLcvGiKZQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer">
-    </script>
-<script src="/socket.io/socket.io.js"></script>
-<script src="/JS/QnARegisteredScreen.js"></script>
+    <script src="/JS/languageChange.js"></script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+    <script src="../JS/timer.js"></script>
 </html>

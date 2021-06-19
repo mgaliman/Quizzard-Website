@@ -1,125 +1,181 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
-    animation-name: backgroundColorPalette;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  height: 100vh;
+}
+textarea:focus,
+input {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  margin: 2%;
+}
+input:focus {
+  outline: none;
+}
+.title {
+  width: 100%;
+  text-align: center;
+  margin-top: 5%;
+  letter-spacing: 0.5rem;
+  text-transform: uppercase;
+  font-family: merienda;
+}
+.myField {
+  margin-top: 5%;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 0.5rem;
+  text-transform: uppercase;
+}
+.myField {
+  margin-bottom: 5%;
+}
+#quizID {
+  margin-left: 3%;
+}
+
+/* -----------------------------QUESTION CARDS-------------------------------- */
+#allQuestions {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+#question-field {
+  padding: 5%;
+  height: fit-content;
+  margin-bottom: 5%;
+  cursor: move;
+}
+#question-field.dragging {
+  opacity: 0.5;
+}
+#chooseDiv {
+  width: 100%;
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+.cardFooter {
+  width: 100%;
+  height: 10%;
+  margin-top: 5%;
+}
+
+/* -----------------------------QUESTIONS & ANSWERS-------------------------------- */
+
+.answerNumberLabel {
+  font-size: 20px;
+  letter-spacing: 0.3rem;
+}
+#chooseDiv button {
+  margin-left: 15%;
+  padding: 0% 2%;
+  border: none;
+  font-size: 200%;
+  background-color: rgba(255, 255, 255, 0.541);
+  transition: all 0.7s ease;
+}
+#chooseDiv button {
+  box-shadow: 5px 10px #888888;
+  border-radius: 50%;
+  transform: scale(1.2);
+}
+
+.question {
+  width: 100%;
+  resize: none;
+  font-family: merienda;
+  font-size: 30px;
+  background-color: rgba(255, 255, 255, 0.466);
+  border: none;
+  outline: none;
+}
+#answer-field {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20%;
+  height: 40%;
+}
+.answers {
+  border-radius: 40px 20px;
+  border: none;
+  resize: none;
+  color: whitesmoke;
+  padding: 5%;
+}
+
+/* -----------------------------BUTTONS-------------------------------- */
+.deleteButton,
+#generateBtn,
+#lblTimer,
+.answerNumberLabel {
+  margin-bottom: 2%;
+  letter-spacing: 0.3rem;
+  transition: all 0.6s ease;
+  text-transform: uppercase;
+}
+.deleteButton:hover,
+#generateBtn:hover {
+  transform: scale(0.9);
+}
+.btns {
+  padding: 2% 20%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5%;
+  bottom: 0;
+  position: sticky;
+}
+.btns button,
+.button {
+  letter-spacing: 0.5rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: transparent;
+  background-color: transparent;
+  outline: none;
+  transition: all 0.5s ease-in-out;
+  padding: 2%;
+}
+.button {
+  background: transparent;
+  border: transparent;
+  box-shadow: none;
+}
+.btns button:hover,
+.button:hover {
+  border: 1px solid black;
+}
+
+@media only screen and (max-width: 768px) {
+  .btns,
+  #answer-field {
+    grid-template-columns: 1fr;
   }
-
-.container{
-    margin:10%;
-}
-
-.question:hover{
-    background-color: transparent;
-    outline: none;
-}
-
-.question-container{    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 5%;
-}
-
-.question-container button{
-    background-color: transparent;
-    width: 100%;
-    height: 200px;
-}
-
-.answer-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.answer-container button{
-    height: 100px;
-    margin: 5%;
-    display: flex;
-    border-radius: 40px 20px;
-    align-items: center;
-}
-
-.answer-container button p{
-    margin-left: 5%;
-}
-
-.answer-container button i{
-    font-size: 40px;
-}
-
-.timer {
-    text-align: right;
-    font-size: 50px;
-}
-
-.answer01{
-    background-color: #C04595;
-}
-
-.answer02{
-    background-color: #45C070;
-}
-
-.answer03{
-    background-color: #C0AD45;
-}
-
-.answer04{
-    background-color: #4558C0;
-}
-
-
-.answer-container button{
-    transition: all 150ms ease-in-out;
-}
-.answer01:hover{
-    border-color: #C04595;
-    color: #fff;
-    box-shadow: 0 0 10px 0 #C04595 inset,0 0 10px 4px #C04595;
-}
-
-.answer02:hover{
-    background-color: #45C070;
-    border-color: #45C070;
-    color: #fff;
-    box-shadow: 0 0 10px 0 #45C070 inset,0 0 10px 4px #45C070;
-}
-
-.answer03:hover{
-    background-color: #C0AD45;
-    border-color: #C0AD45;
-    color: #fff;
-    box-shadow: 0 0 10px 0 #C0AD45 inset,0 0 10px 4px #C0AD45;
-}
-
-.answer04:hover{
-    background-color: #4558C0;
-    border-color: #4558C0;
-    color: #fff;
-    box-shadow: 0 0 10px 0 #4558C0 inset,0 0 10px 4px #4558C0;
-}
-
-@keyframes backgroundColorPalette {
-    0% {
-      background: #ebceed;
-    }
-    25% {
-      background: #d3f1d2;
-    }
-    50% {
-      background: #feecd6;
-    }
-    75% {
-      background: #c1e1e2;
-    }
-    100% {
-      background: #e2b4b5;
-    }
+  #answer-field {
+    margin-top: 10%;
   }
+  .deleteButton {
+    letter-spacing: 0.1rem;
+  }
+  #question-field {
+    min-height: 150vh;
+  }
+  .cardFooter {
+    margin-top: 85%;
+  }
+}
 
-@media only screen and (max-width:768px) {
-    .answer-container{
-        grid-template-columns: 1fr;
-    }
+/* -----------------------------LANGUAGE--------------------------------- */
+.goog-logo-link{
+  display: none !important;
+}
+.goog-te-gadget{
+  color: transparent !important;
+}
+.goog-te-banner-frame.skiptranslate{
+  display: none !important;
 }
