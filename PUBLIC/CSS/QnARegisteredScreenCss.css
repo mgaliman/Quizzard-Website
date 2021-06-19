@@ -1,15 +1,23 @@
-
 body {
     animation-name: backgroundColorPalette;
     animation-duration: 10s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
+    top: 0px !important;
   }
 
 .container{
     margin:10%;
 }
 
+/* TIMER */
+.timer{
+    text-align: right;
+    margin-right: 3%;
+    font-size: 80px;
+}
+
+/* QUESTION */
 .question:hover{
     background-color: transparent;
     outline: none;
@@ -28,6 +36,7 @@ body {
     height: 200px;
 }
 
+/* ANSWERS */
 .answer-container{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -49,24 +58,19 @@ body {
     font-size: 40px;
 }
 
-.timer {
-    text-align: right;
-    font-size: 50px;
-}
-
-.answer0{
+.answer01{
     background-color: #C04595;
 }
 
-.answer1{
+.answer02{
     background-color: #45C070;
 }
 
-.answer2{
+.answer03{
     background-color: #C0AD45;
 }
 
-.answer3{
+.answer04{
     background-color: #4558C0;
 }
 
@@ -74,27 +78,27 @@ body {
 .answer-container button{
     transition: all 150ms ease-in-out;
 }
-.answer0:hover{
+.answer01:hover{
     border-color: #C04595;
     color: #fff;
     box-shadow: 0 0 10px 0 #C04595 inset,0 0 10px 4px #C04595;
 }
 
-.answer1:hover{
+.answer02:hover{
     background-color: #45C070;
     border-color: #45C070;
     color: #fff;
     box-shadow: 0 0 10px 0 #45C070 inset,0 0 10px 4px #45C070;
 }
 
-.answer2:hover{
+.answer03:hover{
     background-color: #C0AD45;
     border-color: #C0AD45;
     color: #fff;
     box-shadow: 0 0 10px 0 #C0AD45 inset,0 0 10px 4px #C0AD45;
 }
 
-.answer3:hover{
+.answer04:hover{
     background-color: #4558C0;
     border-color: #4558C0;
     color: #fff;
@@ -124,3 +128,14 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* -----------------------------LANGUAGE--------------------------------- */
+.goog-logo-link{
+    display: none !important;
+  }
+  .goog-te-gadget{
+    color: transparent !important;
+  }
+  .goog-te-banner-frame.skiptranslate{
+    display: none !important;
+  }

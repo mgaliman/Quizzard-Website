@@ -50,33 +50,33 @@ body {
     width: 300px
 }
 
-#btn0{
+#btn1{
   background-color: #7a84bd;
   
 }
-#btn0:hover{
+#btn1:hover{
   background-color: #4558c0;
 }
 
-#btn1{
+#btn2{
   background-color: #bdb37a;
   
 }
-#btn1:hover{
+#btn2:hover{
   background-color: #c0ad45;
 }
 
-#btn2{
+#btn3{
   background-color: #7abd92;
 }
-#btn2:hover{
+#btn3:hover{
   background-color: #45c070;
 }
 
-#btn3{
+#btn4{
   background-color: #bd7aa5;
 }
-#btn3:hover{
+#btn4:hover{
   background-color: #c04595;
 }
 

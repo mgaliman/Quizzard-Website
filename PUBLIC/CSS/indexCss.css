@@ -1,5 +1,6 @@
 body{
   overflow-x: hidden;
+  top: 0px !important;
 }
 input:focus{
   outline: none;
@@ -279,6 +280,9 @@ a {
 /* -----------------------------MOBILE--------------------------------- */
 
 @media only screen and (max-width: 768px) {
+  .carousel{
+    margin-top: 0;
+  }
   .material-icons {
     font-size: 80px;
   }
@@ -292,4 +296,14 @@ a {
   .brandImg {
     width: 120px;
   }
+}
+/* -----------------------------LANGUAGE--------------------------------- */
+.goog-logo-link{
+  display: none !important;
+}
+.goog-te-gadget{
+  color: transparent !important;
+}
+.goog-te-banner-frame.skiptranslate{
+  display: none !important;
 }

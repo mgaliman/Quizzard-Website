@@ -1,0 +1,26 @@
+1.	Install Node.js -> https://nodejs.org/"
+
+2.	npm init
+
+3.	npm install express dotenv hbs jsonwebtoken mssql cookie-parser body-parser bcryptjs
+
+4.	npm install --save-dev nodemon
+
+5.	Check package.json
+"scripts": {
+    "test": "echo "Error: no test specified" && exit 1",
+    "start": "nodemon JS/index.js"
+  },
+
+6.	Check .env
+USER = sa
+PASSWORD = SQL
+SERVER = localhost 
+DATABASE = DBQuizzes
+JWT_SECRET = Moj4T4jn4s1fr4
+JWT_EXPIRES_IN = 90d
+JWT_COOKIE_EXPIRES = 90
+
+7.	npm start
+
+8.	Exit -> CTRL + C

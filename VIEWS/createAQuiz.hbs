@@ -10,6 +10,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="/CSS/createAQuizCss.css">
 
@@ -21,55 +23,31 @@
     <div class="title">
         <h1>Welcome to quiz creator</h1>
     </div>
-    <form id="my-form" action="/registeredUser/myProfile" method="POST">
+    <form action="/registeredUser/myProfile" method="POST">
 
         <div class="form-field myField">
             <label id="quizTitle">Quiz Title:</label>
-            <input id="name" type="text" name="name" value="{{quiz.name}}" autofocus required />
-            <!-- <form id="radioBtns">
-                <input type="radio" id="rndGen" name="optionGen" value="rndGen">
-                <label for="rndGen"> Generate random</label>
-                <input type="radio" id="myGen" name="optionGen" value="myGen">
-                <label for="myGen"> Enter my id</label>
-            </form> -->
-        </div>
-
-        <div id="allQuestions">
-            {{#each quiz.questions }}
-            <div class="animated bounceInLeft question-field" name="questionCard1"
-                style="background-color: rgb(193, 225, 226);"><button class="deleteButton">Delete question
-                </button><textarea class="question" name="questions[{{@index}}][text]"
-                    placeholder="Enter a question here...">{{this.text}}</textarea>
-                <div id="chooseDiv"><label class="answerNumberLabel">Choose the number of answers:</label><button
-                        id="twoAnsr1" type="button">2</button><button id="fourAnsr1" type="button">4</button></div>
-                <div id="answer-field" class="animated zoomIn">
-                    {{#each this.answers }}
-                    <input class="answers" style="background-color:#C04595"
-                        name="questions[{{this.index}}][answers][{{@index}}][text]" type="text" value="{{this.text}}">
-                    {{/each}}
-                </div>
-                <div class="cardFooter"><label>Correct Answer (1-{{this.anum}}):</label><input onkeydown="return false"
-                        name="questions[{{@index}}][correctAnswer]" type="number" min="1" max="{{this.anum}}"
-                        value="{{this.correctAnswer}}">
-                </div>
-            </div>
-            {{/each}}
-        </div>
-
-        <div class="form-group">
+            <input id="name" type="text" name="name" value="{{name}}" autofocus required />
+            <label>Points per question:</label>
+            <input id="pointsPerQuestion" type="number" min="1" name="pointsPerQuestion"required />
+            
+            <div class="form-group">
             <input type="submit" class="button" value="Create Quiz">
+            </div>
         </div>
+        
+        <div id="allQuestions">
+        </div>
+
     </form>
     <div class="btns">
-        <button onclick='cancelQuiz()'>Cancle and return to My Profile</button>
+        <button onclick='cancelQuiz()'>Cancel and return to My Profile</button>
         <button onclick="addQuestion()">Add question</button>
     </div>
 
-
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
     <script src="/JS/quizCreator.js"></script>
+    <script src="/JS/languageChange.js"></script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
 </html>

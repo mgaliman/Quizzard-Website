@@ -1,89 +1,194 @@
 var express = require('express');
-const verify = require('./verifyToken');
-const verifyGame = require('./gameToken');
-var gameController = require('../CONTROLLERS/game');
+const verify = require('./gameToken');
+var authController = require('../CONTROLLERS/auth');
 const quizOperations = require('../DATA/quizOperations');
+const userOperations = require('../DATA/userOperations');
+const bcrypt = require('bcryptjs');
 
 
 var authController = require('../CONTROLLERS/auth');
-const gameOperations = require('../DATA/gameOperations');
 
 
 
 var router = express.Router();
 
-router.get(('/QnARegisteredScreen'), verify, async (req, res) => {
-    var { key, qnum } = req.query;
-    var answers = [];
-    var question = await quizOperations.getQuestion(key, qnum);
-    var dbAnswers = await quizOperations.getAnswersFromQuestion(question.IDQuestion);
-    for (const answer of dbAnswers.entries()) {
-        answers.push({ text: answer[1].Answer });
-    }
+router.post('/', authController.gameEnter);
 
-    res.render("QnARegisteredScreen", {
-        question: question.Question,
-        answers: answers
+
+router.post('/question', verify, async (req, res) => {
+
+    quizOperations.getQuestion(req.user, req.body.qNum).then(result => {
+        return res.render('question', {
+            questions: result[0]
+        });
+
+    })
+})
+router.post('/results', verify, async (req, res) => {
+
+    await quizOperations.insertResults(req.body.name, req.body.point, req.user);
+    quizOperations.GetResultsFromQuiz(req.quiz).then(result => {
+        return res.render('results', {
+            result: result
+        });
+
+    })
+})
+router.get('/results', async (req, res) => {
+
+    return res.render('results', {
+        name: "Marko",
+        points: 13
     });
 })
 
-router.post(('/quiz'), gameController.joinGame);
-
-router.get(('/quiz'), verifyGame, (req, res) => {
-    res.render("quiz")
-});
-
-router.get(('/qs'), verifyGame, async (req, res) => {
-    var { key, qnum } = req.query;
-
-    var answers = [];
-    var question = await quizOperations.getQuestion(key, qnum);
-    var dbAnswers = await quizOperations.getAnswersFromQuestion(question.IDQuestion);
-    for (const answer of dbAnswers.entries()) {
-        answers.push({ anum: answer[0], idAnswer: answer[1].IDAnswer, points: question.Points, player: req.user });
-    }
-    res.render("qs", {
-        answers: answers
+router.get('/joiningScreen', (req, res) => {
+    return res.render('joiningScreen', {
+        name: req.query.name,
+        code: generateID()
     });
-});
-router.get(('/as'), verifyGame, async (req, res) => {
-    res.render("as")
-});
-router.get(('/ScoreBoard'), verify, async (req, res) => {
-    var { key } = req.query;
-    var players = await gameOperations.getTopThreePlayers(key);
-    var first = ({ nickname: '', points: '' });
-    var second = ({ nickname: '', points: '' });
-    var third = ({ nickname: '', points: '' });
-    first = ({ nickname: players[0].Nickname, points: players[0].Points });
-    second = ({ nickname: players[1].Nickname, points: players[1].Points });
-    if (players[2]) {
+})
 
-        third = ({ nickname: players[2].Nickname, points: players[2].Points });
-    }
-    res.render("ScoreBoard", {
-        first: first,
-        second: second,
-        third: third,
+router.get(('/QnARegisteredScreen'), (request, response) => {
+    response.render("QnARegisteredScreen");
+})
+
+router.post(('/quiz'), (request, response) => {
+    response.render("quiz");
+})
+
+
+router.get('/joiningScreen', verify, (req, res) => {
+    return res.render('joiningScreen', {
+        name: req.query.name,
+        code: generateID()
     });
-});
-router.get(('/results'), verifyGame, async (req, res) => {
-    var player = await gameOperations.getplayer(req.user);
-    res.render("results", {
-        points: player.Points
-    });
-});
-
-router.get(('/GameWasCanceled'), verifyGame, gameController.quitGame);
-
-
-
-router.get('/joiningScreen', verify, gameController.createGame);
-
-
+})
 router.get('/ScoreBoard', (req, res) => {
     return res.render('ScoreBoard');
 })
 
+function generateID() {
+    return randomstring = Math.floor(Math.random()*90000) + 10000;
+}
+
+
+
 
 module.exports = router;
+
+
+
+
+
+// QUESTIONS:
+//  {
+//      {
+//          text: "Pitanje 1?",
+//          {
+//               {
+//                  text: "odgovor 1",
+//                  tocan: true
+//               }
+//               {
+//                  text: "odgovor 2",
+//                  tocan: false
+//               }
+//               {
+//                  text: "odgovor 3",
+//                  tocan: false
+//               }
+//               {
+//                  text: "odgovor 4",
+//                  tocan: false
+//               }
+//          }
+//      }
+//      {
+//          text: "Pitanje 2?",
+//          odgovori:  [
+//               {
+//                  text: "odgovor 1",
+//                  tocan: false
+//               }
+//               {
+//                  text: "odgovor 2",
+//                  tocan: true
+//               }
+//               {
+//                  text: "odgovor 3",
+//                  tocan: false
+//               }
+//               {
+//                  text: "odgovor 4",
+//                  tocan: false
+//               }
+//          ]
+//      }
+//      {
+//          text: "Pitanje 3?",
+//          {
+//               {
+//                  text: "odgovor 1",
+//                  tocan: false
+//               }
+//               {
+//                  text: "odgovor 2",
+//                  tocan: false
+//               }
+//               {
+//                  text: "odgovor 3",
+//                  tocan: false
+//               }
+//               {
+//                  text: "odgovor 4",
+//                  tocan: true
+//               }
+//          }
+//      }
+//      {
+//          text: "Pitanje 4?",
+//          {
+//               {
+//                  text: "odgovor 1",
+//                  tocan: false
+//               }
+//               {
+//                  text: "odgovor 2",
+//                  tocan: true
+//               }
+//               {
+//                  text: "odgovor 3",
+//                  tocan: false
+//               }
+//               {
+//                  text: "odgovor 4",
+//                  tocan: false
+//               }
+//          }
+//      }
+//  }
+
+// RESULTS:
+//  {
+//      {
+//          username: frameElement,
+//          points: 10
+//      }
+//      {
+//          username: frameElement,
+//          points: 10
+//      }
+//      {
+//          username: frameElement,
+//          points: 10
+//      }
+//      {
+//          username: frameElement,
+//          points: 10
+//      }
+//      {
+//          username: frameElement,
+//          points: 10
+//      }
+//  }
