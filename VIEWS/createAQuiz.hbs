@@ -28,30 +28,26 @@
         <div class="form-field myField">
             <label id="quizTitle">Quiz Title:</label>
             <input id="name" type="text" name="name" value="{{name}}" autofocus required />
-            <label id="quizID">Quiz id:</label>
-            <input id="quizInputID" type="text" name="quizInputID" />
-            <div id="generateBtn" onclick="generateID()">Generate</div>
-            <!-- <form id="radioBtns">
-                <input type="radio" id="rndGen" name="optionGen" value="rndGen">
-                <label for="rndGen"> Generate random</label>
-                <input type="radio" id="myGen" name="optionGen" value="myGen">
-                <label for="myGen"> Enter my id</label>
-            </form> -->
+            <label>Points per question:</label>
+            <input id="pointsPerQuestion" type="number" min="1" name="pointsPerQuestion"required />
+            
+            <div class="form-group">
+            <input type="submit" class="button" value="Create Quiz">
+            </div>
         </div>
-
+        
         <div id="allQuestions">
         </div>
 
-        <div class="form-group">
-            <input type="submit" class="button" value="Create Quiz">
-        </div>
     </form>
     <div class="btns">
-        <button onclick='cancelQuiz()'>Cancle and return to My Profile</button>
+        <button onclick='cancelQuiz()'>Cancel and return to My Profile</button>
         <button onclick="addQuestion()">Add question</button>
     </div>
 
     <script src="/JS/quizCreator.js"></script>
+    <script src="/JS/languageChange.js"></script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
 </html>

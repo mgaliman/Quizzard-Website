@@ -1,5 +1,5 @@
 var express = require('express');
-const verify = require('./verifyToken');
+const verify = require('./vertifyToken');
 var authController = require('../CONTROLLERS/auth');
 const quizOperations = require('../DATA/quizOperations');
 const userOperations = require('../DATA/userOperations');
@@ -37,7 +37,6 @@ router.get('/myProfile', verify, (req, res) => {
         });
 
     })
-
 })
 
 router.post('/myProfile', verify, async (req, res) => {
