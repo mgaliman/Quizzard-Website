@@ -14,9 +14,11 @@ socket.emit('joinGame', key);
 //     socket.emit('connected', it);
 // });
 
-function nextQuestion() {
-    socket.emit('showQuestion', qnum);
-    window.location.href = `/game/QnARegisteredScreen?key=${key}&qnum=${+qnum + 1}`;
-}
+socket.on('showQuestion', (status) => {
+    window.location.href = `/game/qs?key=${key}&qnum=${status}`;
+});
 
 
+socket.on('cancleGame', () => {
+    window.location.href = "/game/GameWasCanceled";
+});

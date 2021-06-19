@@ -17,7 +17,7 @@ create table UserAccount (
 	LastName nvarchar(100) not null,
 	Email nvarchar (100) not null,
 	UserPassword nvarchar (max) not null,
-
+	
 )
 
 create table QuizType (
@@ -249,12 +249,16 @@ as
 go
 
 create proc ReadQuestion
-	@IDQuestion int
+	@GameKey nvarchar(50),
+	@Qnum int
 as
-	select *
-	from Question
-	where IDQuestion = @IDQuestion
-	
+	select * 
+    from(select row_number() over (order by IDQuestion asc) as t,
+			qs.*
+        from Question as qs 
+		inner join Quiz as q on qs.QuizID = q.IDQuiz
+		inner join Game as g on q.IDQuiz = g.QuizID where g.GameKey = @GameKey) as td 
+     where t=@Qnum
 go
 
 create proc ReadQuestions
@@ -458,13 +462,16 @@ as
 	where GameID = @IDGame
 go
 
-create proc CheckNickname
-	@Nickname nvarchar(50),
-	@GameKey nvarchar(50)
+create proc ReadTopThree
+	@GameKey nvarchar(50) 
 as
-	select * from Player
-	where Nickname = @Nickname and GameKey = @GameKey
+	select top 3 * from Player
+	where GameKey = @GameKey
+	order by Points desc 
 go
+
+	
+
 
 -------PLAYER CRUD---------
 
@@ -518,7 +525,23 @@ as
 
 go
 
+create proc CheckNickname
+	@Nickname nvarchar(50),
+	@GameKey nvarchar(50)
+as
+	select * from Player
+	where Nickname = @Nickname and GameKey = @GameKey
+go
 
+
+create proc AddPoints
+	@IDPlayer int,
+	@Points int
+as
+	update Player
+	set Points += @Points
+	where IDPlayer = @IDPlayer
+go
 
 
 

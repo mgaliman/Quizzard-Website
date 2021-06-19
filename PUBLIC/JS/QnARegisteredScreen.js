@@ -9,7 +9,7 @@ const socket = io();
 socket.emit('joinGame', key);
 
 socket.on('showAnswer', (status) => {
-    window.location.href = `/game/results?key=${key}&qnum=${status}`;
+    window.location.href = `/game/ScoreBoard?key=${key}&qnum=${status}`;
 });
 
 
@@ -17,3 +17,4 @@ socket.on('showAnswer', (status) => {
 //     it = 0;
 //     socket.emit('connected', it);
 // });
+

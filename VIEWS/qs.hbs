@@ -20,48 +20,17 @@
     <div class="timer">
         <p class="time merienda-font ">15</p>
     </div>
-
-    <div class="container">
-        <div class="container-loading hide">
-            <!-- set hide kad igra pocinje -->
-            <div class="loading ">
-                <div class="loading__letter">W</div>
-                <div class="loading__letter">a</div>
-                <div class="loading__letter">i</div>
-                <div class="loading__letter">t</div>
-                <div class="loading__letter">i</div>
-                <div class="loading__letter">n</div>
-                <div class="loading__letter">g</div>
-                <div class="loading__letter">&nbsp;</div>
-                <div class="loading__letter">f</div>
-                <div class="loading__letter">o</div>
-                <div class="loading__letter">r</div>
-                <div class="loading__letter">&nbsp;</div>
-                <div class="loading__letter">e</div>
-                <div class="loading__letter">v</div>
-                <div class="loading__letter">e</div>
-                <div class="loading__letter">r</div>
-                <div class="loading__letter">y</div>
-                <div class="loading__letter">o</div>
-                <div class="loading__letter">n</div>
-                <div class="loading__letter">e</div>
+    <div class="question-container ">
+        <div id="questionForm" action="/game/as">
+            <div id="answer-buttons" class="btn-grid">
+                {{#each answers }}
+                <button class="btn" onclick="submit( {{this.idAnswer}}, {{this.points}}, {{this.player}})"
+                    id="btn{{this.anum}}" name="answer" value="{{this.anum}}"><img src="/IMAGES/{{this.anum}}.png"
+                        alt="#"></button>
+                {{/each}}
             </div>
-            <div class="loader"></div>
         </div>
-
-        <div class="question-container ">
-            <!--makni hide kad igra pocinje-->
-
-            <form id="questionForm" action="/game/as">
-
-                <div id="answer-buttons" class="btn-grid">
-                    <button class="btn" id="btn1" value="A"><img src="/IMAGES/romb.png" alt="#"></button>
-                    <button class="btn" id="btn2" value="B"><img src="/IMAGES/triangle.png" alt="#"></button>
-                    <button class="btn" id="btn3" value="C"><img src="/IMAGES/cube.png" alt="#"></button>
-                    <button class="btn" id="btn4" value="D"><img src="/IMAGES/circle.png" alt="#"></button>
-                </div>
-            </form>
-        </div>
+    </div>
 
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js"

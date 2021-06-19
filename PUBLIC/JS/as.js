@@ -1,7 +1,7 @@
 
 // Get nickname and room key from url
 
-const { key } = Qs.parse(location.search, {
+const { key, ans } = Qs.parse(location.search, {
     ignoreQueryPrefix: true
 });
 const nickname = "User";
@@ -13,7 +13,7 @@ const socket = io();
 socket.emit('joinGame', key);
 
 socket.on('showAnswer', (status) => {
-    window.location.href = `/game/ScoreBoard?key=${key}&qnum=${status}`;
+    window.location.href = `/game/results?key=${key}&qnum=${status}`;
 });
 
 socket.on('cancleGame', () => {

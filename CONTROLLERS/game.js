@@ -1,4 +1,5 @@
 const dbOperations = require('../DATA/gameOperations');
+const quizOperations = require('../DATA/quizOperations');
 const dbPlayerOperations = require('../DATA/playerOperations.js');
 const jwt = require('jsonwebtoken');
 
@@ -51,7 +52,6 @@ exports.joinGame = async (req, res) => {
                                 expiresIn: process.env.JWT_EXPIRES_IN
                             });
                             res.header('game-token', token);
-                            console.log("The token is " + token);
                             const cookieOptions = {
                                 expires: new Date(
                                     Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
@@ -82,6 +82,13 @@ exports.cancleGame = async (key) => {
 exports.quitGame = (req, res) => {
     res.clearCookie("game");
     res.render('EnterNick');
+}
+
+exports.submitAnswer = async (idAnswer, maxPoints, player) => {
+    var answer = await quizOperations.getAnswer(idAnswer);
+    if (answer.RightAnswer === true) {
+        dbOperations.addPoints(player, maxPoints);
+    }
 }
 
 

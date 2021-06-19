@@ -54,19 +54,19 @@ body {
     font-size: 50px;
 }
 
-.answer01{
+.answer0{
     background-color: #C04595;
 }
 
-.answer02{
+.answer1{
     background-color: #45C070;
 }
 
-.answer03{
+.answer2{
     background-color: #C0AD45;
 }
 
-.answer04{
+.answer3{
     background-color: #4558C0;
 }
 
@@ -74,27 +74,27 @@ body {
 .answer-container button{
     transition: all 150ms ease-in-out;
 }
-.answer01:hover{
+.answer0:hover{
     border-color: #C04595;
     color: #fff;
     box-shadow: 0 0 10px 0 #C04595 inset,0 0 10px 4px #C04595;
 }
 
-.answer02:hover{
+.answer1:hover{
     background-color: #45C070;
     border-color: #45C070;
     color: #fff;
     box-shadow: 0 0 10px 0 #45C070 inset,0 0 10px 4px #45C070;
 }
 
-.answer03:hover{
+.answer2:hover{
     background-color: #C0AD45;
     border-color: #C0AD45;
     color: #fff;
     box-shadow: 0 0 10px 0 #C0AD45 inset,0 0 10px 4px #C0AD45;
 }
 
-.answer04:hover{
+.answer3:hover{
     background-color: #4558C0;
     border-color: #4558C0;
     color: #fff;
