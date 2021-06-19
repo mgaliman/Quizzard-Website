@@ -123,3 +123,14 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* -----------------------------LANGUAGE--------------------------------- */
+.goog-logo-link{
+    display: none !important;
+  }
+  .goog-te-gadget{
+    color: transparent !important;
+  }
+  .goog-te-banner-frame.skiptranslate{
+    display: none !important;
+  }
