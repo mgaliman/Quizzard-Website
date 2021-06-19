@@ -13,29 +13,29 @@
 <body>
 
     <div class="logo-container">
-        <img class="logo-image" src="/IMAGES/final logo.png" alt="Quizzard Logo" translate="no">
+        <img class="logo-image" src="/IMAGES/final logo.png" alt="Quizzard Logo">
     </div>
 
     <h1 id="title">Join a Game</h1>
     <form action="/game/quiz" method="POST">
         <div class="form-field">
             <label id="label">Nickname</label>
-            <input id="name" type="text" required name="name" autofocus />
+            <input id="nickname" type="text" required name="nickname" autofocus />
         </div>
         <br>
         <div class="form-field">
-            <label id="label">Game Code</label>
-            <input id="pin" required name="pin" />
+            <label id="label">Game key</label>
+            <input id="key" required name="key" />
         </div>
         <br>
         <div class="form-field">
             <button id="joinButton">Join</button>
         </div>
     </form>
-    <br />
-
-    <script src="/JS/languageChange.js"></script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    {{#if message }}
+    <h4 class="alert alert-danger mt-4">{{message}}</h4>
+    {{/if}}
 
 </body>
+
 </html>

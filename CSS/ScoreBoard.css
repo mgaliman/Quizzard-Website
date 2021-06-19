@@ -1,0 +1,114 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+.logo-image{
+    width: 230px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.pozadina{
+    background-color: #45c070;
+}
+
+.container{
+    height: 270px;
+    width: 700px;
+    max-width: 80%;
+    background-color: gray;
+    border-radius: 5px;
+    padding: 30px;
+    margin: -10px auto;
+    opacity: 0.6;
+    
+    animation: container-load 1000ms ease-out;
+    
+}
+
+#title{
+    font-family: 'Merienda', cursive;;
+    text-align: center;
+    font-size: 50px;
+    color: white;
+}
+
+ol{
+    margin: -20px auto;  
+    text-align: center;
+    margin-left: 30px;
+}
+
+li{
+    text-align: center;
+    font-family: 'Merienda', cursive;;
+    padding: 7px;
+    padding-bottom: 5px;
+}
+
+li:nth-child(1){
+    color: #FFD700;
+    font-size: 70px;
+    border-bottom: solid 2px silver;
+    transform: scale(0);
+    animation: li-load 1000ms forwards ease-out 3300ms;
+    
+}
+
+li:nth-child(2){
+    color: mintcream;
+    font-size: 50px;
+    border-bottom: solid 2px silver;
+    transform: scale(0);
+    animation: li-load 1000ms forwards ease-out 2300ms;
+    
+}
+
+li:nth-child(3){
+    color: darkorange;
+    font-size: 45px;
+    border-bottom: solid 2px silver;
+    transform: scale(0);
+    animation: li-load 1000ms forwards ease-out 1300ms;
+    
+}
+
+.correctOrWrong{
+    width: 90px;
+    margin: 10px auto;
+}
+
+
+img{
+    width: 80px;  
+}
+
+@keyframes container-load{
+
+    0%{
+        transform: translateY(-160%);
+    }
+  
+    100%{
+      transform: translateY(0);
+    }
+  
+  }
+
+  @keyframes li-load{
+
+    0%{
+        transform: translateY(-500%);
+    }
+  
+    100%{
+      transform: scale(1);
+    }
+  
+  }
+
+
+
+

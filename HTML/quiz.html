@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/quiz.css">
+    <script defer src="../SCRIPT/quiz.js"></script>
+    <title>Quizzard</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="logo-container">     
+         <img class="logo-image" src="../PICTURES/final logo.png" alt="Quizzard Logo">      
+    </div>  
+    
+    <div class="timer">   
+        <p class="time merienda-font hide">15</p>
+    </div>
+
+    <div class="container"> 
+        <div class="container-loading">    <!-- set hide kad igra pocinje -->
+            <div class="loading ">
+              <div class="loading__letter">W</div>
+              <div class="loading__letter">a</div>
+              <div class="loading__letter">i</div>
+              <div class="loading__letter">t</div>
+              <div class="loading__letter">i</div>
+              <div class="loading__letter">n</div>
+              <div class="loading__letter">g</div>
+              <div class="loading__letter">&nbsp;</div>
+              <div class="loading__letter">f</div>
+              <div class="loading__letter">o</div>
+              <div class="loading__letter">r</div>
+              <div class="loading__letter">&nbsp;</div>
+              <div class="loading__letter">e</div>
+              <div class="loading__letter">v</div>
+              <div class="loading__letter">e</div>
+              <div class="loading__letter">r</div>
+              <div class="loading__letter">y</div>
+              <div class="loading__letter">o</div>
+              <div class="loading__letter">n</div>
+              <div class="loading__letter">e</div>
+            </div>
+            <div class="loader"></div>
+          </div>
+
+        <div class="question-container hide" >   <!--makni hide kad igra pocinje-->
+            <div class="question">   
+                Ovo je neko pitanje ali je malo duze od onog prije da vidim wrapa li se tekst onako kako bi trebao i to?
+            </div>
+            <div id="answer-buttons" class="btn-grid">   
+                <button class="btn" id="btn1">answer 1</button>
+                <button class="btn" id="btn2">answer 2</button>
+                <button class="btn" id="btn3">answer 3</button>
+                <button class="btn" id="btn4">answer 3</button>
+            </div>
+        </div>  
+    </div>
+</body>
+</html>
