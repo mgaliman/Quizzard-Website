@@ -10,7 +10,6 @@ module.exports = function (req, res, next) {
         }
         else if (data.id) {
             req.user = data.id
-            console.log(req.user);
             next();
         }
     })

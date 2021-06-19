@@ -72,11 +72,127 @@ async function checkQuizTitle(user, title) {
         sql.close();
     }
 }
+async function createQuestion(question, duration, points, quizID) {
+    try {
+        let pool = await sql.connect(config);
+        let questions = await pool
+            .request()
+            .input('Question', sql.NVarChar(50), question)
+            .input('Duration', sql.Int, duration)
+            .input('Points', sql.Int, points)
+            .input('QuizID', sql.Int, quizID)
+            .output('IDQuestion', sql.Int)
+            .execute('CreateQuestion');
+        return questions.output.IDQuestion;
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+        sql.close();
+    }
+}
+async function createAnswer(answer, rightAnswer, questionID) {
+    try {
+        let pool = await sql.connect(config);
+        let answers = await pool
+            .request()
+            .input('Answer', sql.NVarChar(50), answer)
+            .input('RightAnswer', sql.Bit, rightAnswer)
+            .input('QuestionID', sql.Int, questionID)
+            .output('IDAnswer', sql.Int)
+            .execute('CreateAnswer');
+        return answers.output.IDAnswer;
+    } catch (err) {
+        console.log(err);
+    } finally {
+        sql.close();
+    }
+}
 
+
+async function getQuiz(id) {
+    try {
+        let pool = await sql.connect(config);
+        let quiz = await pool
+            .request()
+            .input('IDQuiz', sql.Int, id)
+            .execute('ReadQuiz');
+        return quiz.recordsets[0][0];
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+        sql.close();
+    }
+}
+async function getQuestionsFromQuiz(id) {
+    try {
+        let pool = await sql.connect(config);
+        let questions = await pool
+            .request()
+            .input('IDQuiz', sql.Int, id)
+            .execute('ReadQuestionsFromQuiz');
+        return questions.recordsets[0];
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+        sql.close();
+    }
+}
+
+async function getAnswersFromQuestion(idQuestion) {
+    try {
+        let pool = await sql.connect(config);
+        let answers = await pool
+            .request()
+            .input('IDQuestion', sql.Int, idQuestion)
+            .execute('ReadAnswersFromQuestion');
+        return answers.recordsets[0];
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+        sql.close();
+    }
+}
+
+async function getQuestion(key, qnum) {
+    try {
+        let pool = await sql.connect(config);
+        let question = await pool
+            .request()
+            .input('GameKey', sql.NVarChar(50), key)
+            .input('Qnum', sql.Int, qnum)
+            .execute('ReadQuestion');
+        return question.recordsets[0][0];
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+        sql.close();
+    }
+}
+async function getAnswer(id) {
+    try {
+        let pool = await sql.connect(config);
+        let question = await pool
+            .request()
+            .input('IDAnswer', sql.Int, id)
+            .execute('ReadAnswer');
+        return question.recordsets[0][0];
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+        sql.close();
+    }
+}
 
 module.exports = {
     GetQuizzesFromUser: GetQuizzesFromUser,
     createQuiz: createQuiz,
     checkQuizTitle: checkQuizTitle,
-    deleteQuiz: deleteQuiz
+    deleteQuiz: deleteQuiz,
+    createQuestion: createQuestion,
+    createAnswer: createAnswer,
+    getQuiz: getQuiz,
+    getQuestionsFromQuiz: getQuestionsFromQuiz,
+    getAnswersFromQuestion: getAnswersFromQuestion,
+    getQuestion: getQuestion,
+    getAnswer: getAnswer
 }

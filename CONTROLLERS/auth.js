@@ -14,8 +14,6 @@ exports.login = async (req, res) => {
         }
 
         dbOperations.checkUserEmail(email).then(async result => {
-            console.log(password);
-            console.log(email);
             if (result === null || !(await bcrypt.compare(password, result[0].UserPassword))) {
                 res.status(401).render('index', {
                     message: 'Email or Password is incorrect',
@@ -28,8 +26,6 @@ exports.login = async (req, res) => {
                     expiresIn: process.env.JWT_EXPIRES_IN
                 });
                 res.header('auth-token', token);
-                console.log("The token is " + token);
-
                 const cookieOptions = {
                     expires: new Date(
                         Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
@@ -50,7 +46,6 @@ exports.login = async (req, res) => {
 
 
 exports.register = (req, res) => {
-    console.log(req.body);
 
     const { firstName, lastName, email, password, passwordConfirm } = req.body;
 
@@ -72,7 +67,6 @@ exports.register = (req, res) => {
         }
 
         let hashedPassword = await bcrypt.hash(password, 8);
-        console.log(hashedPassword);
 
         await dbOperations.createUser(firstName, lastName, email, hashedPassword);
         res.redirect(307, '/login');
@@ -123,7 +117,6 @@ exports.gameEnter = async (req, res) => {
                         expiresIn: process.env.JWT_EXPIRES_IN
                     });
                     res.header('auth-token', token);
-                    console.log("The token is " + token);
 
                     const cookieOptions = {
                         expires: new Date(

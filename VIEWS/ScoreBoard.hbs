@@ -22,21 +22,19 @@
     <div class="container">
 
         <ol>
-            <li>First</li>
+            <li>{{first.nickname}}: {{first.points}}</li>
 
-            <li>Second</li>
+            <li>{{second.nickname}}: {{second.points}}</li>
 
-            <li>Third</li>
+            <li>{{third.nickname}}: {{third.points}}</li>
         </ol>
 
     </div>
+    <button onclick="nextQuestion()" type="button">Next question</button>
 
     <div class="correctOrWrong">
         <img src="/IMAGES/tocno.png" alt="correctOrWrong">
     </div>
-
-
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js"
         integrity="sha512-aTKlYRb1QfU1jlF3k+aS4AqTpnTXci4R79mkdie/bp6Xm51O5O3ESAYhvg6zoicj/PD6VYY0XrYwsWLcvGiKZQ=="
