@@ -1,0 +1,67 @@
+@import url("indexCss.css");
+
+body{
+    background-image: linear-gradient(to right,#7a84bd, #7abd92);
+}
+
+.userLogo{
+    color: white;
+}
+
+.myCol{
+    display: flex;
+    padding: 5% 0;
+    transition: all 1s ease;
+    color: white;
+    cursor: pointer;
+}
+
+.myCol i{
+    font-size: 50px;
+    padding-right: 5%;
+    transition: all 1s ease;
+}
+
+.myCol h5{
+    font-size: 30px;
+}
+
+.myCol:hover i{
+    color: #7abd92;
+    font-size: 80px;
+    transform: rotate(45deg);
+}
+
+.row h5 a{
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+    font-family: merienda;
+}
+
+#list{
+    margin-right: 20%;
+    margin-left: 20%;
+}
+
+.myList li{
+    background-color: rgba(255, 255, 255, 0.445);
+    transition: all 1s ease;
+}
+
+.myList li:hover{
+    background-color:white;
+}
+
+@media only screen and (max-width: 768px) {
+    .myCol i{
+        font-size: 30px;
+    }
+    
+    .myCol h5{
+        font-size: 20px;
+    }
+
+    .userLogo{
+        font-size: 100px;
+    }
+  }

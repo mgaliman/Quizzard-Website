@@ -27,15 +27,14 @@ body {
     animation: bgcolor 10s infinite;
     -webkit-animation-direction: alternate;
     animation-direction: alternate;
-    top: 0px !important; 
 }
-#title{
+#title {
     font-family: 'Merienda', cursive;;
     text-align: center;
     font-size: 50px;
     color: white;
 }
-#name{
+#nickname {
     width: 50%;
     padding: 12px 0px;
     margin: 8px 0;
@@ -48,7 +47,7 @@ body {
     font-size: 20px;
     text-align: center;
 }
-#pin{
+#key {
     width: 50%;
     padding: 12px 0px;
     margin: 8px 0;
@@ -61,14 +60,14 @@ body {
     font-size: 20px;
     text-align: center;
 }
-#label{
+#label {
     display: block;
     text-align: center;
     font-size: 25px;
     font-family: 'Merienda', cursive;
     color: white;
 }
-#host{
+#host {
     color: white;
     text-decoration: none;
 }
@@ -98,14 +97,3 @@ body {
     top: 30px;
     left: 30px;
 }
-
-/* -----------------------------LANGUAGE--------------------------------- */
-.goog-logo-link{
-    display: none !important;
-  }
-  .goog-te-gadget{
-    color: transparent !important;
-  }
-  .goog-te-banner-frame.skiptranslate{
-    display: none !important;
-  }

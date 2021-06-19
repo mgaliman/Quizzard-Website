@@ -12,16 +12,20 @@
 <body>
     <div class="container">
         <div>
-            <h1>{{code}}</h1>
+            {{#if game }}
+            <h1 class="alert alert-danger mt-4" id="gameKey">{{game.GameKey}}</h1>
+            {{/if}}
             <h3>Waiting for players to join<span>.</span></h3>
         </div>
-        <div class="myTable" translate="no">
+        <div class="myTable">
             <table>
+                {{#each players }}
                 <tr>
                     <td>
-                        Nickname
+                        {{this.Nickname}}
                     </td>
                 </tr>
+                {{/each}}
             </table>
         </div>
         <div class="btns">
@@ -31,9 +35,8 @@
         </div>
     </div>
 
+    <script src="/socket.io/socket.io.js"></script>
     <script src="/JS/joiningScreen.js"></script>
-    <script src="/JS/languageChange.js"></script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 

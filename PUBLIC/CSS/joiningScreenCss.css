@@ -3,11 +3,11 @@ body {
   font-family: merienda;
   letter-spacing: 0.5rem;
   text-transform: uppercase;
+  /* overflow: hidden; */
   animation-name: backgroundColorPalette;
   animation-duration: 10s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  top: 0px !important;
 }
 .container {
   text-align: center;
@@ -84,15 +84,4 @@ body {
     grid-template-columns: 1fr;
     row-gap: 50%;
   }
-}
-
-/* -----------------------------LANGUAGE--------------------------------- */
-.goog-logo-link{
-  display: none !important;
-}
-.goog-te-gadget{
-  color: transparent !important;
-}
-.goog-te-banner-frame.skiptranslate{
-  display: none !important;
 }

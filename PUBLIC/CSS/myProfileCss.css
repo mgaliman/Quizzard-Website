@@ -4,25 +4,6 @@ body{
     background-image: linear-gradient(to right,#7a84bd, #7abd92);
 }
 
-.myContainer{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.preview{
-    margin-right: 10%;
-    margin-left: 10%;
-    margin-bottom: 5%;
-    overflow-y: scroll;
-    max-height: 100vh;
-    text-align: center;
-}
-
-.rounded {
-    border-top: 10px dotted #bbb;
-    margin: 5%;
-  }
-
 .userLogo{
     color: white;
 }
@@ -58,14 +39,14 @@ body{
 }
 
 
-.row h5 a,.quizName{
+.row h5 a{
     letter-spacing: 0.5rem;
     text-transform: uppercase;
     font-family: merienda;
 }
 
 #list{
-    margin-right: 30%;
+    margin-right: 20%;
     margin-left: 20%;
 }
 
@@ -80,18 +61,7 @@ body{
     background-color:white;
 }
 
-.myGroup{
-    position: sticky;
-}
-.myGroup a{
-    margin: 2%;
-}
-
 @media only screen and (max-width: 768px) {
-    .myContainer{
-        grid-template-columns: 1fr;
-    }
-    
     .myCol i{
         font-size: 30px;
     }
@@ -103,113 +73,4 @@ body{
     .userLogo{
         font-size: 100px;
     }
-
-    .answer-container{
-        grid-template-columns: 1fr;
-    }
-}
-
-
-/* ///////////////////////////////////////////////////////////////////////////// */
-
-.question:hover{
-    background-color: transparent;
-    outline: none;
-}
-
-.question-container{    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 5%;
-}
-
-.question-container button{
-    background-color: transparent;
-    width: 100%;
-    height: 200px;
-}
-
-.answer-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.answer-container button{
-    height: 100px;
-    margin: 5%;
-    display: flex;
-    border-radius: 40px 20px;
-    align-items: center;
-}
-
-.answer-container button p{
-    margin-left: 5%;
-}
-
-.answer-container button i{
-    font-size: 40px;
-}
-
-.timer {
-    text-align: right;
-    font-size: 50px;
-}
-
-.answer01{
-    background-color: #C04595;
-}
-
-.answer02{
-    background-color: #45C070;
-}
-
-.answer03{
-    background-color: #C0AD45;
-}
-
-.answer04{
-    background-color: #4558C0;
-}
-
-
-.answer-container button{
-    transition: all 150ms ease-in-out;
-}
-.answer01:hover{
-    border-color: #C04595;
-    color: #fff;
-    box-shadow: 0 0 10px 0 #C04595 inset,0 0 10px 4px #C04595;
-}
-
-.answer02:hover{
-    background-color: #45C070;
-    border-color: #45C070;
-    color: #fff;
-    box-shadow: 0 0 10px 0 #45C070 inset,0 0 10px 4px #45C070;
-}
-
-.answer03:hover{
-    background-color: #C0AD45;
-    border-color: #C0AD45;
-    color: #fff;
-    box-shadow: 0 0 10px 0 #C0AD45 inset,0 0 10px 4px #C0AD45;
-}
-
-.answer04:hover{
-    background-color: #4558C0;
-    border-color: #4558C0;
-    color: #fff;
-    box-shadow: 0 0 10px 0 #4558C0 inset,0 0 10px 4px #4558C0;
-}
-
-/* -----------------------------LANGUAGE--------------------------------- */
-.goog-logo-link{
-    display: none !important;
-  }
-  .goog-te-gadget{
-    color: transparent !important;
-  }
-  .goog-te-banner-frame.skiptranslate{
-    display: none !important;
   }

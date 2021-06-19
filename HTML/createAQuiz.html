@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../CSS/createAQuizCss.css">
+
+    <title>Create a Quiz</title>
+</head>
+<body>
+
+    <div class="title">
+        <h1>Welcome to quiz creator</h1>
+    </div>
+    <form action="./myProfile.html" method="POST">
+        <div class="form-field myField">
+            <label id="quizTitle">Quiz Title:</label>
+            <input id="name" type="text" name="name" autofocus />
+            <label id="quizID">Quiz id:</label>
+            <input id="quizInputID" type="text" name="quizInputID"/>
+            <div id="generateBtn" onclick="generateID()">Generate</div>
+            <!-- <form id="radioBtns">
+                <input type="radio" id="rndGen" name="optionGen" value="rndGen">
+                <label for="rndGen"> Generate random</label>
+                <input type="radio" id="myGen" name="optionGen" value="myGen">
+                <label for="myGen"> Enter my id</label>
+            </form> -->
+        </div>
+    
+        <div id="allQuestions">
+        </div>
+    
+    </form>
+
+    <div class="btns">
+        <button onclick='cancelQuiz()'>Cancle and return to My Profile</button>
+        <button onclick="updateDatabase()">Save Quiz</button>
+        <button onclick="addQuestion()">Add question</button>
+    </div>
+
+    <script src="../JS/quizCreator.js"></script>
+</body>
+</html>
