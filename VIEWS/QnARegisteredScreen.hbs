@@ -11,7 +11,8 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" onload="countdown();" translate="no">
+        <div class="timer" id="countdown">00</div>
         <div class="question-container">
             <Button type="button" class="question">{{question}}</Button>
         </div>
@@ -34,5 +35,5 @@
     </script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/JS/QnARegisteredScreen.js"></script>
-
+<script src="../JS/timer.js"></script>
 </html>

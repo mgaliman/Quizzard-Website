@@ -20,6 +20,9 @@ router.get(('/'), (request, response) => {
 router.get(('/EnterNick'), (request, response) => {
     response.render("EnterNick");
 })
+router.get(('/howTo'), (request, response) => {
+    response.render("howTo");
+})
 
 router.post('/register', authController.register);
 

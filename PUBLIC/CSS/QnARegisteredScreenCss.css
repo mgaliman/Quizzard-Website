@@ -4,12 +4,20 @@ body {
     animation-duration: 10s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
+    top: 0px !important;
   }
 
 .container{
     margin:10%;
 }
+/* TIMER */
+.timer{
+    text-align: right;
+    margin-right: 3%;
+    font-size: 80px;
+}
 
+/* QUESTION */
 .question:hover{
     background-color: transparent;
     outline: none;
@@ -28,6 +36,7 @@ body {
     height: 200px;
 }
 
+/* ANSWERS */
 .answer-container{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -124,3 +133,14 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* -----------------------------LANGUAGE--------------------------------- */
+.goog-logo-link{
+    display: none !important;
+  }
+  .goog-te-gadget{
+    color: transparent !important;
+  }
+  .goog-te-banner-frame.skiptranslate{
+    display: none !important;
+  }

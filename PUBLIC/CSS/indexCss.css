@@ -1,5 +1,6 @@
 body{
   overflow-x: hidden;
+  top: 0px !important;
 }
 input:focus{
   outline: none;
@@ -292,4 +293,15 @@ a {
   .brandImg {
     width: 120px;
   }
+}
+
+/* -----------------------------LANGUAGE--------------------------------- */
+.goog-logo-link{
+  display: none !important;
+}
+.goog-te-gadget{
+  color: transparent !important;
+}
+.goog-te-banner-frame.skiptranslate{
+  display: none !important;
 }
