@@ -23,7 +23,8 @@ router.get(('/QnARegisteredScreen'), verify, async (req, res) => {
 
     res.render("QnARegisteredScreen", {
         question: question.Question,
-        answers: answers
+        answers: answers,
+        maxTime: question.Duration
     });
 })
 
@@ -43,7 +44,8 @@ router.get(('/qs'), verifyGame, async (req, res) => {
         answers.push({ anum: answer[0], idAnswer: answer[1].IDAnswer, points: question.Points, player: req.user });
     }
     res.render("qs", {
-        answers: answers
+        answers: answers,
+        maxTime: question.Duration
     });
 });
 router.get(('/as'), verifyGame, async (req, res) => {
@@ -55,6 +57,7 @@ router.get(('/ScoreBoard'), verify, async (req, res) => {
     var first = ({ nickname: '', points: '' });
     var second = ({ nickname: '', points: '' });
     var third = ({ nickname: '', points: '' });
+
     if (players[0]) {
 
         first = ({ nickname: players[0].Nickname, points: players[0].Points });

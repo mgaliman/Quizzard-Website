@@ -16,6 +16,7 @@ body{
     overflow-y: scroll;
     max-height: 100vh;
     text-align: center;
+    display: none;
 }
 
 .rounded {

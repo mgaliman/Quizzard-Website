@@ -22,6 +22,7 @@ function addQuestion() {
 
     var deleteButton = document.createElement('button');      //Delete button
     deleteButton.setAttribute('class', 'deleteButton');
+    deleteButton.setAttribute('type', 'button');
     deleteButton.innerHTML = "Delete question ";
 
     var newAnswersDiv = document.createElement("div");      //ANSWERS GRID
@@ -159,8 +160,7 @@ function addQuestion() {
     newQuestionDiv.style.backgroundColor = randomColor();
 
     $(".deleteButton").click(function (event) {
-        event.preventDefault();
-        $(this).parent('#question-field').remove();
+        $(this).parent('.question-field').remove();
     });
     questionNum += 1;
 

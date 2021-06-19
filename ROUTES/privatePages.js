@@ -63,6 +63,7 @@ router.get('/myProfile', verify, (req, res) => {
             quiz = { name: dbquiz[1].Title, IDQuiz: dbquiz[1].IDQuiz, questions: questions };
             quizzes.push(quiz);
         }
+        console.log(quizzes[0].questions[2].answers);
         return res.render('myProfile', {
             quizzes: quizzes
         });

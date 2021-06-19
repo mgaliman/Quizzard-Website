@@ -55,9 +55,10 @@ io.on('connection', socket => {
         });
         // checkConnection(socket, key, 0);
     });
-    socket.on('submitAnswer', (idAnswer, maxPoints, player) => {
-        gameController.submitAnswer(idAnswer, maxPoints, player);
+    socket.on('submitAnswer', (idAnswer, points, player) => {
+        gameController.submitAnswer(idAnswer, points, player);
     });
+
 });
 
 

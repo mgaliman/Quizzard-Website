@@ -16,10 +16,15 @@ socket.on('showAnswer', (status) => {
 socket.on('cancleGame', () => {
     window.location.href = "/game/GameWasCanceled";
 });
-
+const maxTime = document.getElementById('maxTime').innerHTML;
 function submit(idAnswer, maxPoints, player) {
-    socket.emit('submitAnswer', idAnswer, maxPoints, player);
-    window.location.href = `/game/as?key=${key}`;
+    var time = document.getElementById("countdown").innerHTML;
+    var points = 0;
+    points = getPoints(maxPoints, time, maxTime);
+    socket.emit('submitAnswer', idAnswer, points, player);
+    // window.location.href = `/game/as?key=${key}`;
 };
 
-
+function getPoints(maxPoints, time, maxTime) {
+    return (1 - time / maxTime / 2) * maxPoints;
+}

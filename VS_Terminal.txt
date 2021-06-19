@@ -2,7 +2,7 @@
 
 2.	npm init
 
-3.	npm install express dotenv hbs jsonwebtoken mssql cookie-parser body-parser bcryptjs
+3.	npm install express dotenv hbs jsonwebtoken mssql cookie-parser body-parser bcryptjs socket.io
 
 4.	npm install --save-dev nodemon
 

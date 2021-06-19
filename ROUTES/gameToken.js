@@ -6,7 +6,7 @@ module.exports = function (req, res, next) {
 
     jwt.verify(authcookie, process.env.JWT_SECRET, (err, data) => {
         if (err) {
-            res.redirect('/EnterNick');
+            res.redirect('/index');
         }
         else if (data.id) {
             req.user = data.id

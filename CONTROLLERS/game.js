@@ -86,6 +86,7 @@ exports.quitGame = (req, res) => {
 
 exports.submitAnswer = async (idAnswer, maxPoints, player) => {
     var answer = await quizOperations.getAnswer(idAnswer);
+
     if (answer.RightAnswer === true) {
         dbOperations.addPoints(player, maxPoints);
     }

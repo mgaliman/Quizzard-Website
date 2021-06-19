@@ -21,8 +21,10 @@
         <p class="time merienda-font ">15</p>
     </div>
     <div class="question-container ">
+        <div class="timer" id="countdown">00</div>
         <div id="questionForm" action="/game/as">
             <div id="answer-buttons" class="btn-grid">
+                <h1 style="display: none;" id="maxTime">{{maxTime}}</h1>
                 {{#each answers }}
                 <button class="btn" onclick="submit( {{this.idAnswer}}, {{this.points}}, {{this.player}})"
                     id="btn{{this.anum}}" name="answer" value="{{this.anum}}"><img src="/IMAGES/{{this.anum}}.png"
@@ -39,6 +41,7 @@
         </script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/JS/qs.js"></script>
+    <script src="../JS/timer.js"></script>
 
 </body>
 

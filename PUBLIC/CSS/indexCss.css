@@ -246,7 +246,7 @@ a {
 
 /* ---------------------------CAROUSEL----------------------- */
 .carousel {
-  margin-top: -111px;
+  /* margin-top: -111px; */
 }
 .carousel-caption {
   bottom: 20%;

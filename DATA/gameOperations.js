@@ -160,11 +160,9 @@ async function getTopThreePlayers(key) {
             .request()
             .input('GameKey', sql.NVarChar(50), key)
             .execute('ReadTopThree');
-        if (players !== null) {
-            if (players.rowsAffected[0] > 0) {
-                return players.recordset;
-            }
-        }
+
+        return players.recordset;
+
         return null;
     } catch (err) {
         console.log(err.message);
