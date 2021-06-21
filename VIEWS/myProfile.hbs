@@ -64,8 +64,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12 offset-4 animated bounceInRight myCol" style="animation-delay: 2s"
-                    data-toggle="collapse" data-target="#list">
+                <div class="col-lg-12 offset-4 animated bounceInRight myCol" onclick="hidePreview()"
+                    style="animation-delay: 2s" data-toggle="collapse" data-target="#list">
                     <i class="material-icons">unfold_more</i>
                     <h5><a>My quizes</a></h5>
                 </div>
@@ -73,8 +73,7 @@
             <div id="list" class="panel-collapse collapse">
                 <ul class="list-group myList">
                     {{#each quizzes }}
-                    <li class="list-group-item" onmouseover="showPreview({{this}})" onmouseout="hidePreview()"
-                        style="display: block">
+                    <li class="list-group-item" onmouseover="showPreview({{this.IDQuiz}})" style="display: block">
                         {{this.name}}
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example"
                             style="float: right">
@@ -88,6 +87,34 @@
                                     class="btn btn-danger" style="background: #c04595;">Delete</button></a>
                         </div>
                     </li>
+                    {{!-- <div class="quiz">
+                        [
+                        name: {{this.name}},
+                        questions: [
+                        {{#each this.questions}}
+                        {
+                        text: {{this.text}},
+                        answers: [
+                        {{#each this.answers}}
+                        {
+                        text: {{this.text}}
+                        },
+                        {{/each}}
+                        ]
+                        },
+                        {{/each}}
+                        ]
+                        ]
+                    </div> --}}
+                    <ul style="display: none;" id="{{this.IDQuiz}}" class="{{this.name}}">
+                        {{#each this.questions}}
+                        <ul class="{{this.text}}">
+                            {{#each this.answers}}
+                            <li>{{this.text}}</li>
+                            {{/each}}
+                        </ul>
+                        {{/each}}
+                    </ul>
                     {{/each}}
                 </ul>
             </div>
@@ -100,63 +127,8 @@
         </div>
 
         <div class="preview">
-            <div class="quizName">
-                <label for="quizTitle">Name of the hovered quiz</label>
-            </div>
-            <div translate="no">
-                <hr class="rounded">
-                <div class="container">
-                    <div class="question-container">
-                        <Button type="button" class="question">Question</Button>
-                    </div>
-                    <div class="answer-container">
-                        <button class="answer01"><i class="material-icons">check_box_outline_blank</i>
-                            <p>answer01</p>
-                        </button>
-                        <button class="answer02"><i class="material-icons">star_outline</i>
-                            <p>answer02</p>
-                        </button>
-                        <button class="answer03"><i class="material-icons">change_history</i>
-                            <p>answer03</p>
-                        </button>
-                        <button class="answer04"><i class="material-icons">favorite_border</i>
-                            <p>answer04</p>
-                        </button>
-                    </div>
-                </div>
-                <hr class="rounded">
-                <div class="container">
-                    <div class="question-container">
-                        <Button type="button" class="question">Question</Button>
-                    </div>
-                    <div class="answer-container">
-                        <button class="answer01"><i class="material-icons">check_box_outline_blank</i>
-                            <p>answer01</p>
-                        </button>
-                        <button class="answer02"><i class="material-icons">star_outline</i>
-                            <p>answer02</p>
-                        </button>
-                        <button class="answer03"><i class="material-icons">change_history</i>
-                            <p>answer03</p>
-                        </button>
-                        <button class="answer04"><i class="material-icons">favorite_border</i>
-                            <p>answer04</p>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <hr class="rounded">
-            <div class="btn-group myGroup" role="group" aria-label="Basic mixed styles example" style="margin: 0 30%;">
-                <a href="/game/joiningScreen?name={{this.Title}}">
-                    <button type="button" class="btn btn-primary">Play</button>
-                </a>
-                <a href="/registeredUser/createAQuiz?name={{this.Title}}">
-                    <button type="button" class="btn btn-info">Update</button>
-                </a>
-                <a href="/registeredUser/myProfile/deleteQuiz?id={{this.IDQuiz}}"><button type="button"
-                        class="btn btn-danger" style="background: #c04595;">Delete</button></a>
-            </div>
         </div>
+
     </div>
     <script src="/JS/languageChange.js"></script>
     <script type="text/javascript"

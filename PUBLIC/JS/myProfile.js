@@ -1,41 +1,75 @@
-const preview = document.getElementById("preview");
-function showPreview(quiz) {
-    preview.style.display = 'block';
+const preview = document.querySelector(".preview");
+function showPreview(quizID) {
+    var quiz = document.getElementById(quizID);
+    var quizName = quiz.className;
+    var quizQuesitons = quiz.children;
+    var questions = [];
+    Array.from(quizQuesitons).forEach(question => {
+        var questionText = question.className;
+        var answers = question.children;
+        var myAnswers = [];
+        for (const answer of answers) {
+            myAnswers.push({ text: answer.innerHTML });
+        }
+        questions.push({ text: questionText, answers: myAnswers });
+    })
+    var myQuiz = ({ name: quizName, questions: questions });
     preview.innerHTML = `<div class="quizName">
-                <label for="quizTitle">${quiz.name}</label>
-            </div>
-            <div translate="no">
-                <hr class="rounded">
-                {{#each ${quiz.question}}}
-                <div class="container">
+    <label for="quizTitle">${myQuiz.name}</label>
+    </div>
+    <div translate="no">
+                <hr class="rounded">`;
+    myQuiz.questions.forEach((question, index) => {
+        preview.innerHTML += `<div class="container">
                     <div class="question-container">
-                        <Button type="button" class="question">{{this.text}}</Button>
+                    <Button type="button" class="question">${question.text}</Button>
                     </div>
-                    <div class="answer-container">
-                        {{#each ${this.answers}}}
-                        <button class="answer{{@index}}"><i class="material-icons">check_box_outline_blank</i>
-                            <p>{{this.}}</p>
-                        </button>
-                        {{#each}}
+                    <div class="answer-container">`;
+        question.answers.forEach((answer, index) => {
+            switch (index) {
+                case 0:
+                    preview.innerHTML += `<button class="answer${index}"><i class="material-icons">check_box_outline_blank</i>
+                                <p>${answer.text}</p>
+                                </button>`;
+                    break;
+                case 1:
+                    preview.innerHTML += `<button class="answer${index}"><i class="material-icons">star_outline</i>
+                                <p>${answer.text}</p>
+                                </button>`;
+                    break;
+                case 2:
+                    preview.innerHTML += `<button class="answer${index}"><i class="material-icons">change_history</i>
+                                <p>${answer.text}</p>
+                                </button>`;
+                    break;
+                case 3:
+                    preview.innerHTML += `<button class="answer${index}"><i class="material-icons">favorite_border</i>
+                                <p>${answer.text}</p>
+                                </button>`;
+                    break;
+                default:
+                    break;
+            }
+        });
+        preview.innerHTML += `</div>
                     </div>
-                </div>
+                    <hr class="rounded">`;
+    });
+    preview.innerHTML += ` </div >
                 <hr class="rounded">
-                {{#each}}
-            </div>
-            <hr class="rounded">
-            <div class="btn-group myGroup" role="group" aria-label="Basic mixed styles example" style="margin: 0 30%;">
-                <a href="/game/joiningScreen?name={{this.Title}}">
-                    <button type="button" class="btn btn-primary">Play</button>
+                <div class="btn-group myGroup" role="group" aria-label="Basic mixed styles example" style="margin: 0 30%;">
+                <a href="/game/joiningScreen?ID=${quizID}">
+                <button type="button" class="btn btn-primary">Play</button>
                 </a>
-                <a href="/registeredUser/createAQuiz?name={{this.Title}}">
-                    <button type="button" class="btn btn-info">Update</button>
+                <a href="/registeredUser/createAQuiz?name=${quizID}">
+                <button type="button" class="btn btn-info">Update</button>
                 </a>
-                <a href="/registeredUser/myProfile/deleteQuiz?id={{this.IDQuiz}}"><button type="button"
-                        class="btn btn-danger" style="background: #c04595;">Delete</button></a>
-            </div>`
-
+                <a href="/registeredUser/myProfile/deleteQuiz?id=${quizID}"><button type="button"
+                class="btn btn-danger" style="background: #c04595;">Delete</button></a>
+                </div>`;
+    preview.style.display = 'block';
 }
 function hidePreview() {
-    preview.style.display = 'none';
-    preview.innerHTML = '';
+    preview.style.display = "none";
+    preview.innerHTML = "";
 }
