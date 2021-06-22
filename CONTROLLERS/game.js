@@ -95,9 +95,6 @@ exports.submitAnswer = async (idAnswer, maxPoints, player) => {
 
 function createKey() {
     //ID generator
-    return randomstring = Math.random().toString(36).slice(-8);
-    // Generate random number, eg: 0.123456
-    // Convert  to base-36 : "0.4fzyo82mvyr"
-    // Cut off last 8 characters : "yo82mvyr"
+    return randomstring = Math.floor(Math.random()*90000)+10000;
 }
 

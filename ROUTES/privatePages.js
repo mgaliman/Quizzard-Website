@@ -46,7 +46,7 @@ router.get('/createAQuiz', verify, async (req, res) => {
 router.get('/myProfile', verify, (req, res) => {
     var quizzes = [];
     quizOperations.GetQuizzesFromUser(req.user).then(async result => {
-        var quiz = "";
+        var quiz = "";        
         for (const dbquiz of result.entries()) {
             var questions = [];
             var dbQuestions = await quizOperations.getQuestionsFromQuiz(dbquiz[1].IDQuiz);
@@ -62,8 +62,7 @@ router.get('/myProfile', verify, (req, res) => {
             }
             quiz = { name: dbquiz[1].Title, IDQuiz: dbquiz[1].IDQuiz, questions: questions };
             quizzes.push(quiz);
-        }
-        console.log(quizzes[0].questions[2].answers);
+        }        
         return res.render('myProfile', {
             quizzes: quizzes
         });

@@ -15,36 +15,36 @@ function showPreview(quizID) {
     })
     var myQuiz = ({ name: quizName, questions: questions });
     preview.innerHTML = `<div class="quizName">
-    <label for="quizTitle">${myQuiz.name}</label>
+    <label for="quizTitle" translate="no">${myQuiz.name}</label>
     </div>
-    <div translate="no">
+    <div>
                 <hr class="rounded">`;
     myQuiz.questions.forEach((question, index) => {
         preview.innerHTML += `<div class="container">
                     <div class="question-container">
-                    <Button type="button" class="question">${question.text}</Button>
+                    <Button type="button" class="question" translate="no">${question.text}</Button>
                     </div>
                     <div class="answer-container">`;
         question.answers.forEach((answer, index) => {
             switch (index) {
                 case 0:
-                    preview.innerHTML += `<button class="answer${index}"><i class="material-icons">check_box_outline_blank</i>
-                                <p>${answer.text}</p>
+                    preview.innerHTML += `<button class="answer${index}"><i class="material-icons" translate="no">check_box_outline_blank</i>
+                                <p translate="no">${answer.text}</p>
                                 </button>`;
                     break;
                 case 1:
-                    preview.innerHTML += `<button class="answer${index}"><i class="material-icons">star_outline</i>
-                                <p>${answer.text}</p>
+                    preview.innerHTML += `<button class="answer${index}"><i class="material-icons" translate="no">star_outline</i>
+                                <p translate="no">${answer.text}</p>
                                 </button>`;
                     break;
                 case 2:
-                    preview.innerHTML += `<button class="answer${index}"><i class="material-icons">change_history</i>
-                                <p>${answer.text}</p>
+                    preview.innerHTML += `<button class="answer${index}"><i class="material-icons" translate="no">change_history</i>
+                                <p translate="no">${answer.text}</p>
                                 </button>`;
                     break;
                 case 3:
-                    preview.innerHTML += `<button class="answer${index}"><i class="material-icons">favorite_border</i>
-                                <p>${answer.text}</p>
+                    preview.innerHTML += `<button class="answer${index}"><i class="material-icons" translate="no">favorite_border</i>
+                                <p translate="no">${answer.text}</p>
                                 </button>`;
                     break;
                 default:

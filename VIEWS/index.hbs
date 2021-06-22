@@ -46,9 +46,7 @@
                                         <div class="form-group">
                                             <input type="submit" class="button btnSignIn" value="Sign In">
                                         </div>
-                                        {{#if message }}
-                                        <h4 class="alert alert-danger mt-4">{{message}}</h4>
-                                        {{/if}}
+                                        
                                 </form>
                                 <div class="hr"></div>
                                 <div class="foot">
@@ -91,9 +89,7 @@
                                     </div>
                             </form>
 
-                            {{#if message }}
-                            <h4 class="alert alert-danger mt-4">{{message}}</h4>
-                            {{/if}}
+                            
                             <div class="hr"></div>
                             <div class="foot">
                                 <a href="/" class="navbar-brand"><img src="/IMAGES/final logo.png" alt="Quizzard logo"
@@ -154,8 +150,11 @@
             <div style="background-color: #00DBDE;
                         background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
                         " class="carousel-item active">
-                <img alt="Home" class="d-block w-100">
+                <img alt="Home" class="d-block w-100">                
                 <div class="carousel-caption">
+                    {{#if message }}
+                            <h4 class="alert alert-danger mt-4">{{message}}</h4>
+                            {{/if}}
                     <h5 class="animated slideInDown" style="animation-delay: 1s"><i class="material-icons"
                             translate="no">videogame_asset</i></h5>
                     <h5 class="animated bounceInRight" style="animation-delay: 1s">Join the quiz</h5>
