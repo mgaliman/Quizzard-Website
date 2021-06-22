@@ -40,7 +40,7 @@ a,a:hover, a:visited{
 }
 
 .myList li:hover{
-    background-color:white;
+    background-color:red;
 }
 
 /* ----------------------------MODAL----------------------------- */

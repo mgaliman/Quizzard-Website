@@ -23,11 +23,20 @@
 
 body {
     margin-top: 70px;
+    text-align: center;
     -webkit-animation: bgcolor 20s infinite;
     animation: bgcolor 10s infinite;
     -webkit-animation-direction: alternate;
     animation-direction: alternate;
+    overflow-y: hidden;
 }
+
+.myAlert{
+    font-size: 60px;
+    color: white;
+    text-decoration: underline overline;
+}
+
 #title {
     font-family: 'Merienda', cursive;;
     text-align: center;
@@ -107,4 +116,15 @@ body {
   }
   .goog-te-banner-frame.skiptranslate{
     display: none !important;
+  }
+
+  @media only screen and (max-width: 768px) {
+    
+    .logo-image{
+        display: none;
+    }
+
+    .myAlert{
+        font-size: 30px;        
+    }
   }
