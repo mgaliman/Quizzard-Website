@@ -26,7 +26,11 @@
         <div class="form-field myField">
             <label id="quizTitle">Quiz Title:</label>
             <input id="name" type="text" name="name" value="{{quiz.name}}" autofocus required translate="no" />
-
+            <label>Points per question:</label>
+            <input id="pointsPerQuestion" type="number" min="1" name="pointsPerQuestion"required onkeydown="return false"/>
+            <div class="form-group">
+            <input type="submit" class="button" value="Create Quiz">
+            </div>
         </div>
 
         <div id="allQuestions">
@@ -39,7 +43,7 @@
                         id="twoAnsr1" type="button">2</button><button id="fourAnsr1" type="button">4</button></div>
                 <div id="answer-field" class="animated zoomIn">
                     {{#each this.answers }}
-                    <input class="answers" style="background-color:#C04595"
+                    <input class="answers"
                         name="questions[{{this.index}}][answers][{{@index}}][text]" type="text" value="{{this.text}}">
                     {{/each}}
                 </div>
@@ -51,9 +55,6 @@
             {{/each}}
         </div>
 
-        <div class="form-group">
-            <input type="submit" class="button" value="Create Quiz">
-        </div>
     </form>
     <div class="btns">
         <button onclick='cancelQuiz()'>Cancle and return to My Profile</button>

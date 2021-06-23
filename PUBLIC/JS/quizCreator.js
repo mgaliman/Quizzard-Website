@@ -25,6 +25,17 @@ function addQuestion() {
     deleteButton.setAttribute('type', 'button');
     deleteButton.innerHTML = "Delete question ";
 
+    var timerInput = document.createElement('input');      //TIMER
+    timerInput.setAttribute('id', 'timer');
+    timerInput.setAttribute('name', 'timer');
+    timerInput.setAttribute('type', 'number');
+    timerInput.setAttribute('min','1');
+    timerInput.setAttribute('onkeydown','return false');
+
+    var lblTimer = document.createElement('label');
+    lblTimer.setAttribute('id', 'lblTimer');
+    lblTimer.innerHTML="Timer:"
+
     var newAnswersDiv = document.createElement("div");      //ANSWERS GRID
     newAnswersDiv.setAttribute('class', 'animated zoomIn answer-field');
 
@@ -60,6 +71,9 @@ function addQuestion() {
 
     newQuestionDiv.appendChild(deleteButton);
     newQuestionDiv.appendChild(questionField);
+
+    newQuestionDiv.appendChild(lblTimer);
+    newQuestionDiv.appendChild(timerInput);
 
     chooseDiv.appendChild(answerNumberLabel);
     chooseDiv.appendChild(twoAnswers);
