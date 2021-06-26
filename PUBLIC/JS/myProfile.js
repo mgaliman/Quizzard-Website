@@ -1,4 +1,5 @@
 const preview = document.querySelector(".preview");
+
 function showPreview(quizID) {
     var quiz = document.getElementById(quizID);
     var quizName = quiz.className;

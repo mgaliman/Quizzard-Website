@@ -2,6 +2,7 @@ const dbOperations = require('../DATA/gameOperations');
 const quizOperations = require('../DATA/quizOperations');
 const dbPlayerOperations = require('../DATA/playerOperations.js');
 const jwt = require('jsonwebtoken');
+const gameOperations = require('../DATA/gameOperations');
 
 exports.createGame = async (req, res) => {
     try {
@@ -86,15 +87,19 @@ exports.quitGame = (req, res) => {
 
 exports.submitAnswer = async (idAnswer, maxPoints, player) => {
     var answer = await quizOperations.getAnswer(idAnswer);
-
     if (answer.RightAnswer === true) {
         dbOperations.addPoints(player, maxPoints);
+        return true;
     }
+    return false;
+}
+exports.getNummberOfQuestions = async (key) => {
+    return await gameOperations.getNumberOfQuestions(key);
 }
 
 
 function createKey() {
     //ID generator
-    return randomstring = Math.floor(Math.random()*90000)+10000;
+    return randomstring = Math.floor(Math.random() * 90000) + 10000;
 }
 

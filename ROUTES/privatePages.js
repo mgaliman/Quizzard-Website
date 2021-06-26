@@ -36,7 +36,7 @@ router.get('/createAQuiz', verify, async (req, res) => {
             }
             questions.push({ text: question.Question, correctAnswer: correctAnswer, duration: question.Duration, points: question.Points, answers: answers, anum: answers.length });
         }
-        quiz = { name: quizName.Title, questions: questions };
+        quiz = { name: quizName.Title, questions: questions, points: questions[0].points };
     }
     return res.render('createAQuiz', {
         quiz: quiz
@@ -46,7 +46,7 @@ router.get('/createAQuiz', verify, async (req, res) => {
 router.get('/myProfile', verify, (req, res) => {
     var quizzes = [];
     quizOperations.GetQuizzesFromUser(req.user).then(async result => {
-        var quiz = "";        
+        var quiz = "";
         for (const dbquiz of result.entries()) {
             var questions = [];
             var dbQuestions = await quizOperations.getQuestionsFromQuiz(dbquiz[1].IDQuiz);
@@ -62,18 +62,17 @@ router.get('/myProfile', verify, (req, res) => {
             }
             quiz = { name: dbquiz[1].Title, IDQuiz: dbquiz[1].IDQuiz, questions: questions };
             quizzes.push(quiz);
-        }        
+        }
         return res.render('myProfile', {
             quizzes: quizzes
         });
     })
-
 })
 
 router.post('/myProfile', verify, async (req, res) => {
     var quizID = await quizOperations.createQuiz(req.body.name, req.user);
     for (const question of req.body.questions.entries()) {
-        var questionID = await quizOperations.createQuestion(question[1].text, 10, 5, quizID);
+        var questionID = await quizOperations.createQuestion(question[1].text, question[1].timer, req.body.pointsPerQuestion, quizID);
         for (const [index, answer] of question[1].answers.entries()) {
             if (index + 1 === parseInt(question[1].correctAnswer)) {
                 await quizOperations.createAnswer(answer.text, true, questionID);
@@ -101,7 +100,6 @@ router.post('/myProfile', verify, async (req, res) => {
             quiz = { name: dbquiz[1].Title, IDQuiz: dbquiz[1].IDQuiz, questions: questions };
             quizzes.push(quiz);
         }
-        console.log(quizzes[0].questions[2].answers);
         return res.render('myProfile', {
             quizzes: quizzes
         });

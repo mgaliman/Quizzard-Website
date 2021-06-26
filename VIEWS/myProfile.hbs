@@ -48,23 +48,24 @@
         <div class="container">
             <div class="row">
                 <div class="offset-5">
-                    <h5 class="animated zoomIn"><i class="material-icons userLogo" translate="no">account_circle</i></h5>
+                    <h5 class="animated zoomIn"><i class="material-icons userLogo" translate="no">account_circle</i>
+                    </h5>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12 offset-4 animated bounceInRight myCol" style="animation-delay: 1s">
+                <div class="col-lg-12 offset-3 animated bounceInRight myCol" style="animation-delay: 1s">
                     <i class="material-icons" translate="no">create</i>
                     <h5><a href="/registeredUser/editProfile">Edit profile</a></h5>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12 offset-4 animated bounceInRight myCol" style="animation-delay: 1.5s">
+                <div class="col-lg-12 offset-3 animated bounceInRight myCol" style="animation-delay: 1.5s">
                     <i class="material-icons" translate="no">add</i>
                     <h5><a href="/registeredUser/createAQuiz">Create a new quiz</a></h5>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12 offset-4 animated bounceInRight myCol" onclick="hidePreview()"
+                <div class="col-lg-12 offset-3 animated bounceInRight myCol" onclick="hidePreview()"
                     style="animation-delay: 2s" data-toggle="collapse" data-target="#list">
                     <i class="material-icons" translate="no">unfold_more</i>
                     <h5><a>My quizes</a></h5>
@@ -73,9 +74,11 @@
             <div id="list" class="panel-collapse collapse">
                 <ul class="list-group myList">
                     {{#each quizzes }}
-                    <li class="list-group-item" onmouseover="showPreview({{this.IDQuiz}})" style="display: block">
-                        {{this.name}}
-                        <div class="btn-group" role="group" aria-label="Basic mixed styles example"
+                    <li class="list-group-item myListItem" onmouseover="showPreview({{this.IDQuiz}})">
+                        <div>
+                            {{this.name}}
+                        </div>
+                        <div class="btn-group myBtnGroup" role="group" aria-label="Basic mixed styles example"
                             style="float: right">
                             <a href="/game/joiningScreen?ID={{this.IDQuiz}}">
                                 <button type="button" class="btn btn-primary">Play</button>
@@ -119,7 +122,7 @@
                 </ul>
             </div>
             <div class="row">
-                <div class="col-lg-12 offset-4 animated bounceInRight myCol logout" style="animation-delay: 2.5s">
+                <div class="col-lg-12 offset-3 animated bounceInRight myCol logout" style="animation-delay: 2.5s">
                     <i class="material-icons" translate="no">add</i>
                     <h5><a href="/logout">Log out</a></h5>
                 </div>

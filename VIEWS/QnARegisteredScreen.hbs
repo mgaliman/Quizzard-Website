@@ -8,11 +8,18 @@
     <title>QnA Registered User</title>
     <link rel="stylesheet" href="/CSS/QnARegisteredScreenCss.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="text/javascript">
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+
+    </script>
 </head>
 
-<body>
+<body onLoad="noBack();" onpageshow="if (event.persisted) noBack();" onUnload="">
     <div class="container" onload="countdown();" translate="no">
-        <div class="timer" id="countdown">00</div>
+        <div class="timer" id="countdown">{{maxTime}}</div>
         <div class="question-container">
             <Button type="button" class="question">{{question}}</Button>
         </div>
@@ -36,4 +43,5 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="/JS/QnARegisteredScreen.js"></script>
 <script src="../JS/timer.js"></script>
+
 </html>

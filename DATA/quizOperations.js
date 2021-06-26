@@ -1,6 +1,7 @@
 var config = require('./dbConfig');
 const sql = require('mssql');
 const { password } = require('./dbConfig');
+const { map } = require('jquery');
 
 sql.on('error', err => {
     console.log(err.message);
@@ -20,6 +21,28 @@ async function GetQuizzesFromUser(id) {
         sql.close();
     }
 }
+
+// async function GetQuizzesFromUser(id) {
+//     try {
+//         let pool = await sql.connect(config);
+//         try {
+//             let users = await pool
+//                 .request()
+//                 .input('IDUserAccount', sql.Int, id)
+//                 .execute('ReadQuizzesFromUser');
+//             return users.recordsets[0];
+
+//         } catch (err) {
+//             console.log(err.message);
+
+//         } finally {
+//             pool.close();
+
+//         }
+//     } catch (err) {
+//         console.log(err.message);
+//     }
+// }
 
 async function createQuiz(title, UserID) {
     try {
@@ -90,6 +113,7 @@ async function createQuestion(question, duration, points, quizID) {
         sql.close();
     }
 }
+
 async function createAnswer(answer, rightAnswer, questionID) {
     try {
         let pool = await sql.connect(config);
@@ -149,11 +173,11 @@ async function getAnswersFromQuestion(idQuestion) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
-
+// const questions = new Map();
 async function getQuestion(key, qnum) {
+    // if (!questions.has(key)) {
     try {
         let pool = await sql.connect(config);
         let question = await pool
@@ -161,12 +185,14 @@ async function getQuestion(key, qnum) {
             .input('GameKey', sql.NVarChar(50), key)
             .input('Qnum', sql.Int, qnum)
             .execute('ReadQuestion');
+        // questions.set(key, question.recordsets[0][0]);
         return question.recordsets[0][0];
     } catch (err) {
         console.log(err.message);
-    } finally {
-        sql.close();
     }
+    // } else {
+    //     return questions.get(key);
+    // }
 }
 async function getAnswer(id) {
     try {
@@ -179,7 +205,6 @@ async function getAnswer(id) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 

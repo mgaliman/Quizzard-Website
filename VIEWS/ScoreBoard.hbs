@@ -9,9 +9,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
     <title>Quizzard</title>
+    <script type="text/javascript">
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+
+    </script>
 </head>
 
-<body class="pozadina">
+<body onLoad="noBack();" onpageshow="if (event.persisted) noBack();" onUnload="" class="pozadina">
 
     <div class="logo-container">
         <img class="logo-image" src="/IMAGES/final logo.png" alt="Quizzard Logo">
@@ -31,10 +38,7 @@
 
     </div>
     <button onclick="nextQuestion()" type="button">Next question</button>
-
-    <div class="correctOrWrong">
-        <img src="/IMAGES/tocno.png" alt="correctOrWrong">
-    </div>
+    <button onclick='cancelQuiz()' type="button">Cancle quiz</button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js"
         integrity="sha512-aTKlYRb1QfU1jlF3k+aS4AqTpnTXci4R79mkdie/bp6Xm51O5O3ESAYhvg6zoicj/PD6VYY0XrYwsWLcvGiKZQ=="

@@ -112,7 +112,6 @@ async function deleteGame(key) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 
@@ -133,7 +132,6 @@ async function checkNickname(nickname, key) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 
@@ -148,7 +146,6 @@ async function addPoints(IDPlayer, points) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 
@@ -160,14 +157,10 @@ async function getTopThreePlayers(key) {
             .request()
             .input('GameKey', sql.NVarChar(50), key)
             .execute('ReadTopThree');
-
         return players.recordset;
-
-        return null;
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 
@@ -181,7 +174,20 @@ async function getplayer(id) {
         return quiz.recordsets[0][0];
     } catch (err) {
         console.log(err.message);
-    } finally {
+    }
+}
+async function getNumberOfQuestions(key) {
+    try {
+        let pool = await sql.connect(config);
+        let quiz = await pool
+            .request()
+            .input('GameKey', sql.NVarChar(50), key)
+            .execute('GetNumberOfQuestions');
+        return quiz.recordsets[0][0];
+    } catch (err) {
+        console.log(err.message);
+    }
+    finally {
         sql.close();
     }
 }
@@ -196,5 +202,6 @@ module.exports = {
     checkNickname: checkNickname,
     addPoints: addPoints,
     getTopThreePlayers: getTopThreePlayers,
-    getplayer: getplayer
+    getplayer: getplayer,
+    getNumberOfQuestions: getNumberOfQuestions
 }

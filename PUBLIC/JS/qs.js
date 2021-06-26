@@ -1,4 +1,6 @@
 const questionForm = document.getElementById('questionForm');
+const maxTime = document.getElementById('maxTime').innerHTML;
+
 const { key, qnum } = Qs.parse(location.search, {
     ignoreQueryPrefix: true
 });
@@ -16,15 +18,18 @@ socket.on('showAnswer', (status) => {
 socket.on('cancleGame', () => {
     window.location.href = "/game/GameWasCanceled";
 });
-const maxTime = document.getElementById('maxTime').innerHTML;
+
+socket.on('returnIsTrue', (isTrue) => {
+    window.location.href = `/game/as?key=${key}&isTrue=${isTrue}`;
+})
+
 function submit(idAnswer, maxPoints, player) {
     var time = document.getElementById("countdown").innerHTML;
     var points = 0;
     points = getPoints(maxPoints, time, maxTime);
     socket.emit('submitAnswer', idAnswer, points, player);
-    // window.location.href = `/game/as?key=${key}`;
 };
 
 function getPoints(maxPoints, time, maxTime) {
-    return (1 - time / maxTime / 2) * maxPoints;
+    return (1 - (time / maxTime / 2)) * maxPoints;
 }

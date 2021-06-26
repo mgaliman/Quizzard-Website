@@ -8,9 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
+    <script type="text/javascript">
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+
+    </script>
 </head>
 
-<body>
+<body onLoad="noBack();" onpageshow="if (event.persisted) noBack();" onUnload="">
 
     <div class="logo-container">
         <img class="logo-image" src="/IMAGES/final logo.png" alt="Quizzard Logo">
@@ -20,12 +27,12 @@
     <form action="/game/quiz" method="POST">
         <div class="form-field">
             <label id="label">Nickname</label>
-            <input id="nickname" type="text" required name="nickname" autofocus />
+            <input id="name" type="text" required name="nickname" autofocus />
         </div>
         <br>
         <div class="form-field">
             <label id="label">Game key</label>
-            <input id="key" required name="key" />
+            <input id="pin" required name="key" />
         </div>
         <br>
         <div class="form-field">
@@ -36,9 +43,9 @@
     <h4 class="alert alert-danger mt-4 myAlert">{{message}}</h4>
     {{/if}}
 
-
     <script src="/JS/languageChange.js"></script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
 </html>

@@ -9,7 +9,6 @@ var authController = require('../CONTROLLERS/auth');
 const gameOperations = require('../DATA/gameOperations');
 
 
-
 var router = express.Router();
 
 router.get(('/QnARegisteredScreen'), verify, async (req, res) => {
@@ -20,7 +19,6 @@ router.get(('/QnARegisteredScreen'), verify, async (req, res) => {
     for (const answer of dbAnswers.entries()) {
         answers.push({ text: answer[1].Answer });
     }
-
     res.render("QnARegisteredScreen", {
         question: question.Question,
         answers: answers,
@@ -36,7 +34,6 @@ router.get(('/quiz'), verifyGame, (req, res) => {
 
 router.get(('/qs'), verifyGame, async (req, res) => {
     var { key, qnum } = req.query;
-
     var answers = [];
     var question = await quizOperations.getQuestion(key, qnum);
     var dbAnswers = await quizOperations.getAnswersFromQuestion(question.IDQuestion);
@@ -57,16 +54,13 @@ router.get(('/ScoreBoard'), verify, async (req, res) => {
     var first = ({ nickname: '', points: '' });
     var second = ({ nickname: '', points: '' });
     var third = ({ nickname: '', points: '' });
-
     if (players[0]) {
         first = ({ nickname: players[0].Nickname, points: players[0].Points });
     }
     if (players[1]) {
-
         second = ({ nickname: players[1].Nickname, points: players[1].Points });
     }
     if (players[2]) {
-
         third = ({ nickname: players[2].Nickname, points: players[2].Points });
     }
     res.render("ScoreBoard", {
@@ -75,19 +69,26 @@ router.get(('/ScoreBoard'), verify, async (req, res) => {
         third: third,
     });
 });
+
 router.get(('/results'), verifyGame, async (req, res) => {
     var player = await gameOperations.getplayer(req.user);
+    if (req.query.isTrue === "true") {
+        var isTrue = req.query.isTrue;
+    }
+    else {
+        var isNotTrue = req.query.isTrue;
+
+    }
     res.render("results", {
-        points: player.Points
+        points: player.Points,
+        isTrue: isTrue,
+        isNotTrue: isNotTrue
     });
 });
 
 router.get(('/GameWasCanceled'), verifyGame, gameController.quitGame);
 
-
-
 router.get('/joiningScreen', verify, gameController.createGame);
-
 
 router.get('/ScoreBoard', (req, res) => {
     return res.render('ScoreBoard');

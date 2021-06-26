@@ -468,9 +468,16 @@ as
 	select top 3 * from Player
 	where GameKey = @GameKey
 	order by Points desc 
-go
-
+go	
 	
+create proc GetNumberOfQuestions
+	@GameKey nvarchar(50) 
+as
+	select COUNT(*) as NumOfQs from Question as qs
+	inner join Quiz as qz on qs.QuizID = qz.IDQuiz
+	inner join Game as g on qz.IDQuiz = g.QuizID
+	where GameKey = @GameKey
+go
 
 
 -------PLAYER CRUD---------

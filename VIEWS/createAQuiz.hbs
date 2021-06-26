@@ -16,34 +16,38 @@
     <title>Create a Quiz</title>
 </head>
 
-<body>
+<body style="background-color: #c988c9;
+background-image: linear-gradient(90deg, #c988c9 0%, #3353a2 50%);
+">
 
     <div class="title">
         <h1>Welcome to quiz creator</h1>
     </div>
-    <form id="my-form" action="/registeredUser/myProfile" method="POST">
+    <form id="my-form" onsubmit="mySubmit(this)" action="/registeredUser/myProfile" method="POST">
 
         <div class="form-field myField">
             <label id="quizTitle">Quiz Title:</label>
             <input id="name" type="text" name="name" value="{{quiz.name}}" autofocus required translate="no" />
             <label>Points per question:</label>
-            <input id="pointsPerQuestion" type="number" min="1" name="pointsPerQuestion"required onkeydown="return false"/>
-            <div class="form-group">
-            <input type="submit" class="button" value="Create Quiz">
-            </div>
+            <input id="pointsPerQuestion" type="number" min="1" name="pointsPerQuestion" required
+                onkeydown="return false" value="{{quiz.points}}" />
         </div>
 
         <div id="allQuestions">
             {{#each quiz.questions }}
             <div class="animated bounceInLeft question-field" name="questionCard1"
-                style="background-color: rgb(193, 225, 226);"><button class="deleteButton">Delete question
-                </button><textarea class="question" name="questions[{{@index}}][text]"
+                style="background-color: rgba( 118, 213, 152, 0.30 ); box-shadow:  0 8px 32px 0 rgba( 31, 38, 135, 0.37 )">
+                <button class="deleteButton">Delete question
+                </button><textarea class="question" id="questions[{{@index}}][text]" name="questions[{{@index}}][text]"
                     placeholder="Enter a question here...">{{this.text}}</textarea>
+                <label for="questions[{{@index}}][text]" class="lblTimer">Timer:</label>
+                <input type="number" class="timer" name="questions[{{@index}}][timer]" value="{{this.duration}}">
                 <div id="chooseDiv"><label class="answerNumberLabel">Choose the number of answers:</label><button
-                        id="twoAnsr1" type="button">2</button><button id="fourAnsr1" type="button">4</button></div>
-                <div id="answer-field" class="animated zoomIn">
+                        id="twoAnsr_{{@index}}" type="button">2</button><button id="fourAnsr_{{@index}}"
+                        type="button">4</button></div>
+                <div class="animated zoomIn answer-field">
                     {{#each this.answers }}
-                    <input class="answers"
+                    <input class="answers" id="btn{{@index}}"
                         name="questions[{{this.index}}][answers][{{@index}}][text]" type="text" value="{{this.text}}">
                     {{/each}}
                 </div>
@@ -54,12 +58,13 @@
             </div>
             {{/each}}
         </div>
+        <div class="btns">
+            <input type="submit" onclick="disable(this)" class="button" value="Create Quiz">
+            <input type="button" onclick='cancelQuiz()' class="button" value="Cancle and return to My Profile">
+            <input type="button" onclick="addQuestion()" class="button" value="Add question">
+        </div>
 
     </form>
-    <div class="btns">
-        <button onclick='cancelQuiz()'>Cancle and return to My Profile</button>
-        <button onclick="addQuestion()">Add question</button>
-    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"

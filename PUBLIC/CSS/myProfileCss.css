@@ -66,8 +66,8 @@ body{
 }
 
 #list{
-    margin-right: 30%;
-    margin-left: 20%;
+    margin-right: 10%;
+    margin-left: 5%;
 }
 
 .myList li{
@@ -77,11 +77,27 @@ body{
 
 }
 
+.myListItem{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.myBtnGroup{
+display: flex;
+flex-wrap: wrap;    
+}
+
 .myList li:hover{
     background-color:white;
 }
 
 @media only screen and (max-width: 768px) {
+    
+    .myBtnGroup{
+            overflow: scroll;
+            height: 30px;
+
+    }
     .myContainer{
         grid-template-columns: 1fr;
     }

@@ -26,15 +26,15 @@ function addQuestion() {
     deleteButton.innerHTML = "Delete question ";
 
     var timerInput = document.createElement('input');      //TIMER
-    timerInput.setAttribute('id', 'timer');
-    timerInput.setAttribute('name', 'timer');
+    timerInput.setAttribute('class', 'timer');
+    timerInput.setAttribute('name', `questions[${String(questionNum)}][timer]`);
     timerInput.setAttribute('type', 'number');
-    timerInput.setAttribute('min','1');
-    timerInput.setAttribute('onkeydown','return false');
+    timerInput.setAttribute('min', '1');
+    timerInput.setAttribute('onkeydown', 'return false');
 
     var lblTimer = document.createElement('label');
-    lblTimer.setAttribute('id', 'lblTimer');
-    lblTimer.innerHTML="Timer:"
+    lblTimer.setAttribute('class', 'lblTimer');
+    lblTimer.innerHTML = "Timer:"
 
     var newAnswersDiv = document.createElement("div");      //ANSWERS GRID
     newAnswersDiv.setAttribute('class', 'animated zoomIn answer-field');
@@ -92,12 +92,12 @@ function addQuestion() {
         var answer1Field = document.createElement('input');
         answer1Field.setAttribute('placeholder', 'Enter the first answer here...');
         answer1Field.setAttribute('class', 'answers');
-        answer1Field.setAttribute('style', 'background-color:#C04595');
+        answer1Field.setAttribute('style', 'background-color:rgba( 118, 213, 152, 0.50 )');
 
         var answer2Field = document.createElement('input');
         answer2Field.setAttribute('placeholder', 'Enter the second answer here...');
         answer2Field.setAttribute('class', 'answers');
-        answer2Field.setAttribute('style', 'background-color:#45C070');
+        answer2Field.setAttribute('style', 'background-color:rgba( 218, 90, 251, 0.50 )');
 
         answer1Field.setAttribute('name', `questions[${this.id.split('_')[1]}][answers][0][text]`);
         answer1Field.setAttribute('type', 'text');
@@ -127,22 +127,22 @@ function addQuestion() {
         var answer1Field = document.createElement('input');
         answer1Field.setAttribute('placeholder', 'Enter the first answer here...');
         answer1Field.setAttribute('class', 'answers');
-        answer1Field.setAttribute('style', 'background-color:#C04595');
+        answer1Field.setAttribute('style', 'background-color:rgba( 118, 213, 152, 0.50 )');
 
         var answer2Field = document.createElement('input');
         answer2Field.setAttribute('placeholder', 'Enter the second answer here...');
         answer2Field.setAttribute('class', 'answers');
-        answer2Field.setAttribute('style', 'background-color:#45C070');
+        answer2Field.setAttribute('style', 'background-color:rgba( 218, 90, 251, 0.50 )');
 
         var answer3Field = document.createElement('input');
         answer3Field.setAttribute('placeholder', 'Enter the third answer here...');
         answer3Field.setAttribute('class', 'answers');
-        answer3Field.setAttribute('style', 'background-color:#C0AD45');
+        answer3Field.setAttribute('style', 'background-color:rgba( 213, 203, 118, 0.50 )');
 
         var answer4Field = document.createElement('input');
         answer4Field.setAttribute('placeholder', 'Enter the fourth answer here...');
         answer4Field.setAttribute('class', 'answers');
-        answer4Field.setAttribute('style', 'background-color:#4558C0');
+        answer4Field.setAttribute('style', 'background-color:rgba( 90, 125, 251, 0.50 )');
 
         answer1Field.setAttribute('name', `questions[${this.id.split('_')[1]}][answers][0][text]`);
         answer1Field.setAttribute('type', 'text');
@@ -171,13 +171,17 @@ function addQuestion() {
     });
     questionsDiv.appendChild(newQuestionDiv);                   //Adds the question div to the screen
 
-    newQuestionDiv.style.backgroundColor = randomColor();
+    var colorPacket = randomColor().split('|');
+
+    newQuestionDiv.style.background = colorPacket[0];
+    newQuestionDiv.style.boxShadow = colorPacket[1];
 
     $(".deleteButton").click(function (event) {
         $(this).parent('.question-field').remove();
     });
     questionNum += 1;
 
+    window.scrollTo(0, document.body.scrollHeight);
 }
 
 
@@ -189,8 +193,18 @@ function cancelQuiz() {
 
 function randomColor() {
 
-    var colors = ['#EBCEED', '#D3F1D2', '#FEECD6', '#C1E1E2'];
+    var colors = ['rgba( 118, 213, 152, 0.30 )| 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 'rgba( 218, 90, 251, 0.30 )|0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 'rgba( 213, 203, 118, 0.30 )|0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 'rgba( 90, 125, 251, 0.30 )|0 8px 32px 0 rgba( 31, 38, 135, 0.37 )'];
     var randomNum = Math.floor(Math.random() * 4);
     return colors[randomNum];
 }
 
+function mySubmit(form) {
+    if (confirm("Are you sure you want to create?")) {
+        window.location.href = "/registeredUser/myProfile";
+        form.disable();
+    }
+}
+
+function disable(ctrl) {
+    ctrl.disable == true;
+}

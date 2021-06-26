@@ -8,6 +8,7 @@ input:focus{
 .myNav {
   background-color: transparent !important;
   z-index: 2;
+  width: 100vw;
 }
 .navbar-nav {
   text-align: center;

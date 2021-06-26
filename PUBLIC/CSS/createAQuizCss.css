@@ -6,6 +6,17 @@
   body {
     height: 100vh;
   }
+  h1 {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+       backdrop-filter: blur( 12.5px );
+-webkit-backdrop-filter: blur( 12.5px );
+padding: 20px;
+  } 
+  
   textarea:focus,
   input {
     background: rgba(255, 255, 255, 0.3);
@@ -26,19 +37,17 @@
     font-family: merienda;
   }
   .myField {
-    margin-top: 5%;
+    margin-top: 180px;
     width: 100%;
     text-align: center;
     letter-spacing: 0.5rem;
     text-transform: uppercase;
   }
-  .myField {
-    margin-bottom: 5%;
-  }
+
   #quizID {
     margin-left: 3%;
   }
-  
+
   /* -----------------------------QUESTION CARDS-------------------------------- */
   #allQuestions {
     margin-left: 10%;
@@ -49,6 +58,10 @@
     height: fit-content;
     margin-bottom: 5%;
     cursor: move;
+    backdrop-filter: blur( 4.0px );
+    -webkit-backdrop-filter: blur( 4.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
   }
   .question-field.dragging {
     opacity: 0.5;
@@ -117,14 +130,21 @@
     transition: all 0.6s ease;
     text-transform: uppercase;
   }
+  .deleteButton
+  {
+background: rgba( 255, 255, 255, 0.25 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 9.5px );
+-webkit-backdrop-filter: blur( 9.5px );
+border: 1px solid rgba( 255, 255, 255, 0.18 );  }
   .deleteButton:hover,
   #generateBtn:hover {
     transform: scale(0.9);
   }
   .btns {
-    padding: 2% 20%;
+    padding: 2% 2%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 5%;
     bottom: 0;
     position: sticky;
@@ -149,6 +169,8 @@
   .button:hover {
     border: 1px solid black;
   }
+
+  
   
   @media only screen and (max-width: 768px) {
     .btns,
@@ -169,6 +191,37 @@
     }
   }
   
+
+  
+#btn0{
+  background-color:rgba( 118, 213, 152, 0.50 )
+  
+}
+#btn0:hover{
+background-color:rgba(93, 172, 120, 0.5)}
+
+#btn1{
+  background-color:rgba( 218, 90, 251, 0.50 )
+  
+}
+#btn1:hover{
+  background-color:rgba(185, 76, 212, 0.5)
+}
+
+#btn2{
+  background-color:rgba( 213, 203, 118, 0.50 )
+}
+#btn2:hover{
+  background-color:rgba(175, 167, 95, 0.5)
+}
+
+#btn3{
+  background-color:rgba( 90, 125, 251, 0.50 )
+}
+#btn3:hover{
+  background-color:rgba(77, 104, 204, 0.5)
+}
+
   /* -----------------------------LANGUAGE--------------------------------- */
   .goog-logo-link{
     display: none !important;

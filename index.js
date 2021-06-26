@@ -40,14 +40,24 @@ app.use('/game', require('./ROUTES/gamePages'));
 
 
 io.on('connection', socket => {
-    socket.on('joinGame', (key) => {
+    socket.on('joinGame', async (key) => {
         socket.join(key);
-        console.log(key);
         socket.broadcast.to(key).emit('reload');
+        var numOfQs = await gameController.getNummberOfQuestions(key);
         socket.on('showQuestion', (status) => {
-            status++;
-            socket.broadcast.to(key).emit('showQuestion', status);
-            stateChange(status, key);
+            console.log(parseInt(status));
+            console.log(numOfQs.NumOfQs);
+            console.log(parseInt(status) === numOfQs.NumOfQs);
+            if (parseInt(status) === numOfQs.NumOfQs) {
+                socket.emit('endOfQuiz');
+                socket.broadcast.to(key).emit('endOfQuiz');
+            }
+            else {
+                status++;
+                socket.emit('showQuestion', status);
+                socket.broadcast.to(key).emit('showQuestion', status);
+                stateChange(status, key);
+            }
         });
         socket.on('cancleGame', () => {
             gameController.cancleGame(key);
@@ -55,10 +65,10 @@ io.on('connection', socket => {
         });
         // checkConnection(socket, key, 0);
     });
-    socket.on('submitAnswer', (idAnswer, points, player) => {
-        gameController.submitAnswer(idAnswer, points, player);
+    socket.on('submitAnswer', async (idAnswer, points, player) => {
+        var IsTrue = await gameController.submitAnswer(idAnswer, points, player);
+        socket.emit('returnIsTrue', IsTrue);
     });
-
 });
 
 

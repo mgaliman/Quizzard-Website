@@ -18,12 +18,23 @@ socket.on('showQuestion', (status) => {
 socket.on('cancleGame', () => {
     window.location.href = "/game/GameWasCanceled";
 });
+socket.on('endOfQuiz', () => {
+    if (confirm("Looks like this is the end of game, cancle game?")) {
+        socket.emit('cancleGame');
+        window.location.href = "/registeredUser/myProfile";
+    }
+});
 
 function nextQuestion() {
-    socket.emit('showQuestion', qnum);
-    window.location.href = `/game/QnARegisteredScreen?key=${key}&qnum=${+qnum + 1}`;
+    socket.emit('showQuestion', (qnum));
 }
 
+function cancelQuiz() {
+    if (confirm("Are you sure you want to exit? All work will be DELETED!")) {
+        socket.emit('cancleGame');
+        window.location.href = "/registeredUser/myProfile";
+    }
+}
 
 
 

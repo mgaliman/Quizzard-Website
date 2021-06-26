@@ -7,20 +7,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/RightOrWrong.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
+    <title>Quizzard</title>
 
+
+    <script type="text/javascript">
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+
+    </script>
 </head>
 
-<body>
-    <h1>Your score</h1>
-    <h2>{{points}}</h2>
+
+{{#if isTrue}}
+
+<body class="tocno" onLoad="noBack();" onpageshow="if (event.persisted) noBack();" onUnload="">
+    <div class="container">
+        <img class="picture" src="/IMAGES/Tocno.png" alt="correctOrWrong">
+        {{/if}}
+        {{#if isNotTrue}}
+
+        <body class="krivo" onLoad="noBack();" onpageshow="if (event.persisted) noBack();" onUnload="">
+            <div class="container">
+                <img class="picture" src="/IMAGES/krivo.png" alt="correctOrWrong">
+                {{/if}}
+
+                <div class="poruka">
+                    <h1>Creator hasn't started the next question</h1>
+                    <h1>Your score</h1>
+                    <h2>{{points}}</h2>
+                </div>
+                {{!--
+                <div class="quit-button">
+                    <a href="../HTML/EnterNick.html"><button class="my-button">Quit</button></a>
+                </div>
+
+                <div class="reload-button">
+                    <a href="#"><button class="my-button">Refresh</button></a>
+                </div> --}}
+
+            </div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js"
-        integrity="sha512-aTKlYRb1QfU1jlF3k+aS4AqTpnTXci4R79mkdie/bp6Xm51O5O3ESAYhvg6zoicj/PD6VYY0XrYwsWLcvGiKZQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
-        </script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/JS/results.js"></script>
-</body>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js"
+                integrity="sha512-aTKlYRb1QfU1jlF3k+aS4AqTpnTXci4R79mkdie/bp6Xm51O5O3ESAYhvg6zoicj/PD6VYY0XrYwsWLcvGiKZQ=="
+                crossorigin="anonymous" referrerpolicy="no-referrer">
+                </script>
+            <script src="/socket.io/socket.io.js"></script>
+            <script src="/JS/results.js"></script>
+        </body>
 
 </html>

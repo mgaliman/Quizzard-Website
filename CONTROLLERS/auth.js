@@ -69,10 +69,10 @@ exports.register = (req, res) => {
         let hashedPassword = await bcrypt.hash(password, 8);
 
         await dbOperations.createUser(firstName, lastName, email, hashedPassword);
-        // res.redirect(307, '/login');
-         return res.render('index', {
-             message: 'User registered'
-         });
+        res.redirect(307, '/login');
+        // return res.render('index', {
+        //     message: 'User registered'
+        // });
     })
 }
 

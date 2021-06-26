@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/CSS/indexCss.css">
 
     <title>Quizzard</title>
+
 </head>
 
 <body>
@@ -46,7 +47,7 @@
                                         <div class="form-group">
                                             <input type="submit" class="button btnSignIn" value="Sign In">
                                         </div>
-                                        
+
                                 </form>
                                 <div class="hr"></div>
                                 <div class="foot">
@@ -89,7 +90,6 @@
                                     </div>
                             </form>
 
-                            
                             <div class="hr"></div>
                             <div class="foot">
                                 <a href="/" class="navbar-brand"><img src="/IMAGES/final logo.png" alt="Quizzard logo"
@@ -147,14 +147,12 @@
         </ol>
 
         <div style="top:0; !important" class="carousel-inner">
-            <div style="background-color: #00DBDE;
-                        background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
-                        " class="carousel-item active">
-                <img alt="Home" class="d-block w-100">                
+            <div class=" carousel-item active">
+                <img src="/IMAGES/home.png" alt="Home" class="d-block w-100">
                 <div class="carousel-caption">
                     {{#if message }}
-                            <h4 class="alert alert-danger mt-4">{{message}}</h4>
-                            {{/if}}
+                    <h4 class="alert alert-danger mt-4">{{message}}</h4>
+                    {{/if}}
                     <h5 class="animated slideInDown" style="animation-delay: 1s"><i class="material-icons"
                             translate="no">videogame_asset</i></h5>
                     <h5 class="animated bounceInRight" style="animation-delay: 1s">Join the quiz</h5>
