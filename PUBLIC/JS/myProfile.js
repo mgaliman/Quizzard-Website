@@ -29,22 +29,22 @@ function showPreview(quizID) {
         question.answers.forEach((answer, index) => {
             switch (index) {
                 case 0:
-                    preview.innerHTML += `<button class="answer${index}"><i class="material-icons" translate="no">check_box_outline_blank</i>
+                    preview.innerHTML += `<button class="answer${index}"><img src="/IMAGES/0.png" alt="#" translate="no" width="60px">
                                 <p translate="no">${answer.text}</p>
                                 </button>`;
                     break;
                 case 1:
-                    preview.innerHTML += `<button class="answer${index}"><i class="material-icons" translate="no">star_outline</i>
+                    preview.innerHTML += `<button class="answer${index}"><img src="/IMAGES/1.png" alt="#" translate="no" width="60px">
                                 <p translate="no">${answer.text}</p>
                                 </button>`;
                     break;
                 case 2:
-                    preview.innerHTML += `<button class="answer${index}"><i class="material-icons" translate="no">change_history</i>
+                    preview.innerHTML += `<button class="answer${index}"><img src="/IMAGES/2.png" alt="#" translate="no" width="60px">
                                 <p translate="no">${answer.text}</p>
                                 </button>`;
                     break;
                 case 3:
-                    preview.innerHTML += `<button class="answer${index}"><i class="material-icons" translate="no">favorite_border</i>
+                    preview.innerHTML += `<button class="answer${index}"><img src="/IMAGES/3.png" alt="#" translate="no" width="60px">
                                 <p translate="no">${answer.text}</p>
                                 </button>`;
                     break;

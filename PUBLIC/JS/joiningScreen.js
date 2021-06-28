@@ -22,11 +22,6 @@ function cancelQuiz() {
 //     it = 0;
 //     socket.emit('connected', it);
 // });
-
-function refreshList() {
-
-    //TO DO
-}
 function beginQuiz() {
     socket.emit('showQuestion', 0);
     window.location.href = `/game/QnARegisteredScreen?key=${key}&qnum=1`;

@@ -31,10 +31,14 @@ function addQuestion() {
     timerInput.setAttribute('type', 'number');
     timerInput.setAttribute('min', '1');
     timerInput.setAttribute('onkeydown', 'return false');
+    timerInput.setAttribute('value', '10');
 
     var lblTimer = document.createElement('label');
     lblTimer.setAttribute('class', 'lblTimer');
     lblTimer.innerHTML = "Timer:"
+
+    var seconds = document.createElement('label');
+    seconds.innerHTML = "seconds"
 
     var newAnswersDiv = document.createElement("div");      //ANSWERS GRID
     newAnswersDiv.setAttribute('class', 'animated zoomIn answer-field');
@@ -50,6 +54,11 @@ function addQuestion() {
     twoAnswers.setAttribute('id', 'twoAnsr_' + String(questionNum));
     twoAnswers.setAttribute('type', 'button');
     twoAnswers.innerHTML = "2";
+
+    var threeAnswers = document.createElement('button');
+    threeAnswers.setAttribute('id', 'threeAnsr_' + String(questionNum));
+    threeAnswers.setAttribute('type', 'button');
+    threeAnswers.innerHTML = "3";
 
     var fourAnswers = document.createElement('button');
     fourAnswers.setAttribute('id', 'fourAnsr_' + String(questionNum));
@@ -74,9 +83,11 @@ function addQuestion() {
 
     newQuestionDiv.appendChild(lblTimer);
     newQuestionDiv.appendChild(timerInput);
+    newQuestionDiv.appendChild(seconds);
 
     chooseDiv.appendChild(answerNumberLabel);
     chooseDiv.appendChild(twoAnswers);
+    chooseDiv.appendChild(threeAnswers);
     chooseDiv.appendChild(fourAnswers);
     newQuestionDiv.appendChild(chooseDiv);
 
@@ -92,20 +103,90 @@ function addQuestion() {
         var answer1Field = document.createElement('input');
         answer1Field.setAttribute('placeholder', 'Enter the first answer here...');
         answer1Field.setAttribute('class', 'answers');
-        answer1Field.setAttribute('style', 'background-color:rgba( 118, 213, 152, 0.50 )');
+        answer1Field.setAttribute('style', 'background-color: #7a84bd');
+
+        var answer1Img = document.createElement('img');
+        answer1Img.setAttribute('src', '/IMAGES/0.png');
+        answer1Img.setAttribute('translate', 'no');
+        answer1Img.setAttribute('width', '60px');
+        var answer2Img = document.createElement('img');
+        answer2Img.setAttribute('src', '/IMAGES/1.png');
+        answer2Img.setAttribute('translate', 'no');
+        answer2Img.setAttribute('width', '60px');
 
         var answer2Field = document.createElement('input');
         answer2Field.setAttribute('placeholder', 'Enter the second answer here...');
         answer2Field.setAttribute('class', 'answers');
-        answer2Field.setAttribute('style', 'background-color:rgba( 218, 90, 251, 0.50 )');
+        answer2Field.setAttribute('style', 'background-color:#bdb37a');
 
         answer1Field.setAttribute('name', `questions[${this.id.split('_')[1]}][answers][0][text]`);
         answer1Field.setAttribute('type', 'text');
         answer2Field.setAttribute('name', `questions[${this.id.split('_')[1]}][answers][1][text]`);
         answer2Field.setAttribute('type', 'text');
 
+        newAnswersDiv.appendChild(answer1Img);
         newAnswersDiv.appendChild(answer1Field);
+        newAnswersDiv.appendChild(answer2Img);
         newAnswersDiv.appendChild(answer2Field);
+        newQuestionDiv.appendChild(newAnswersDiv);
+
+        correctField.setAttribute('name', `questions[${this.id.split('_')[1]}][correctAnswer]`);
+        correctField.setAttribute('type', 'number');
+        correctField.setAttribute('min', String(minVal));
+        correctField.setAttribute('max', String(maxVal));
+
+        cardFooter.appendChild(correctLabel);
+        cardFooter.appendChild(correctField);
+        newQuestionDiv.appendChild(cardFooter);
+    });
+
+    $(`#threeAnsr_${String(questionNum)}`).click(function () {
+        $(newAnswersDiv).empty();
+
+        maxVal = 2;
+        correctLabel.innerHTML = "Correct Answer (1/2): ";
+
+        var answer1Field = document.createElement('input');
+        answer1Field.setAttribute('placeholder', 'Enter the first answer here...');
+        answer1Field.setAttribute('class', 'answers');
+        answer1Field.setAttribute('style', 'background-color: #7a84bd');
+
+        var answer1Img = document.createElement('img');
+        answer1Img.setAttribute('src', '/IMAGES/0.png');
+        answer1Img.setAttribute('translate', 'no');
+        answer1Img.setAttribute('width', '60px');
+        var answer2Img = document.createElement('img');
+        answer2Img.setAttribute('src', '/IMAGES/1.png');
+        answer2Img.setAttribute('translate', 'no');
+        answer2Img.setAttribute('width', '60px');
+        var answer3Img = document.createElement('img');
+        answer3Img.setAttribute('src', '/IMAGES/2.png');
+        answer3Img.setAttribute('translate', 'no');
+        answer3Img.setAttribute('width', '60px');
+
+        var answer2Field = document.createElement('input');
+        answer2Field.setAttribute('placeholder', 'Enter the second answer here...');
+        answer2Field.setAttribute('class', 'answers');
+        answer2Field.setAttribute('style', 'background-color:#bdb37a');
+
+        var answer3Field = document.createElement('input');
+        answer3Field.setAttribute('placeholder', 'Enter the third answer here...');
+        answer3Field.setAttribute('class', 'answers');
+        answer3Field.setAttribute('style', 'background-color:#7abd92');
+
+        answer1Field.setAttribute('name', `questions[${this.id.split('_')[1]}][answers][0][text]`);
+        answer1Field.setAttribute('type', 'text');
+        answer2Field.setAttribute('name', `questions[${this.id.split('_')[1]}][answers][1][text]`);
+        answer2Field.setAttribute('type', 'text');
+        answer3Field.setAttribute('name', `questions[${this.id.split('_')[1]}][answers][2][text]`);
+        answer3Field.setAttribute('type', 'text');
+
+        newAnswersDiv.appendChild(answer1Img);
+        newAnswersDiv.appendChild(answer1Field);
+        newAnswersDiv.appendChild(answer2Img);
+        newAnswersDiv.appendChild(answer2Field);
+        newAnswersDiv.appendChild(answer3Img);
+        newAnswersDiv.appendChild(answer3Field);
         newQuestionDiv.appendChild(newAnswersDiv);
 
         correctField.setAttribute('name', `questions[${this.id.split('_')[1]}][correctAnswer]`);
@@ -124,25 +205,43 @@ function addQuestion() {
         maxVal = 4;
         correctLabel.innerHTML = "Correct Answer (1-4): ";
 
+        //<img src="/IMAGES/0.png" alt="#" translate="no" width="60px"></img>
         var answer1Field = document.createElement('input');
         answer1Field.setAttribute('placeholder', 'Enter the first answer here...');
         answer1Field.setAttribute('class', 'answers');
-        answer1Field.setAttribute('style', 'background-color:rgba( 118, 213, 152, 0.50 )');
+        answer1Field.setAttribute('style', 'background-color: #7a84bd');
+
+        var answer1Img = document.createElement('img');
+        answer1Img.setAttribute('src', '/IMAGES/0.png');
+        answer1Img.setAttribute('translate', 'no');
+        answer1Img.setAttribute('width', '60px');
+        var answer2Img = document.createElement('img');
+        answer2Img.setAttribute('src', '/IMAGES/1.png');
+        answer2Img.setAttribute('translate', 'no');
+        answer2Img.setAttribute('width', '60px');
+        var answer3Img = document.createElement('img');
+        answer3Img.setAttribute('src', '/IMAGES/2.png');
+        answer3Img.setAttribute('translate', 'no');
+        answer3Img.setAttribute('width', '60px');
+        var answer4Img = document.createElement('img');
+        answer4Img.setAttribute('src', '/IMAGES/3.png');
+        answer4Img.setAttribute('translate', 'no');
+        answer4Img.setAttribute('width', '60px');
 
         var answer2Field = document.createElement('input');
         answer2Field.setAttribute('placeholder', 'Enter the second answer here...');
         answer2Field.setAttribute('class', 'answers');
-        answer2Field.setAttribute('style', 'background-color:rgba( 218, 90, 251, 0.50 )');
+        answer2Field.setAttribute('style', 'background-color:#bdb37a');
 
         var answer3Field = document.createElement('input');
         answer3Field.setAttribute('placeholder', 'Enter the third answer here...');
         answer3Field.setAttribute('class', 'answers');
-        answer3Field.setAttribute('style', 'background-color:rgba( 213, 203, 118, 0.50 )');
+        answer3Field.setAttribute('style', 'background-color:#7abd92');
 
         var answer4Field = document.createElement('input');
         answer4Field.setAttribute('placeholder', 'Enter the fourth answer here...');
         answer4Field.setAttribute('class', 'answers');
-        answer4Field.setAttribute('style', 'background-color:rgba( 90, 125, 251, 0.50 )');
+        answer4Field.setAttribute('style', 'background-color:#bd7aa5');
 
         answer1Field.setAttribute('name', `questions[${this.id.split('_')[1]}][answers][0][text]`);
         answer1Field.setAttribute('type', 'text');
@@ -153,9 +252,13 @@ function addQuestion() {
         answer4Field.setAttribute('name', `questions[${this.id.split('_')[1]}][answers][3][text]`);
         answer4Field.setAttribute('type', 'text');
 
+        newAnswersDiv.appendChild(answer1Img);
         newAnswersDiv.appendChild(answer1Field);
+        newAnswersDiv.appendChild(answer2Img);
         newAnswersDiv.appendChild(answer2Field);
+        newAnswersDiv.appendChild(answer3Img);
         newAnswersDiv.appendChild(answer3Field);
+        newAnswersDiv.appendChild(answer4Img);
         newAnswersDiv.appendChild(answer4Field);
         newQuestionDiv.appendChild(newAnswersDiv);
 
