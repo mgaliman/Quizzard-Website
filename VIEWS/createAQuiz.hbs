@@ -16,16 +16,14 @@
     <title>Create a Quiz</title>
 </head>
 
-<body style="background-color: #c988c9;
-background-image: linear-gradient(90deg, #c988c9 0%, #3353a2 50%);
-">
+<body style="background-color: #c988c9; background-image: linear-gradient(90deg, #c988c985 0%, #3352a29f 50%);">
 
     <div class="title">
         <h1>Welcome to quiz creator</h1>
     </div>
     <form id="my-form" onsubmit="mySubmit(this)" action="/registeredUser/myProfile" method="POST">
 
-        <div class="form-field myField" id="myDragField">
+        <div class="form-field myField" style="color: white;">
             <label id="quizTitle">Quiz Title:</label>
             <input id="name" type="text" name="name" value="{{quiz.name}}" autofocus required translate="no" />
             <label>Points per question:</label>

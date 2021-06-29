@@ -157,7 +157,7 @@ flex-wrap: wrap;
 }
 
 .answer-container button i{
-    font-size: 40px;
+    font-size: 10px;
 }
 
 .timer {
@@ -166,50 +166,50 @@ flex-wrap: wrap;
 }
 
 .answer0{
-    background-color: #C04595;
+    background-color: #7a84bd;
 }
 
 .answer1{
-    background-color: #45C070;
+    background-color: #bdb37a;
 }
 
 .answer2{
-    background-color: #C0AD45;
+    background-color: #7abd92;
 }
 
 .answer3{
-    background-color: #4558C0;
+    background-color: #bd7aa5;
 }
-
 
 .answer-container button{
     transition: all 150ms ease-in-out;
 }
 .answer0:hover{
-    border-color: #C04595;
+    background-color: #4558c0;
+    border-color: #4558c0;
     color: #fff;
-    box-shadow: 0 0 10px 0 #C04595 inset,0 0 10px 4px #C04595;
+    box-shadow: 0 0 10px 0 #4558c0 inset,0 0 10px 4px #4558c0;
 }
 
 .answer1:hover{
-    background-color: #45C070;
-    border-color: #45C070;
+    background-color: #c0ad45;
+    border-color: #c0ad45;
     color: #fff;
-    box-shadow: 0 0 10px 0 #45C070 inset,0 0 10px 4px #45C070;
+    box-shadow: 0 0 10px 0 #c0ad45 inset,0 0 10px 4px #c0ad45;
 }
 
 .answer2:hover{
-    background-color: #C0AD45;
-    border-color: #C0AD45;
+    background-color: #45c070;
+    border-color: #45c070;
     color: #fff;
-    box-shadow: 0 0 10px 0 #C0AD45 inset,0 0 10px 4px #C0AD45;
+    box-shadow: 0 0 10px 0 #45c070 inset,0 0 10px 4px #45c070;
 }
 
 .answer3:hover{
-    background-color: #4558C0;
-    border-color: #4558C0;
+    background-color: #c04595;
+    border-color: #c04595;
     color: #fff;
-    box-shadow: 0 0 10px 0 #4558C0 inset,0 0 10px 4px #4558C0;
+    box-shadow: 0 0 10px 0 #c04595 inset,0 0 10px 4px #c04595;
 }
 
 /* -----------------------------LANGUAGE--------------------------------- */
