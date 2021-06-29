@@ -14,7 +14,7 @@ socket.on('reload', () => {
 function cancelQuiz() {
     if (confirm("Are you sure you want to exit? All work will be DELETED!")) {
         socket.emit('cancleGame');
-        window.location.href = "/registeredUser/myProfile";
+        window.location.href = "/registeredUser";
     }
 }
 
@@ -23,10 +23,7 @@ function cancelQuiz() {
 //     socket.emit('connected', it);
 // });
 
-function refreshList() {
 
-    //TO DO
-}
 function beginQuiz() {
     socket.emit('showQuestion', 0);
     window.location.href = `/game/QnARegisteredScreen?key=${key}&qnum=1`;

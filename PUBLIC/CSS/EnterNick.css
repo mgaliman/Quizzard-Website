@@ -1,3 +1,4 @@
+
 @keyframes bgcolor {
     0% {
         background-color: #4558c0
@@ -95,21 +96,4 @@ body {
     position: absolute;
     top: 30px;
     left: 30px;
-}
-
-
-@media (max-width: 820px) {
-    #title{
-        margin-top: 30vh;
-    }
-    .logo-image{
-        left: 40px;
-    }
-  }
-
-@media(max-width: 300px){
-    .logo-image{
-        width: 200px;
-        left: 20px;
-    }
 }

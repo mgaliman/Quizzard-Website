@@ -5,6 +5,7 @@
   }
   body {
     height: 100vh;
+    /* overflow-y:hidden; */
   }
   h1 {
     position: fixed;
@@ -12,11 +13,11 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
-       backdrop-filter: blur( 12.5px );
--webkit-backdrop-filter: blur( 12.5px );
-padding: 20px;
-  } 
-  
+    backdrop-filter: blur( 12.5px );
+    -webkit-backdrop-filter: blur( 12.5px );
+    padding: 20px;
+  }
+
   textarea:focus,
   input {
     background: rgba(255, 255, 255, 0.3);
@@ -42,7 +43,27 @@ padding: 20px;
     text-align: center;
     letter-spacing: 0.5rem;
     text-transform: uppercase;
+    position: fixed;
+    z-index: 2;
+    backdrop-filter: blur( 12.5px );
+    -webkit-backdrop-filter: blur( 12.5px );
+
   }
+.dragContent {
+cursor: move;
+
+}
+#allQuestions {
+    position: absolute;
+    top: 350px;
+    width: 80%;
+}
+
+/* #myDragField {
+ z-index: 3 !important;
+} */
+
+
 
   #quizID {
     margin-left: 3%;
@@ -76,9 +97,9 @@ padding: 20px;
     height: 10%;
     margin-top: 5%;
   }
-  
+
   /* -----------------------------QUESTIONS & ANSWERS-------------------------------- */
-  
+
   .answerNumberLabel {
     font-size: 20px;
     letter-spacing: 0.3rem;
@@ -96,7 +117,7 @@ padding: 20px;
     border-radius: 50%;
     transform: scale(1.2);
   }
-  
+
   .question {
     width: 100%;
     resize: none;
@@ -105,7 +126,7 @@ padding: 20px;
     background-color: rgba(255, 255, 255, 0.466);
     border: none;
     outline: none;
-  }
+    }
   .answer-field {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -119,7 +140,7 @@ padding: 20px;
     color: whitesmoke;
     padding: 5%;
   }
-  
+
   /* -----------------------------BUTTONS-------------------------------- */
   .deleteButton,
   #generateBtn,
@@ -148,6 +169,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );  }
     gap: 5%;
     bottom: 0;
     position: sticky;
+
   }
   .btns button,
   .button {
@@ -170,8 +192,8 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );  }
     border: 1px solid black;
   }
 
-  
-  
+
+
   @media only screen and (max-width: 768px) {
     .btns,
     #answer-field {
@@ -190,23 +212,23 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );  }
       margin-top: 85%;
     }
   }
-  
 
+
+  #btn0{
+    background-color:rgba( 218, 90, 251, 0.50 )
   
-#btn0{
-  background-color:rgba( 118, 213, 152, 0.50 )
-  
-}
-#btn0:hover{
-background-color:rgba(93, 172, 120, 0.5)}
+  }
+  #btn0:hover{
+    background-color:rgba(185, 76, 212, 0.5)
+  }
 
 #btn1{
-  background-color:rgba( 218, 90, 251, 0.50 )
-  
+  background-color:rgba( 118, 213, 152, 0.50 )
+
 }
 #btn1:hover{
-  background-color:rgba(185, 76, 212, 0.5)
-}
+background-color:rgba(93, 172, 120, 0.5)}
+
 
 #btn2{
   background-color:rgba( 213, 203, 118, 0.50 )

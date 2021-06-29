@@ -91,13 +91,13 @@ function addQuestion() {
 
         var answer1Field = document.createElement('input');
         answer1Field.setAttribute('placeholder', 'Enter the first answer here...');
+        answer1Field.setAttribute('style', 'background-color:rgba( 218, 90, 251, 0.50 )');
         answer1Field.setAttribute('class', 'answers');
-        answer1Field.setAttribute('style', 'background-color:rgba( 118, 213, 152, 0.50 )');
 
         var answer2Field = document.createElement('input');
         answer2Field.setAttribute('placeholder', 'Enter the second answer here...');
         answer2Field.setAttribute('class', 'answers');
-        answer2Field.setAttribute('style', 'background-color:rgba( 218, 90, 251, 0.50 )');
+        answer2Field.setAttribute('style', 'background-color:rgba( 118, 213, 152, 0.50 )');
 
         answer1Field.setAttribute('name', `questions[${this.id.split('_')[1]}][answers][0][text]`);
         answer1Field.setAttribute('type', 'text');
@@ -126,13 +126,13 @@ function addQuestion() {
 
         var answer1Field = document.createElement('input');
         answer1Field.setAttribute('placeholder', 'Enter the first answer here...');
+        answer1Field.setAttribute('style', 'background-color:rgba( 218, 90, 251, 0.50 )');
         answer1Field.setAttribute('class', 'answers');
-        answer1Field.setAttribute('style', 'background-color:rgba( 118, 213, 152, 0.50 )');
 
         var answer2Field = document.createElement('input');
         answer2Field.setAttribute('placeholder', 'Enter the second answer here...');
         answer2Field.setAttribute('class', 'answers');
-        answer2Field.setAttribute('style', 'background-color:rgba( 218, 90, 251, 0.50 )');
+        answer2Field.setAttribute('style', 'background-color:rgba( 118, 213, 152, 0.50 )');
 
         var answer3Field = document.createElement('input');
         answer3Field.setAttribute('placeholder', 'Enter the third answer here...');
@@ -208,3 +208,97 @@ function mySubmit(form) {
 function disable(ctrl) {
     ctrl.disable == true;
 }
+
+// Make the DIV element draggable:
+dragElement(document.getElementById("allQuestions"));
+
+function dragElement(elmnt) {
+    var pos1 = 0, pos2 = 0;
+    if (document.getElementById("dragContent")) {
+        // if present, the header is where you move the DIV from:
+        document.getElementById("dragContent").onmousedown = dragMouseDown;
+    } else {
+        // otherwise, move the DIV from anywhere inside the DIV:
+        elmnt.onmousedown = dragMouseDown;
+    }
+
+    function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:s
+        pos2 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // calculate the new cursor position:
+        pos1 = pos2 - e.clientY;
+        pos2 = e.clientY;
+        // set the element's new position:
+
+        elmnt.style.top = (elmnt.offsetTop - pos1 * 2) + "px";
+    }
+
+    function closeDragElement() {
+        // stop moving when mouse button is released:
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
+
+
+/*!
+ * Run a callback function after scrolling has stopped
+ * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Function} callback The callback function to run after scrolling
+ * @param  {Integer}  refresh  How long to wait between scroll events [optional]
+ */
+var questions = document.getElementById("allQuestions");
+function scrollStop(callback, refresh = 66) {
+
+    // Make sure a valid callback was provided
+    if (!callback || typeof callback !== 'function') return;
+
+    // Setup scrolling variable
+    let isScrolling;
+
+    var scrolled = 0;
+
+    // Listen for scroll events
+    window.addEventListener('scroll', function (event) {
+        // Clear our timeout throughout the scroll
+        window.clearTimeout(isScrolling);
+
+        // scrolled += window.scrollY;
+        var ofset = scrolled + window.scrollY;
+        // var scrolled = window.scrollY / (document.getElementById("allQuestions").offsetHeight);
+        if (ofset > 200) {
+            ofset = 200
+        }
+        console.log("window.scrollY: " + window.scrollY);
+        console.log("scrolled: " + ofset);
+        console.log("scrolled: " + scrolled);
+        // var zoomLevels = 1; //change to have a different behavior
+        // var scale = Math.pow(3, scrolled * zoomLevels);
+        // console.log("scale:" + scale);
+
+        questions.style.transform = " perspective(500px) translatez(-" + ofset + "px)"
+
+        // Set a timeout to run after scrolling ends
+        isScrolling = setTimeout(callback, refresh);
+
+    }, false);
+
+}
+scrollStop(function () {
+    console.log('Scrolling has stopped.');
+    questions.style.transform = " perspective(500px) translatez(-" + 0 + "px)"
+    questions.style.transitionDelay = "1s"
+    isScrolling = setTimeout(function () {
+        questions.style.transitionDelay = "0s"
+    }, 1000);
+});

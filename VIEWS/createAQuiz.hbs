@@ -25,7 +25,7 @@ background-image: linear-gradient(90deg, #c988c9 0%, #3353a2 50%);
     </div>
     <form id="my-form" onsubmit="mySubmit(this)" action="/registeredUser/myProfile" method="POST">
 
-        <div class="form-field myField">
+        <div class="form-field myField" id="myDragField">
             <label id="quizTitle">Quiz Title:</label>
             <input id="name" type="text" name="name" value="{{quiz.name}}" autofocus required translate="no" />
             <label>Points per question:</label>
@@ -33,34 +33,40 @@ background-image: linear-gradient(90deg, #c988c9 0%, #3353a2 50%);
                 onkeydown="return false" value="{{quiz.points}}" />
         </div>
 
-        <div id="allQuestions">
-            {{#each quiz.questions }}
-            <div class="animated bounceInLeft question-field" name="questionCard1"
-                style="background-color: rgba( 118, 213, 152, 0.30 ); box-shadow:  0 8px 32px 0 rgba( 31, 38, 135, 0.37 )">
-                <button class="deleteButton">Delete question
-                </button><textarea class="question" id="questions[{{@index}}][text]" name="questions[{{@index}}][text]"
-                    placeholder="Enter a question here...">{{this.text}}</textarea>
-                <label for="questions[{{@index}}][text]" class="lblTimer">Timer:</label>
-                <input type="number" class="timer" name="questions[{{@index}}][timer]" value="{{this.duration}}">
-                <div id="chooseDiv"><label class="answerNumberLabel">Choose the number of answers:</label><button
-                        id="twoAnsr_{{@index}}" type="button">2</button><button id="fourAnsr_{{@index}}"
-                        type="button">4</button></div>
-                <div class="animated zoomIn answer-field">
-                    {{#each this.answers }}
-                    <input class="answers" id="btn{{@index}}"
-                        name="questions[{{this.index}}][answers][{{@index}}][text]" type="text" value="{{this.text}}">
-                    {{/each}}
+        <div class="dragContent">
+
+            <div id="allQuestions">
+
+                {{#each quiz.questions }}
+                <div class="animated bounceInLeft question-field" name="questionCard1"
+                    style="background-color: rgba( 118, 213, 152, 0.30 ); box-shadow:  0 8px 32px 0 rgba( 31, 38, 135, 0.37 )">
+                    <button class="deleteButton">Delete question
+                    </button><textarea class="question" id="questions[{{@index}}][text]"
+                        name="questions[{{@index}}][text]"
+                        placeholder="Enter a question here...">{{this.text}}</textarea>
+                    <label for="questions[{{@index}}][text]" class="lblTimer">Timer:</label>
+                    <input type="number" class="timer" name="questions[{{@index}}][timer]" value="{{this.duration}}">
+                    <div id="chooseDiv"><label class="answerNumberLabel">Choose the number of
+                            answers:</label><button id="twoAnsr_{{@index}}" type="button">2</button><button
+                            id="fourAnsr_{{@index}}" type="button">4</button></div>
+                    <div class="animated zoomIn answer-field">
+                        {{#each this.answers }}
+                        <input class="answers" id="btn{{@index}}"
+                            name="questions[{{this.index}}][answers][{{@index}}][text]" type="text"
+                            value="{{this.text}}">
+                        {{/each}}
+                    </div>
+                    <div class="cardFooter"><label>Correct Answer (1-{{this.anum}}):</label><input
+                            onkeydown="return false" name="questions[{{@index}}][correctAnswer]" type="number" min="1"
+                            max="{{this.anum}}" value="{{this.correctAnswer}}">
+                    </div>
                 </div>
-                <div class="cardFooter"><label>Correct Answer (1-{{this.anum}}):</label><input onkeydown="return false"
-                        name="questions[{{@index}}][correctAnswer]" type="number" min="1" max="{{this.anum}}"
-                        value="{{this.correctAnswer}}">
-                </div>
+                {{/each}}
             </div>
-            {{/each}}
         </div>
         <div class="btns">
             <input type="submit" onclick="disable(this)" class="button" value="Create Quiz">
-            <input type="button" onclick='cancelQuiz()' class="button" value="Cancle and return to My Profile">
+            <input type="button" onclick='cancelQuiz()' class="button" value="Cancle and return to    My Profile">
             <input type="button" onclick="addQuestion()" class="button" value="Add question">
         </div>
 

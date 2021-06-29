@@ -29,7 +29,7 @@ body {
 .btns {
   margin-top: 5%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fR 1fr;
 }
 .btns button {
   letter-spacing: 0.5rem;

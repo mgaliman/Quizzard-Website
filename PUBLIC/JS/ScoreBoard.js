@@ -21,7 +21,7 @@ socket.on('cancleGame', () => {
 socket.on('endOfQuiz', () => {
     if (confirm("Looks like this is the end of game, cancle game?")) {
         socket.emit('cancleGame');
-        window.location.href = "/registeredUser/myProfile";
+        window.location.href = "/registeredUser";
     }
 });
 
@@ -32,7 +32,7 @@ function nextQuestion() {
 function cancelQuiz() {
     if (confirm("Are you sure you want to exit? All work will be DELETED!")) {
         socket.emit('cancleGame');
-        window.location.href = "/registeredUser/myProfile";
+        window.location.href = "/registeredUser";
     }
 }
 

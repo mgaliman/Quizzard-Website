@@ -110,7 +110,7 @@ async function createQuestion(question, duration, points, quizID) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
+        // pool.close();
     }
 }
 

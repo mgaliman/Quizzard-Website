@@ -31,5 +31,6 @@ function submit(idAnswer, maxPoints, player) {
 };
 
 function getPoints(maxPoints, time, maxTime) {
-    return (1 - (time / maxTime / 2)) * maxPoints;
+    return maxPoints;
+    // return (1 - (time / maxTime / 2)) * maxPoints;
 }
