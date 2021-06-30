@@ -76,6 +76,39 @@ exports.register = (req, res) => {
     })
 }
 
+exports.changePassword = (req, res) => {
+
+    const { password, passwordConfirm } = req.body;
+    var email = req.query.email;
+
+    dbOperations.checkUserEmail(email).then(async result => {
+        // if (result === null) {
+        //     return res.render('index', {
+        //         message: 'That email is not in use',
+        //         firstName: req.body.firstName,
+        //         lastName: req.body.lastName,
+        //         email: req.body.email
+        //     });
+        // } else 
+        if (password !== passwordConfirm) {
+            return res.render('changePassword', {
+                message: 'Passwords do not match',
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email
+            });
+        }
+
+        let hashedPassword = await bcrypt.hash(password, 8);
+
+        await dbOperations.createUser(firstName, lastName, email, hashedPassword);
+        res.redirect(307, '/login');
+        // return res.render('index', {
+        //     message: 'User registered'
+        // });
+    })
+}
+
 exports.logout = (req, res) => {
     res.clearCookie("jwt");
     res.redirect('/');
