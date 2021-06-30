@@ -51,7 +51,7 @@
         </div>
         <form action="/registeredUser/editProfile" class="col-lg-12 offset-4 animated bounceInRight myCol"
             method="POST">
-            <h5>
+            <h5 >
                 <label for="firstName">First name:</label><br>
                 <input type="text" id="firstName" name="firstName" value="{{firstName}}" required><br><br>
                 <label for="lastName">Last name:</label><br>
@@ -60,12 +60,12 @@
                 <input type="email" id="email" name="email" value="{{Email}}" disabled><br><br>
                 <label for="Password">Password:</label><br>
                 <input type="password" id="Password" name="Password" required><br><br>
-                <input type="button" onclick="cancelEdit()" value="Cancel"></input>
-                <input type="submit" value="Submit">
+                <input type="button" onclick="cancelEdit()" value="Cancel" class="btns"></input>
+                <input type="submit" value="Submit" class="btns">
+                <form action="/registeredUser/editProfile" method="POST">
+                    <button type="submit" class="btnChangePassword">Change password</button>
+                </form>
             </h5>
-        </form>
-        <form action="/registeredUser/editProfile" method="POST">
-            <button type="submit">Send Mail</button>
         </form>
     </div>
 

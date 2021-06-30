@@ -17,6 +17,31 @@ body{
     color: white;
   }
 
+.btnChangePassword{
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    margin: 2%;
+    transition: all 0.2s ease-in-out;
+}
+.btns{
+  transition: all 0.2s ease-in-out;
+}
+
+.btnChangePassword:hover{
+  border-radius: 40px;
+  background-color: #c04595;
+  padding: 1%;
+  color: white;
+}
+.btns:hover{
+  border-radius: 40px;
+  background-color: #7a84bd;
+  padding: 1%;
+  color: white;
+}
+
 @media only screen and (max-width: 768px) {
 
     .userLogo{
