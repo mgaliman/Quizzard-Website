@@ -45,13 +45,21 @@
                     <label for="questions[{{@index}}][text]" class="lblTimer">Timer:</label>
                     <input type="number" class="timer" name="questions[{{@index}}][timer]" value="{{this.duration}}">
                     <div id="chooseDiv"><label class="answerNumberLabel">Choose the number of
-                            answers:</label><button id="twoAnsr_{{@index}}" type="button">2</button><button
-                            id="fourAnsr_{{@index}}" type="button">4</button></div>
+                            answers:</label>
+                        <div class="ans234">
+                            <button id="twoAnsr_{{@index}}" type="button">2</button>
+                            <button id="threeAnsr_{{@index}}" type="button">3</button>
+                            <button id="fourAnsr_{{@index}}" type="button">4</button>
+                        </div>
+                    </div>
                     <div class="animated zoomIn answer-field">
                         {{#each this.answers }}
-                        <input class="answers" id="btn{{@index}}"
-                            name="questions[{{this.index}}][answers][{{@index}}][text]" type="text"
-                            value="{{this.text}}">
+                        <div class="answerBox">
+                            <img src="/IMAGES/{{@index}}.png" translate="no" width="60px" alt="">
+                            <input class="answers" id="btn{{@index}}"
+                                name="questions[{{this.index}}][answers][{{@index}}][text]" type="text"
+                                value="{{this.text}}">
+                        </div>
                         {{/each}}
                     </div>
                     <div class="cardFooter"><label>Correct Answer (1-{{this.anum}}):</label><input

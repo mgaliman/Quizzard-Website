@@ -19,7 +19,6 @@ async function createPlayer(nickname, gameKey, quizID) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 

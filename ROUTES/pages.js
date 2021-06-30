@@ -23,6 +23,9 @@ router.get(('/EnterNick'), (request, response) => {
 router.get(('/howTo'), (request, response) => {
     response.render("howTo");
 })
+router.get(('/changePassword'), (request, response) => {
+    response.render("changePassword");
+})
 
 router.post('/register', authController.register);
 

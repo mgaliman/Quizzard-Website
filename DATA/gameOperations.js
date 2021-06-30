@@ -18,7 +18,6 @@ async function createGame(gameKey, quizID) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 
@@ -38,7 +37,6 @@ async function getGameByQuiz(quizID) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 
@@ -58,7 +56,6 @@ async function getGameByKey(key) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 
@@ -78,7 +75,6 @@ async function getGamePlayers(gameID) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 
@@ -98,7 +94,6 @@ async function getGamePlayers(gameID) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 
@@ -188,7 +183,6 @@ async function getNumberOfQuestions(key) {
         console.log(err.message);
     }
     finally {
-        sql.close();
     }
 }
 

@@ -11,7 +11,7 @@ $(document).ready(function () {
     })
 
 });
-
+mb = 0;
 function addQuestion() {
 
     var questionsDiv = document.getElementById('allQuestions');
@@ -86,9 +86,13 @@ function addQuestion() {
     newQuestionDiv.appendChild(seconds);
 
     chooseDiv.appendChild(answerNumberLabel);
-    chooseDiv.appendChild(twoAnswers);
-    chooseDiv.appendChild(threeAnswers);
-    chooseDiv.appendChild(fourAnswers);
+    var ans234 = document.createElement('div');
+    ans234.setAttribute('class', 'ans234');
+    ans234.appendChild(twoAnswers);
+    ans234.appendChild(threeAnswers);
+    ans234.appendChild(fourAnswers);
+    chooseDiv.appendChild(ans234);
+
     newQuestionDiv.appendChild(chooseDiv);
 
     questionsDiv.appendChild(newQuestionDiv);                   //Adds the question div to the screen
@@ -125,10 +129,19 @@ function addQuestion() {
         answer2Field.setAttribute('name', `questions[${this.id.split('_')[1]}][answers][1][text]`);
         answer2Field.setAttribute('type', 'text');
 
-        newAnswersDiv.appendChild(answer1Img);
-        newAnswersDiv.appendChild(answer1Field);
-        newAnswersDiv.appendChild(answer2Img);
-        newAnswersDiv.appendChild(answer2Field);
+
+        var aBox1 = document.createElement("div");      //ANSWERS GRID
+        aBox1.setAttribute('class', 'answerBox');
+        aBox1.appendChild(answer1Img);
+        aBox1.appendChild(answer1Field);
+        newAnswersDiv.appendChild(aBox1);
+
+        var aBox2 = document.createElement("div");
+        aBox2.setAttribute('class', 'answerBox');
+        aBox2.appendChild(answer2Img);
+        aBox2.appendChild(answer2Field);
+        newAnswersDiv.appendChild(aBox2);
+
         newQuestionDiv.appendChild(newAnswersDiv);
 
         correctField.setAttribute('name', `questions[${this.id.split('_')[1]}][correctAnswer]`);
@@ -144,8 +157,8 @@ function addQuestion() {
     $(`#threeAnsr_${String(questionNum)}`).click(function () {
         $(newAnswersDiv).empty();
 
-        maxVal = 2;
-        correctLabel.innerHTML = "Correct Answer (1/2): ";
+        maxVal = 3;
+        correctLabel.innerHTML = "Correct Answer (1-3): ";
 
         var answer1Field = document.createElement('input');
         answer1Field.setAttribute('placeholder', 'Enter the first answer here...');
@@ -182,12 +195,25 @@ function addQuestion() {
         answer3Field.setAttribute('name', `questions[${this.id.split('_')[1]}][answers][2][text]`);
         answer3Field.setAttribute('type', 'text');
 
-        newAnswersDiv.appendChild(answer1Img);
-        newAnswersDiv.appendChild(answer1Field);
-        newAnswersDiv.appendChild(answer2Img);
-        newAnswersDiv.appendChild(answer2Field);
-        newAnswersDiv.appendChild(answer3Img);
-        newAnswersDiv.appendChild(answer3Field);
+
+        var aBox1 = document.createElement("div");      //ANSWERS GRID
+        aBox1.setAttribute('class', 'answerBox');
+        aBox1.appendChild(answer1Img);
+        aBox1.appendChild(answer1Field);
+        newAnswersDiv.appendChild(aBox1);
+
+        var aBox2 = document.createElement("div");
+        aBox2.setAttribute('class', 'answerBox');
+        aBox2.appendChild(answer2Img);
+        aBox2.appendChild(answer2Field);
+        newAnswersDiv.appendChild(aBox2);
+
+        var aBox3 = document.createElement("div");
+        aBox3.setAttribute('class', 'answerBox');
+        aBox3.appendChild(answer3Img);
+        aBox3.appendChild(answer3Field);
+        newAnswersDiv.appendChild(aBox3);
+
         newQuestionDiv.appendChild(newAnswersDiv);
 
         correctField.setAttribute('name', `questions[${this.id.split('_')[1]}][correctAnswer]`);
@@ -254,14 +280,31 @@ function addQuestion() {
         answer4Field.setAttribute('name', `questions[${this.id.split('_')[1]}][answers][3][text]`);
         answer4Field.setAttribute('type', 'text');
 
-        newAnswersDiv.appendChild(answer1Img);
-        newAnswersDiv.appendChild(answer1Field);
-        newAnswersDiv.appendChild(answer2Img);
-        newAnswersDiv.appendChild(answer2Field);
-        newAnswersDiv.appendChild(answer3Img);
-        newAnswersDiv.appendChild(answer3Field);
-        newAnswersDiv.appendChild(answer4Img);
-        newAnswersDiv.appendChild(answer4Field);
+
+        var aBox1 = document.createElement("div");      //ANSWERS GRID
+        aBox1.setAttribute('class', 'answerBox');
+        aBox1.appendChild(answer1Img);
+        aBox1.appendChild(answer1Field);
+        newAnswersDiv.appendChild(aBox1);
+
+        var aBox2 = document.createElement("div");
+        aBox2.setAttribute('class', 'answerBox');
+        aBox2.appendChild(answer2Img);
+        aBox2.appendChild(answer2Field);
+        newAnswersDiv.appendChild(aBox2);
+
+        var aBox3 = document.createElement("div");
+        aBox3.setAttribute('class', 'answerBox');
+        aBox3.appendChild(answer3Img);
+        aBox3.appendChild(answer3Field);
+        newAnswersDiv.appendChild(aBox3);
+
+        var aBox4 = document.createElement("div");
+        aBox4.setAttribute('class', 'answerBox');
+        aBox4.appendChild(answer4Img);
+        aBox4.appendChild(answer4Field);
+        newAnswersDiv.appendChild(aBox4);
+
         newQuestionDiv.appendChild(newAnswersDiv);
 
 
@@ -285,8 +328,10 @@ function addQuestion() {
         $(this).parent('.question-field').remove();
     });
     questionNum += 1;
-
-    window.scrollTo(0, document.body.scrollHeight);
+    if (mb > 0) {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+    mb++;
 }
 
 
@@ -314,96 +359,97 @@ function disable(ctrl) {
     ctrl.disable == true;
 }
 
-// Make the DIV element draggable:
-dragElement(document.getElementById("allQuestions"));
+// // Make the DIV element draggable:
+// dragElement(document.getElementById("allQuestions"));
 
-function dragElement(elmnt) {
-    var pos1 = 0, pos2 = 0;
-    if (document.getElementById("dragContent")) {
-        // if present, the header is where you move the DIV from:
-        document.getElementById("dragContent").onmousedown = dragMouseDown;
-    } else {
-        // otherwise, move the DIV from anywhere inside the DIV:
-        elmnt.onmousedown = dragMouseDown;
-    }
+// function dragElement(elmnt) {
+//     var pos1 = 0, pos2 = 0;
+//     if (document.getElementById("dragContent")) {
+//         // if present, the header is where you move the DIV from:
+//         document.getElementById("dragContent").onmousedown = dragMouseDown;
+//     } else {
+//         // otherwise, move the DIV from anywhere inside the DIV:
+//         elmnt.onmousedown = dragMouseDown;
+//     }
 
-    function dragMouseDown(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // get the mouse cursor position at startup:s
-        pos2 = e.clientY;
-        document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves:
-        document.onmousemove = elementDrag;
-    }
+//     function dragMouseDown(e) {
+//         e = e || window.event;
+//         e.preventDefault();
+//         // get the mouse cursor position at startup:s
+//         pos2 = e.clientY;
+//         document.onmouseup = closeDragElement;
+//         // call a function whenever the cursor moves:
+//         document.onmousemove = elementDrag;
+//     }
 
-    function elementDrag(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // calculate the new cursor position:
-        pos1 = pos2 - e.clientY;
-        pos2 = e.clientY;
-        // set the element's new position:
+//     function elementDrag(e) {
+//         e = e || window.event;
+//         e.preventDefault();
+//         // calculate the new cursor position:
+//         pos1 = pos2 - e.clientY;
+//         pos2 = e.clientY;
+//         // set the element's new position:
 
-        elmnt.style.top = (elmnt.offsetTop - pos1 * 2) + "px";
-    }
+//         elmnt.style.top = (elmnt.offsetTop - pos1 * 2) + "px";
+//     }
 
-    function closeDragElement() {
-        // stop moving when mouse button is released:
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-}
+//     function closeDragElement() {
+//         // stop moving when mouse button is released:
+//         document.onmouseup = null;
+//         document.onmousemove = null;
+//     }
+// }
 
 
-/*!
- * Run a callback function after scrolling has stopped
- * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
- * @param  {Function} callback The callback function to run after scrolling
- * @param  {Integer}  refresh  How long to wait between scroll events [optional]
- */
-var questions = document.getElementById("allQuestions");
-function scrollStop(callback, refresh = 66) {
+// /*!
+//  * Run a callback function after scrolling has stopped
+//  * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
+//  * @param  {Function} callback The callback function to run after scrolling
+//  * @param  {Integer}  refresh  How long to wait between scroll events [optional]
+//  */
+// var questions = document.getElementById("allQuestions");
+// function scrollStop(callback, refresh = 66) {
 
-    // Make sure a valid callback was provided
-    if (!callback || typeof callback !== 'function') return;
+//     // Make sure a valid callback was provided
+//     if (!callback || typeof callback !== 'function') return;
 
-    // Setup scrolling variable
-    let isScrolling;
+//     // Setup scrolling variable
+//     let isScrolling;
 
-    var scrolled = 0;
+//     var scrolled = 0;
 
-    // Listen for scroll events
-    window.addEventListener('scroll', function (event) {
-        // Clear our timeout throughout the scroll
-        window.clearTimeout(isScrolling);
+//     // Listen for scroll events
+//     window.addEventListener('scroll', function (event) {
+//         // Clear our timeout throughout the scroll
+//         window.clearTimeout(isScrolling);
 
-        // scrolled += window.scrollY;
-        var ofset = scrolled + window.scrollY;
-        // var scrolled = window.scrollY / (document.getElementById("allQuestions").offsetHeight);
-        if (ofset > 200) {
-            ofset = 200
-        }
-        console.log("window.scrollY: " + window.scrollY);
-        console.log("scrolled: " + ofset);
-        console.log("scrolled: " + scrolled);
-        // var zoomLevels = 1; //change to have a different behavior
-        // var scale = Math.pow(3, scrolled * zoomLevels);
-        // console.log("scale:" + scale);
+//         // scrolled += window.scrollY;
+//         var ofset = scrolled + window.scrollY;
+//         // var scrolled = window.scrollY / (document.getElementById("allQuestions").offsetHeight);
+//         if (ofset > 200) {
+//             ofset = 200
+//         }
+//         console.log("window.scrollY: " + window.scrollY);
+//         console.log("scrolled: " + ofset);
+//         console.log("scrolled: " + scrolled);
+//         // var zoomLevels = 1; //change to have a different behavior
+//         // var scale = Math.pow(3, scrolled * zoomLevels);
+//         // console.log("scale:" + scale);
 
-        questions.style.transform = " perspective(500px) translatez(-" + ofset + "px)"
+//         questions.style.transform = " perspective(500px) translatez(-" + ofset + "px)"
 
-        // Set a timeout to run after scrolling ends
-        isScrolling = setTimeout(callback, refresh);
+//         // Set a timeout to run after scrolling ends
+//         isScrolling = setTimeout(callback, refresh);
 
-    }, false);
+//     }, false);
 
-}
-scrollStop(function () {
-    console.log('Scrolling has stopped.');
-    questions.style.transform = " perspective(500px) translatez(-" + 0 + "px)"
-    questions.style.transitionDelay = "1s"
-    isScrolling = setTimeout(function () {
-        questions.style.transitionDelay = "0s"
-    }, 1000);
-});
+// }
+// scrollStop(function () {
+//     console.log('Scrolling has stopped.');
+//     questions.style.transform = " perspective(500px) translatez(-" + 0 + "px)"
+//     questions.style.transitionDelay = "1s"
+//     isScrolling = setTimeout(function () {
+//         questions.style.transitionDelay = "0s"
+//     }, 1000);
+// });
+

@@ -18,7 +18,6 @@ async function GetQuizzesFromUser(id) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 
@@ -57,7 +56,6 @@ async function createQuiz(title, UserID) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 
@@ -71,7 +69,6 @@ async function deleteQuiz(quizID) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 
@@ -92,7 +89,6 @@ async function checkQuizTitle(user, title) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 async function createQuestion(question, duration, points, quizID) {
@@ -110,7 +106,6 @@ async function createQuestion(question, duration, points, quizID) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        // pool.close();
     }
 }
 
@@ -128,7 +123,6 @@ async function createAnswer(answer, rightAnswer, questionID) {
     } catch (err) {
         console.log(err);
     } finally {
-        sql.close();
     }
 }
 
@@ -144,7 +138,6 @@ async function getQuiz(id) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 async function getQuestionsFromQuiz(id) {
@@ -158,7 +151,6 @@ async function getQuestionsFromQuiz(id) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 

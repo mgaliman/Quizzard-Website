@@ -15,7 +15,6 @@ async function getUsers() {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 
@@ -30,7 +29,6 @@ async function getUser(id) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 
@@ -49,7 +47,6 @@ async function createUser(firstName, lastName, email, password) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 async function UpdateUser(id, firstName, lastName, password) {
@@ -66,7 +63,6 @@ async function UpdateUser(id, firstName, lastName, password) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 
@@ -86,7 +82,6 @@ async function checkUserEmail(email) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 
@@ -107,7 +102,6 @@ async function loginUser(email, password) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 
@@ -127,7 +121,6 @@ async function readQuizzesFromUser(id) {
     } catch (err) {
         console.log(err.message);
     } finally {
-        sql.close();
     }
 }
 

@@ -22,11 +22,10 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.2",
     "mssql": "^6.3.2",
+    "nodemailer": "^6.6.2",
     "socket.io": "^4.1.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
   }
 }
-
-

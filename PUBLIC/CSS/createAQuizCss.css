@@ -5,7 +5,6 @@
   }
   body {
     height: 100vh;
-    /* overflow-y:hidden; */
   }
   h1 {
     position: fixed;
@@ -16,8 +15,8 @@
     backdrop-filter: blur( 12.5px );
     -webkit-backdrop-filter: blur( 12.5px );
     padding: 20px;
-  }
-
+  } 
+  
   textarea:focus,
   input {
     background: rgba(255, 255, 255, 0.3);
@@ -36,7 +35,6 @@
     letter-spacing: 0.5rem;
     text-transform: uppercase;
     font-family: merienda;
-    color: white;
   }
   .myField {
     margin-top: 180px;
@@ -44,27 +42,7 @@
     text-align: center;
     letter-spacing: 0.5rem;
     text-transform: uppercase;
-    position: fixed;
-    z-index: 2;
-    backdrop-filter: blur( 12.5px );
-    -webkit-backdrop-filter: blur( 12.5px );
-
   }
-.dragContent {
-cursor: move;
-
-}
-#allQuestions {
-    position: absolute;
-    top: 350px;
-    width: 80%;
-}
-
-/* #myDragField {
- z-index: 3 !important;
-} */
-
-
 
   #quizID {
     margin-left: 3%;
@@ -92,32 +70,32 @@ cursor: move;
     width: 100%;
     margin-bottom: 2%;
     margin-top: 2%;
+    display: flex;
+    width: 100%;
   }
   .cardFooter {
     width: 100%;
     height: 10%;
     margin-top: 5%;
   }
-
+  
   /* -----------------------------QUESTIONS & ANSWERS-------------------------------- */
-
+  
   .answerNumberLabel {
     font-size: 20px;
     letter-spacing: 0.3rem;
   }
   #chooseDiv button {
     margin-left: 15%;
-    padding: 0% 2%;
     border: none;
     font-size: 200%;
     background-color: rgba(255, 255, 255, 0.541);
     transition: all 0.7s ease;
-  }
-  #chooseDiv button {
     box-shadow: 5px 10px #888888;
     border-radius: 50%;
-    transform: scale(1.2);
+    width: 15vh;
   }
+  
   .question {
     width: 100%;
     resize: none;
@@ -126,30 +104,33 @@ cursor: move;
     background-color: rgba(255, 255, 255, 0.466);
     border: none;
     outline: none;
-    }
-  .answer-field {
-    display: grid;
-    grid-template-columns: auto 1fr auto 1fr;
-    gap: 20% 1%;
-    height: 40%;
   }
+  .answer-field {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .answerBox {
+    margin: 20px 0 20px 0;
+    display: flex;
+    width: 50%;
+  }
+  
   .answers {
     border-radius: 40px 20px;
+    padding-left: 25px;
+    margin-bottom: 12px;
     border: none;
     resize: none;
     color: whitesmoke;
-    padding: 5%;
+    margin: 0 2% 0 2%;
+    width: 100%;
   }
+  .ans234 {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
 
-  ::placeholder {
-    color: white;
-    font-size: 1rem;
-    text-transform: uppercase;
-  }
-  .question::placeholder{
-    font-size: 2rem;
-  }
-  
   /* -----------------------------BUTTONS-------------------------------- */
   .deleteButton,
   #generateBtn,
@@ -159,32 +140,31 @@ cursor: move;
     letter-spacing: 0.3rem;
     transition: all 0.6s ease;
     text-transform: uppercase;
+    width: 50%;
   }
   .deleteButton
   {
-    background: rgba( 255, 255, 255, 0.25 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 9.5px );
-    -webkit-backdrop-filter: blur( 9.5px );
-    border: 1px solid rgba( 255, 255, 255, 0.18 );  
- }
+background: rgba( 255, 255, 255, 0.25 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 9.5px );
+-webkit-backdrop-filter: blur( 9.5px );
+border: 1px solid rgba( 255, 255, 255, 0.18 );  }
   .deleteButton:hover,
   #generateBtn:hover {
     transform: scale(0.9);
   }
   .btns {
-    padding: 2% 2%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 5%;
-    bottom: 0;
+    bottom: 5vh;
     position: sticky;
-    margin-left: 10%;
-    margin-right: 10%;
+    width: 80vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 50%;
+    transform: translateX(-50%);
   }
   .btns button,
   .button {
-    color: white;
     letter-spacing: 0.5rem;
     text-transform: uppercase;
     cursor: pointer;
@@ -193,6 +173,7 @@ cursor: move;
     outline: none;
     transition: all 0.5s ease-in-out;
     padding: 2%;
+    margin: 0;
   }
   .button {
     background: transparent;
@@ -201,16 +182,15 @@ cursor: move;
   }
   .btns button:hover,
   .button:hover {
-    border: 1px solid white;
+    border: 1px solid black;
   }
+
   
   
   @media only screen and (max-width: 768px) {
-    .btns{
+    .btns,
+    #answer-field {
       grid-template-columns: 1fr;
-    }
-    .answer-field {
-      grid-template-columns: auto 1fr;
     }
     #answer-field {
       margin-top: 10%;
@@ -225,37 +205,27 @@ cursor: move;
       margin-top: 85%;
     }
   }
-
-
-  #btn0{
-    background-color:rgba( 218, 90, 251, 0.50 )
   
-  }
-  #btn0:hover{
-    background-color:rgba(185, 76, 212, 0.5)
-  }
+
+  
+#btn0{
+  background-color:rgba( 90, 125, 251, 0.50 )
+  
+}
 
 #btn1{
-  background-color:rgba( 118, 213, 152, 0.50 )
-
+  background-color:rgba( 213, 203, 118, 0.50 )
 }
-#btn1:hover{
-background-color:rgba(93, 172, 120, 0.5)}
 
 
 #btn2{
-  background-color:rgba( 213, 203, 118, 0.50 )
-}
-#btn2:hover{
-  background-color:rgba(175, 167, 95, 0.5)
+  background-color:rgba( 218, 90, 251, 0.50 )
 }
 
 #btn3{
-  background-color:rgba( 90, 125, 251, 0.50 )
+  background-color:rgba( 118, 213, 152, 0.50 )
 }
-#btn3:hover{
-  background-color:rgba(77, 104, 204, 0.5)
-}
+
 
   /* -----------------------------LANGUAGE--------------------------------- */
   .goog-logo-link{

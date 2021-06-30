@@ -4,6 +4,8 @@ var authController = require('../CONTROLLERS/auth');
 const quizOperations = require('../DATA/quizOperations');
 const userOperations = require('../DATA/userOperations');
 const bcrypt = require('bcryptjs');
+var nodemailer = require('nodemailer');
+
 
 
 var router = express.Router();
@@ -119,9 +121,45 @@ router.get('/editProfile', verify, (req, res) => {
             Email: result[0][0].Email,
             UserPassword: result[0][0].UserPassword
         });
-
     })
+})
 
+router.post('/editProfile', verify, (req, res) => {
+    userOperations.getUser(req.user).then(async result => {
+
+        var email = result[0][0].Email;
+        let hashedEmail = await bcrypt.hash(email, 8);
+
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'wizardquizard@gmail.com',
+                pass: 'SuperTajnaPraSifra'
+            }
+        });
+
+        var mailOptions = {
+            from: 'wizardquizard@gmail.com',
+            to: email,
+            subject: 'Change pasword',
+            text: `Link to change pasword: http://localhost:8091/changePassword?email=${hashedEmail}`
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+
+        return res.render('editProfile', {
+            firstName: result[0][0].FirstName,
+            lastName: result[0][0].LastName,
+            Email: result[0][0].Email,
+            UserPassword: result[0][0].UserPassword
+        });
+    })
 })
 
 router.post('/editProfile', verify, async (req, res) => {

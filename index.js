@@ -39,15 +39,13 @@ app.use('/registeredUser', require('./ROUTES/privatePages'));
 app.use('/game', require('./ROUTES/gamePages'));
 
 
+
 io.on('connection', socket => {
     socket.on('joinGame', async (key) => {
         socket.join(key);
         socket.broadcast.to(key).emit('reload');
         var numOfQs = await gameController.getNummberOfQuestions(key);
         socket.on('showQuestion', (status) => {
-            console.log(parseInt(status));
-            console.log(numOfQs.NumOfQs);
-            console.log(parseInt(status) === numOfQs.NumOfQs);
             if (parseInt(status) === numOfQs.NumOfQs) {
                 socket.emit('endOfQuiz');
                 socket.broadcast.to(key).emit('endOfQuiz');

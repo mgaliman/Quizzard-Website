@@ -5,18 +5,20 @@ body{
 }
 
 .myContainer{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .preview{
-    margin-right: 10%;
-    margin-left: 10%;
-    margin-bottom: 5%;
-    overflow-y: scroll;
     max-height: 100vh;
     text-align: center;
     display: none;
+    position: sticky;
+    width: 30%;
+    top: 150px;
+    right: 50px;
+    overflow-y: scroll;
+    height: 70vh;
 }
 
 .rounded {
@@ -78,8 +80,9 @@ body{
 }
 
 .myListItem{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .myBtnGroup{
@@ -121,16 +124,11 @@ flex-wrap: wrap;
 
   /* ///////////////////////////////////////////////////////////////////////////// */
 
-.question:hover{
-    background-color: transparent;
-    outline: none;
-}
 
-.question-container{    
+.question-Container{    
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 5%;
 }
 
 .question-container button{
@@ -184,7 +182,7 @@ flex-wrap: wrap;
 .answer-container button{
     transition: all 150ms ease-in-out;
 }
-.answer0:hover{
+/* .answer0:hover{
     background-color: #4558c0;
     border-color: #4558c0;
     color: #fff;
@@ -210,15 +208,45 @@ flex-wrap: wrap;
     border-color: #c04595;
     color: #fff;
     box-shadow: 0 0 10px 0 #c04595 inset,0 0 10px 4px #c04595;
+} */
+
+.ans {
+    display: flex;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+.ans img {
+    height: 40px;
+    width: 40px;
 }
 
 /* -----------------------------LANGUAGE--------------------------------- */
 .goog-logo-link{
     display: none !important;
-  }
-  .goog-te-gadget{
+}
+.goog-te-gadget{
     color: transparent !important;
-  }
-  .goog-te-banner-frame.skiptranslate{
+}
+.goog-te-banner-frame.skiptranslate{
     display: none !important;
-  }
+}
+
+h1,h2,h3 {
+    font-weight: normal;
+    text-align: center;
+}
+h1 {
+    position: fixed;
+    margin: 0 20px 10px 0;
+}
+h2 {
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+h3 {
+    margin-left: 20px;
+}
+
+.quizName {
+    width: 100%;
+}
