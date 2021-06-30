@@ -22,6 +22,25 @@ async function createPlayer(nickname, gameKey, quizID) {
     }
 }
 
+
+async function changePassword(email, password) {
+    try {
+        let pool = await sql.connect(config);
+        let players = await pool
+            .request()
+            .input('Email', sql.NVarChar(50), email)
+            .input('UserPassword', sql.NVarChar(50), password)
+            .execute('ChangePassword');
+        return players.output.IDPlayer;
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
+
+
 module.exports = {
-    createPlayer: createPlayer
+    createPlayer: createPlayer,
+    changePassword: changePassword
 }

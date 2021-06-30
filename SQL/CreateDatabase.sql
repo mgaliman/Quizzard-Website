@@ -122,6 +122,16 @@ as
 
 go
 
+create proc ChangePassword
+	@Email nvarchar(100),
+	@UserPassword nvarchar(max)
+as
+	update UserAccount
+	set	UserPassword = @UserPassword
+	from Quiz
+	where Email = @Email
+go
+
 
 --Tip CRUD
 
