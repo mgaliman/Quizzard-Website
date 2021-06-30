@@ -32,13 +32,10 @@ exports.login = async (req, res) => {
                     ),
                     httpOnly: true
                 }
-
                 res.cookie('jwt', token, cookieOptions);
                 res.status(200).redirect("registeredUser");
             }
         })
-
-
     } catch (error) {
         console.log(error);
     }
@@ -76,38 +73,37 @@ exports.register = (req, res) => {
     })
 }
 
-exports.changePassword = (req, res) => {
+exports.changePassword = async (req, res) => {
 
-    const { password, passwordConfirm } = req.body;
-    var email = req.query.email;
-
-    dbOperations.checkUserEmail(email).then(async result => {
-        // if (result === null) {
-        //     return res.render('index', {
-        //         message: 'That email is not in use',
-        //         firstName: req.body.firstName,
-        //         lastName: req.body.lastName,
-        //         email: req.body.email
-        //     });
-        // } else 
-        if (password !== passwordConfirm) {
-            return res.render('changePassword', {
-                message: 'Passwords do not match',
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                email: req.body.email
-            });
+    const { password, passwordConfirm, emailHash } = req.body;
+    if (password !== passwordConfirm) {
+        return res.render('changePassword', {
+            message: 'Passwords do not match',
+        });
+    } else {
+        var users = await dbOperations.getUsers();
+        for (const user of users[0].entries()) {
+            var email = user[1].Email;
+            console.log(await bcrypt.compare(email, emailHash));
+            if ((await bcrypt.compare(email, emailHash))) {
+                console.log(user[1].Email);
+                console.log(password);
+                hashPasw = await bcrypt.hash(password, 8);
+                dbOperations.changePassword(user[1].Email, hashPasw).then(async result => {
+                    console.log(result, "fsfefef")
+                    res.render('index');
+                });
+            }
+            // if (await bcrypt.compare(email, emailHash)) {
+            //     hashPasw = bcrypt.hash(password, 8);
+            //     dbOperations.changePassword(user.Email, hashPasw).then(async result => {
+            //         return res.render('index');
+            //     });
+            // }
         }
-
-        let hashedPassword = await bcrypt.hash(password, 8);
-
-        await dbOperations.createUser(firstName, lastName, email, hashedPassword);
-        res.redirect(307, '/login');
-        // return res.render('index', {
-        //     message: 'User registered'
-        // });
-    })
+    }
 }
+
 
 exports.logout = (req, res) => {
     res.clearCookie("jwt");

@@ -59,7 +59,7 @@ async function UpdateUser(id, firstName, lastName, password) {
             .input('LastName', sql.NVarChar(100), lastName)
             .input('UserPassword', sql.NVarChar(sql.MAX), password)
             .execute('UpdateUserAccount');
-        return users.output;
+        return users;
     } catch (err) {
         console.log(err.message);
     } finally {
@@ -124,6 +124,21 @@ async function readQuizzesFromUser(id) {
     }
 }
 
+async function changePassword(email, password) {
+    try {
+        let pool = await sql.connect(config);
+        let players = await pool
+            .request()
+            .input('Email', sql.NVarChar(50), email)
+            .input('UserPassword', sql.NVarChar(sql.MAX), password)
+            .execute('ChangePassword');
+        return true;
+    } catch (err) {
+        console.log(err.message);
+    } finally {
+    }
+}
+
 module.exports = {
     getUsers: getUsers,
     getUser: getUser,
@@ -132,4 +147,6 @@ module.exports = {
     loginUser: loginUser,
     UpdateUser: UpdateUser,
     readQuizzesFromUser: readQuizzesFromUser,
+    changePassword: changePassword
+
 }

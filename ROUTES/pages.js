@@ -17,12 +17,15 @@ router.get(('/'), verify, (request, response) => {
 router.get(('/'), (request, response) => {
     response.render("index");
 })
+router.post('/Password-has-been-changed', authController.changePassword);
+
 router.get(('/EnterNick'), (request, response) => {
     response.render("EnterNick");
 })
 router.get(('/howTo'), (request, response) => {
     response.render("howTo");
 })
+
 router.get(('/changePassword'), (request, response) => {
     response.render("changePassword");
 })

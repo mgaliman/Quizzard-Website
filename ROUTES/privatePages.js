@@ -124,7 +124,25 @@ router.get('/editProfile', verify, (req, res) => {
     })
 })
 
-router.post('/editProfile', verify, (req, res) => {
+router.post('/editProfile', verify, async (req, res) => {
+    let hashedPassword = await bcrypt.hash(req.body.Password, 8);
+    console.log(req.user);
+    console.log(req.body.firstName);
+    console.log(req.body.lastName);
+    console.log(hashedPassword);
+    userOperations.UpdateUser(req.user, req.body.firstName, req.body.lastName, hashedPassword).then(result => {
+        userOperations.getUser(req.user).then(result => {
+            return res.render('editProfile', {
+                firstName: result[0][0].FirstName,
+                lastName: result[0][0].LastName,
+                Email: result[0][0].Email,
+                UserPassword: result[0][0].UserPassword
+            });
+        })
+    })
+})
+
+router.post('/editProfile/Change-Password-With-Mail', verify, (req, res) => {
     userOperations.getUser(req.user).then(async result => {
 
         var email = result[0][0].Email;
@@ -161,21 +179,6 @@ router.post('/editProfile', verify, (req, res) => {
         });
     })
 })
-
-router.post('/editProfile', verify, async (req, res) => {
-    let hashedPassword = await bcrypt.hash(req.body.Password, 8);
-    userOperations.UpdateUser(req.user, req.body.firstName, req.body.lastName, hashedPassword).then(result => {
-        userOperations.getUser(req.user).then(result => {
-            return res.render('editProfile', {
-                firstName: result[0][0].FirstName,
-                lastName: result[0][0].LastName,
-                Email: result[0][0].Email,
-                UserPassword: result[0][0].UserPassword
-            });
-        })
-    })
-})
-
 
 
 

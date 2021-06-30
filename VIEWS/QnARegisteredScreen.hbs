@@ -24,8 +24,10 @@
             <Button type="button" class="question">{{question}}</Button>
         </div>
         <div class="answer-container">
+
             {{#each answers }}
             <button class="answer{{@index}}"><i class="material-icons"></i>
+            <img src="/IMAGES/{{@index}}.png" translate="no" width="60px" alt="">
                 <p>{{this.text}}</p>
             </button>
             {{/each}}
