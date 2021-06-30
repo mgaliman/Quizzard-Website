@@ -49,7 +49,7 @@ async function createUser(firstName, lastName, email, password) {
     } finally {
     }
 }
-async function UpdateUser(id, firstName, lastName, password) {
+async function UpdateUser(id, firstName, lastName) {
     try {
         let pool = await sql.connect(config);
         let users = await pool
@@ -57,7 +57,6 @@ async function UpdateUser(id, firstName, lastName, password) {
             .input('IDUserAccount', sql.Int, id)
             .input('FirstName', sql.NVarChar(100), firstName)
             .input('LastName', sql.NVarChar(100), lastName)
-            .input('UserPassword', sql.NVarChar(sql.MAX), password)
             .execute('UpdateUserAccount');
         return users;
     } catch (err) {
