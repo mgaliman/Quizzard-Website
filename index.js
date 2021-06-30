@@ -79,7 +79,7 @@ console.log('User API is running at ' + port);
 function stateChange(status, key) {
     setTimeout(function () {
         io.to(key).emit('showAnswer', status);
-    }, 5000);
+    }, 15000);
 }
 
 // function checkConnection(socket, key, it) {
