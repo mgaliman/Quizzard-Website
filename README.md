@@ -1,4 +1,4 @@
-This is a project made by five students, with the help and guidance of their professors, from Algebra University College in Zagreb, Croatia.
+This is a project made by five students, with the help and guidance of our professors, from Algebra University College in Zagreb, Croatia.
 
 It is a Node.js web application that enables its users to create quizzes and play them with others in real-time.
 We use Express.js as our backend web application framework.
