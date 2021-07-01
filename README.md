@@ -5,9 +5,9 @@ We use Express.js as our backend web application framework.
 It uses a Microsoft SQL Server client for Node.js to connect with a database and store information.
 We use bcryptjs, cookie-parser, jsonwebtoken middleware to safely store and handle sensitive information.
 We use Body-parser middleware to parse the information from clients' requests into JSON format.
-We use the hbs module as our template engine to display information from servers to clients.
-we use the Socket.IO library to enable real-time, bidirectional, and event-based communication between the client and the server.
-We use the nodemailer module to enable email sending.
+We use hbs module as our template engine to display information from servers to clients.
+we use Socket.IO library to enable real-time, bidirectional, and event-based communication between the client and the server.
+We use nodemailer module to enable email sending.
 
 # Quizzard team
 - [Barbarić Nina](https://github.com/NinaBarb)
