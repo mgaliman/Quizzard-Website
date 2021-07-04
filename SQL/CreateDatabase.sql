@@ -83,12 +83,12 @@ go
 create proc UpdateUserAccount 
 	@IDUserAccount int,
 	@FirstName nvarchar(100),
-	@LastName nvarchar(100),
+	@LastName nvarchar(100)
 as
 	update UserAccount 
 	set	
 	FirstName = @FirstName,
-	LastName = @LastName,
+	LastName = @LastName
 	where IDUserAccount = @IDUserAccount
 
 go
